@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
-import { StyleSheet, Text, View, Button, TextInput, ImageBackground, FlatList } from 'react-native';
+import { StyleSheet, Text, View, Button, TextInput, 
+  ImageBackground, FlatList, ScrollView} from 'react-native';
 
 export default function App() {
   const [enteredGoalText, setEnteredGoalText] = useState("");
@@ -38,15 +39,19 @@ export default function App() {
           <View style={styles.goalHeaderContainer}>
             <Text style={styles.goalHeaderText}>LIST OF GOALS</Text>
           </View>
-          <FlatList
-            data={courseGoals}
-            renderItem={({ item, index }) => (
-              <View style={styles.goalItem} key={index}>
-                <Text style={styles.goalText}>{item}</Text>
-              </View>
-            )}
-            keyExtractor={(item, index) => index.toString()}
-          />
+          <View>
+            <ScrollView>
+              <FlatList
+                data={courseGoals}
+                renderItem={({ item, index }) => (
+                  <View style={styles.goalItem} key={index}>
+                    <Text style={styles.goalText}>{item}</Text>
+                  </View>
+                )}
+                keyExtractor={(item, index) => index.toString()}
+              />
+            </ScrollView>
+          </View>
         </View>
       </View>
     </ImageBackground>
