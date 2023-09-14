@@ -1,75 +1,59 @@
 import React, { useState } from 'react';
-import { StyleSheet, Text, View, Button, TextInput, 
+import { StyleSheet, Text, View, Button, TextInput,
   ImageBackground, FlatList, ScrollView} from 'react-native';
+import GoalItem from './components/GoalItem';
+import GoalInput from './components/GoalInput';
+
 
 export default function App() {
   const [enteredGoalText, setEnteredGoalText] = useState("");
   const [courseGoals, setCourseGoals] = useState([]);
+  
+  // function goalInputHandler(enteredText) {
+  //   setEnteredGoalText(enteredText);
+  // };
 
-  function goalInputHandler(enteredText) {
-    setEnteredGoalText(enteredText);
-  }
-
-  function addGoalHandler() {
+  function addGoalHandler(props) {
     setCourseGoals((currentCourseGoals) => [
       ...currentCourseGoals,
-      {text:enteredGoalText, key:Math.random().toString()}
+      {text: enteredGoalText, key: Math.random().toString()}
     ]);
-    setEnteredGoalText(""); // Clear the input field after adding a goal
-  }
+    console.log(courseGoals);
+  };
 
-  // const Goal = ({item}) => {
-  //   <Text style={styles.goalItem}>{item.text}</Text>
-  // }
-
-  // const GoalList = () => {
-  //   <View style={styles.goalContainer}>
-  //     <FlatList data={courseGoals}
-  //     renderItem={(itemData) => {
-  //       return <Goal item={itemData}/>
-  //     }}
-  //     />
-  //   </View>
-  // }
-
-
-
-  const backgroundImageUri = 'https://i.pinimg.com/originals/99/24/5e/99245ed3fea14f1433a542bec4515428.jpg?fbclid=IwAR2SgmIXtpjTt58bMyChKWZk8ww_y4ohE5QRMVPBBd3CDfrf112K-qScZ0Y';
+  const backgroundImageUri = 'https://i.pinimg.com/originals/99/24/5e/99245ed3fea14f1433a542bec4515428.jpg';
 
   return (
     <ImageBackground
-    source={{ uri: backgroundImageUri }}
-    style={styles.backgroundImage}
-  >
+      source={{ uri: backgroundImageUri }}
+      style={styles.backgroundImage}
+    >
       <View style={styles.appContainer}>
-        <View style={styles.inputContainer}>
-          <TextInput
-            placeholder='Your Course Goal'
-            style={styles.textInput}
-            onChangeText={goalInputHandler}
-            value={enteredGoalText} />
-          <Button title='Add Goal' onPress={addGoalHandler} color='green' />
-        </View>
+        <View style={styles.backgroundContainer}>
 
-        <View style={styles.goalContainer}>
-          <View style={styles.goalHeaderContainer}>
-            <Text style={styles.goalHeaderText}>LIST OF GOALS</Text>
-          </View>
-          <View style={styles.goalListContainer}>
-            <FlatList data={courseGoals} 
-              renderItem={(itemData) => {
-                return(
+          <GoalInput onAddGoal={addGoalHandler}/>
+
+          <View style={styles.goalContainer}>
+            <View style={styles.goalHeaderContainer}>
+              <Text style={styles.goalHeaderText}>LIST OF GOALS</Text>
+            </View>
+            <View style={styles.goalListContainer}>
+              <FlatList data = {courseGoals}
+                renderItem={(itemData) => {
+                  // <GoalItem text={itemData.item.text} />
                   <View style={styles.goalContainer}>
                     <Text style={styles.goalItem}>{itemData.item.text}</Text>
+                    {/* {console.log(itemData.item)} */}
                   </View>
-                )
-              }}/>
+                }} />
+            </View>
           </View>
         </View>
       </View>
     </ImageBackground>
   );
 }
+
 
 const styles = StyleSheet.create({
   backgroundImage: {
@@ -80,7 +64,18 @@ const styles = StyleSheet.create({
     flex: 1,
     paddingTop: 50,
     paddingHorizontal: 16,
+    paddingBottom:20
   },
+
+
+  backgroundContainer: {
+    backgroundColor: 'rgba(255, 253, 208 ,0.85)',
+    borderRadius: 20,
+    width: '100%',
+    height: '100%',
+  },
+
+
   inputContainer: {
     flexDirection: 'row',
     justifyContent: 'space-between',
@@ -91,9 +86,6 @@ const styles = StyleSheet.create({
     backgroundColor: 'rgba(255, 255, 255)',
     padding: 10,
     borderRadius: 10,
-  },
-  goalListContainer:{
-    padding:5,
   },
   goalContainer: {
     flex: 5,
@@ -132,5 +124,22 @@ const styles = StyleSheet.create({
     padding: 13,
     backgroundColor: 'white',
     borderRadius: 5,
+  },
+  goalListContainer: {
+    padding: 5,
+  },
+  goalContainer: {
+    flex: 5,
+    backgroundColor: 'rgba(255, 255, 255)',
+    padding: 10,
+    borderRadius: 10,
+  },
+goalItem: {
+    backgroundColor: '#f0f0f0',
+    padding: 10,
+    marginBottom: 10,
+    borderRadius: 5,
+    borderWidth: 1,
+    borderColor: '#74A12E',
   },
 });
