@@ -13,44 +13,57 @@ export default function App() {
   function addGoalHandler() {
     setCourseGoals((currentCourseGoals) => [
       ...currentCourseGoals,
-      enteredGoalText
+      {text:enteredGoalText, key:Math.random().toString()}
     ]);
     setEnteredGoalText(""); // Clear the input field after adding a goal
   }
 
-  const backgroundImageUri = 'https://mcdn.wallpapersafari.com/medium/42/4/fASXav.png';
+  // const Goal = ({item}) => {
+  //   <Text style={styles.goalItem}>{item.text}</Text>
+  // }
+
+  // const GoalList = () => {
+  //   <View style={styles.goalContainer}>
+  //     <FlatList data={courseGoals}
+  //     renderItem={(itemData) => {
+  //       return <Goal item={itemData}/>
+  //     }}
+  //     />
+  //   </View>
+  // }
+
+
+
+  const backgroundImageUri = 'https://i.pinimg.com/originals/99/24/5e/99245ed3fea14f1433a542bec4515428.jpg?fbclid=IwAR2SgmIXtpjTt58bMyChKWZk8ww_y4ohE5QRMVPBBd3CDfrf112K-qScZ0Y';
 
   return (
     <ImageBackground
-      source={{ uri: backgroundImageUri }}
-      style={styles.backgroundImage}
-    >
+    source={{ uri: backgroundImageUri }}
+    style={styles.backgroundImage}
+  >
       <View style={styles.appContainer}>
         <View style={styles.inputContainer}>
           <TextInput
             placeholder='Your Course Goal'
             style={styles.textInput}
             onChangeText={goalInputHandler}
-            value={enteredGoalText}
-          />
+            value={enteredGoalText} />
           <Button title='Add Goal' onPress={addGoalHandler} color='green' />
         </View>
+
         <View style={styles.goalContainer}>
           <View style={styles.goalHeaderContainer}>
             <Text style={styles.goalHeaderText}>LIST OF GOALS</Text>
           </View>
-          <View>
-            <ScrollView>
-              <FlatList
-                data={courseGoals}
-                renderItem={({ item, index }) => (
-                  <View style={styles.goalItem} key={index}>
-                    <Text style={styles.goalText}>{item}</Text>
+          <View style={styles.goalListContainer}>
+            <FlatList data={courseGoals} 
+              renderItem={(itemData) => {
+                return(
+                  <View style={styles.goalContainer}>
+                    <Text style={styles.goalItem}>{itemData.item.text}</Text>
                   </View>
-                )}
-                keyExtractor={(item, index) => index.toString()}
-              />
-            </ScrollView>
+                )
+              }}/>
           </View>
         </View>
       </View>
@@ -78,6 +91,9 @@ const styles = StyleSheet.create({
     backgroundColor: 'rgba(255, 255, 255)',
     padding: 10,
     borderRadius: 10,
+  },
+  goalListContainer:{
+    padding:5,
   },
   goalContainer: {
     flex: 5,
