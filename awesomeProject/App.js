@@ -1,24 +1,20 @@
 import React, { useState } from 'react';
-import { StyleSheet, Text, View, Button, TextInput,
-  ImageBackground, FlatList, ScrollView} from 'react-native';
-import GoalItem from './components/GoalItem';
+import { StyleSheet, Text, View, ImageBackground, FlatList} from 'react-native';
+import GoalItem from './components/GoalItem'
 import GoalInput from './components/GoalInput';
 
 
 export default function App() {
-  const [enteredGoalText, setEnteredGoalText] = useState("");
-  const [courseGoals, setCourseGoals] = useState([]);
-  
-  // function goalInputHandler(enteredText) {
-  //   setEnteredGoalText(enteredText);
-  // };
+  const [courseGoals, setCourseGoals] = useState([])
 
-  function addGoalHandler(props) {
-    setCourseGoals((currentCourseGoals) => [
-      ...currentCourseGoals,
-      {text: enteredGoalText, key: Math.random().toString()}
-    ]);
-    console.log(courseGoals);
+  const addGoalHandler = (enteredGoalText) => {
+    setCourseGoals((currentCourseGoals) => 
+      [...currentCourseGoals,
+        {
+          text: enteredGoalText , key: Math.random().toString()
+        }
+      ]
+    )
   };
 
   const backgroundImageUri = 'https://i.pinimg.com/originals/99/24/5e/99245ed3fea14f1433a542bec4515428.jpg';
@@ -37,17 +33,15 @@ export default function App() {
             <View style={styles.goalHeaderContainer}>
               <Text style={styles.goalHeaderText}>LIST OF GOALS</Text>
             </View>
-            <View style={styles.goalListContainer}>
+
+            <View>
               <FlatList data = {courseGoals}
                 renderItem={(itemData) => {
-                  // <GoalItem text={itemData.item.text} />
-                  <View style={styles.goalContainer}>
-                    <Text style={styles.goalItem}>{itemData.item.text}</Text>
-                    {/* {console.log(itemData.item)} */}
-                  </View>
+                  return <GoalItem text={itemData.item.text}/>
                 }} />
-            </View>
+            </View>  
           </View>
+          
         </View>
       </View>
     </ImageBackground>
@@ -124,9 +118,6 @@ const styles = StyleSheet.create({
     padding: 13,
     backgroundColor: 'white',
     borderRadius: 5,
-  },
-  goalListContainer: {
-    padding: 5,
   },
   goalContainer: {
     flex: 5,

@@ -1,15 +1,18 @@
 import {View, Button, TextInput} from 'react-native';
 import { useState } from 'react';
 
-export default function GoalInput (props) {
+export default function GoalInput(props) {
     const [enteredGoalText, setEnteredGoalText] = useState("");
+    
     function goalInputHandler(enteredText) {
         setEnteredGoalText(enteredText);
     };
+
     function addGoalHandler(){
         props.onAddGoal(enteredGoalText);
         setEnteredGoalText("");
     }
+
     return (    
             <View style={styles.inputContainer}>
             <TextInput
