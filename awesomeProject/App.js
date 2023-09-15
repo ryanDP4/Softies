@@ -41,7 +41,7 @@ export default function App() {
                 }} />
             </View>  
           </View>
-          
+
         </View>
       </View>
     </ImageBackground>
@@ -60,26 +60,11 @@ const styles = StyleSheet.create({
     paddingHorizontal: 16,
     paddingBottom:20
   },
-
-
   backgroundContainer: {
     backgroundColor: 'rgba(255, 253, 208 ,0.85)',
     borderRadius: 20,
     width: '100%',
     height: '100%',
-  },
-
-
-  inputContainer: {
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    alignItems: 'center',
-    marginBottom: 24,
-    borderBottomWidth: 1,
-    borderBottomColor: '#74A12E',
-    backgroundColor: 'rgba(255, 255, 255)',
-    padding: 10,
-    borderRadius: 10,
   },
   goalContainer: {
     flex: 5,
@@ -98,39 +83,5 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
     color: 'white',
     textAlign: 'center',
-  },
-  goalItem: {
-    backgroundColor: '#f0f0f0',
-    padding: 10,
-    marginBottom: 10,
-    borderRadius: 5,
-    borderWidth: 1,
-    borderColor: '#74A12E',
-  },
-  goalText: {
-    fontSize: 16,
-  },
-  textInput: {
-    borderWidth: 1,
-    borderColor: '#74A12E',
-    width: '70%',
-    marginRight: 8,
-    padding: 13,
-    backgroundColor: 'white',
-    borderRadius: 5,
-  },
-  goalContainer: {
-    flex: 5,
-    backgroundColor: 'rgba(255, 255, 255)',
-    padding: 10,
-    borderRadius: 10,
-  },
-goalItem: {
-    backgroundColor: '#f0f0f0',
-    padding: 10,
-    marginBottom: 10,
-    borderRadius: 5,
-    borderWidth: 1,
-    borderColor: '#74A12E',
   },
 });
