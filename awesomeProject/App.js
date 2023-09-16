@@ -17,7 +17,7 @@ export default function App() {
     )
   };
 
-  const backgroundImageUri = 'https://i.pinimg.com/originals/99/24/5e/99245ed3fea14f1433a542bec4515428.jpg';
+  const backgroundImageUri = 'https://wallpapercave.com/wp/wp5121564.jpg';
 
   return (
     <ImageBackground
