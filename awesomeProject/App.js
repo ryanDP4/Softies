@@ -34,7 +34,7 @@ export default function App() {
               <Text style={styles.goalHeaderText}>LIST OF GOALS</Text>
             </View>
 
-            <View>
+            <View style={styles.goalListContainer}>
               <FlatList data = {courseGoals}
                 renderItem={(itemData) => {
                   return <GoalItem text={itemData.item.text}/>
@@ -84,4 +84,7 @@ const styles = StyleSheet.create({
     color: 'white',
     textAlign: 'center',
   },
+  goalListContainer: {
+    maxHeight: '50vh',
+  }
 });
