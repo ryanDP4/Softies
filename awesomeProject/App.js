@@ -58,19 +58,7 @@ const styles = StyleSheet.create({
     flex: 1,
     paddingTop: 50,
     paddingHorizontal: 16,
-    paddingBottom:20
-  },
-  backgroundContainer: {
-    backgroundColor: 'rgba(255, 253, 208 ,0.85)',
-    borderRadius: 20,
-    width: '100%',
-    height: '100%',
-  },
-  goalContainer: {
-    flex: 5,
-    backgroundColor: 'rgba(255, 255, 255)',
-    padding: 10,
-    borderRadius: 10,
+    paddingBottom:20,
   },
   goalHeaderContainer: {
     backgroundColor: 'green',
@@ -84,7 +72,22 @@ const styles = StyleSheet.create({
     color: 'white',
     textAlign: 'center',
   },
+  backgroundContainer: {
+    backgroundColor: 'rgba(255, 253, 208 ,0.85)',
+    borderRadius: 20,
+    width: '100%',
+    height: '100%',
+    maxHeight: '90vh',
+    overflow: 'hidden',
+  },
   goalListContainer: {
-    maxHeight: '50vh',
-  }
+    maxHeight: 'inherit',
+  },
+  goalContainer: {
+    flex: 5,
+    backgroundColor: 'rgba(255, 255, 255)',
+    padding: 10,
+    borderRadius: 10,
+    maxHeight: 'inherit',
+  },
 });
