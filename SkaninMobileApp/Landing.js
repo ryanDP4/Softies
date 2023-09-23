@@ -1,29 +1,32 @@
 import { useFonts } from 'expo-font';
 import { StyleSheet, View, Image, Text, TouchableOpacity } from 'react-native';
-import Homepage from './Homepage';
+// import Homepage from './Homepage';
 
-export default function LandingPage( navigation ) {
+export default function Landing( {navigation} ) {
     const imagePath = require('./assets/skaninLanding.png')
     const [fontsLoaded, fontError] = useFonts({
         'Ultra-Regular': require('./assets/fonts/ultra/Ultra-Regular.ttf')
     }) 
     
     return (
-        <TouchableOpacity style={styles.touchable}>
-            <View style={styles.page} >
-                <View style={styles.imageContainer}>
-                    <Image 
-                        source= {imagePath}
-                        style={styles.image}
-                    />
-                    <Text style={styles.appTitle}>SKANIN</Text>
+            <TouchableOpacity
+            title="SplashScreen"
+            onPress={() => navigation.navigate('Home Page')}
+            style={styles.touchable}
+            >
+                <View style={styles.page} >
+                    <View style={styles.imageContainer}>
+                        <Image 
+                            source= {imagePath}
+                            style={styles.image}
+                        />
+                        <Text style={styles.appTitle}>SKANIN</Text>
+                    </View>
+                    <View style={styles.continueContainer}>
+                    <Text style={styles.continueText}>Tap anywhere to continue.</Text>
+                    </View>
                 </View>
-                <View style={styles.continueContainer}>
-                <Text style={styles.continueText}>Tap anywhere to continue.</Text>
-                </View>
-                {console.log("working")}
-            </View>
-        </TouchableOpacity>
+            </TouchableOpacity>
     )
 }
 
@@ -65,6 +68,8 @@ const styles = StyleSheet.create({
         color: '#222222',
     },
     touchable: {
-        marginLeft: '-10vw',
+        margin:0,
+        flex:1,
+        paddding:0
       },
 }) 
