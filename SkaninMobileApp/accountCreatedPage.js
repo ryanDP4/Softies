@@ -1,30 +1,38 @@
-import React from 'react';
+// import React from 'react';
 import { View, Text, TouchableOpacity, Image, StyleSheet } from 'react-native';
 
-const AccountCreatedPage = () => {
+const AccountCreatedPage = ({ navigation }) => {
+  const imagePath = require('./assets/check mark.png')
   return (
-    <View style={styles.container}>
+    <TouchableOpacity style = {styles.touchable} onPress={() => navigation.navigate('Log In Page')}>{/* Go back arrow button */}
+      <View style={styles.container}>
 
-      {/* Go back arrow button */}
-      <TouchableOpacity style={styles.backButton}>
+      {/* Removed Back Button*/}
+      {/* <TouchableOpacity style={styles.backButton}>
         <Text style={styles.backButtonText}>{'<'}</Text>
-      </TouchableOpacity>
+      </TouchableOpacity> */}
 
       {/* Account Created Text */}
       <Text style={styles.accountCreatedText}>Account Created</Text>
 
       {/* Check mark */}
-      <Image source = {require("./check mark.png")} style = {styles.image}/>
+      <Image source = {imagePath} style = {styles.image}/>
       
       {/* Tap Anywhere to Continue */}
-      <TouchableOpacity style = {styles.tapButton}>
+      
         <Text style={styles.text}>Tap anywhere to continue</Text>
-      </TouchableOpacity>
+      
     </View>
+    </TouchableOpacity>
   );
 };
 
 const styles = StyleSheet.create({
+  touchable: {
+    margin:0,
+    flex:1,
+    paddding:0
+  },
   container: {
     flex: 1,
     backgroundColor: '#F5F5F5',

@@ -1,15 +1,15 @@
-import React from 'react';
+// import React from 'react';
 import { View, Text, StyleSheet, TouchableOpacity } from 'react-native';
 
-const MyComponent = () => {
+const AreYouA = ({ navigation }) => {
   return (
     <View style={styles.container}>
       <View style={styles.middleContent}>
         <Text style={styles.questionText}>Are you a</Text>
-        <TouchableOpacity style={styles.buttonGreen}>
+        <TouchableOpacity style={styles.buttonGreen} onPress={() => navigation.navigate('Sign Up Page')}>
           <Text style={styles.buttonText}>FARMER/GUEST</Text>
         </TouchableOpacity>
-        <TouchableOpacity style={styles.buttonGreen1}>
+        <TouchableOpacity style={styles.buttonGreen1} onPress={() => navigation.navigate('Sign Up Page')}>
           <Text style={styles.buttonText}>AGRONOMIST</Text>
         </TouchableOpacity>
       </View>
@@ -53,4 +53,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default MyComponent;
+export default AreYouA;

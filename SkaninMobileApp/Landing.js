@@ -11,7 +11,7 @@ export default function Landing( {navigation} ) {
     return (
             <TouchableOpacity
             title="SplashScreen"
-            onPress={() => navigation.navigate('Home Page')}
+            onPress={() => navigation.navigate('Are You A Page')}
             style={styles.touchable}
             >
                 <View style={styles.page} >

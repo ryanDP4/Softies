@@ -1,8 +1,8 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { View, Text, TextInput, TouchableOpacity, StyleSheet } from 'react-native';
 
 
-const LoginPage = () => {
+const LogInPage = ({ navigation }) => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
@@ -11,7 +11,7 @@ const LoginPage = () => {
     <View style={styles.container}>
 
       {/* Go back arrow button */}
-      <TouchableOpacity style={styles.backButton}>
+      <TouchableOpacity style={styles.backButton} onPress={() => navigation.navigate('Sign Up Page')}>
         <Text style={styles.backButtonText}>{'<'}</Text>
       </TouchableOpacity>
       
@@ -45,9 +45,15 @@ const LoginPage = () => {
             />
           </View>
         </View>
+        {/*Dont have an account? */}
+        {/* <View style={styles.signInTextContainer}>
+          <TouchableOpacity onPress={() => navigation.navigate('Sign Up Page')}>
+            <Text style={styles.signInText}>Don't have an account? <Text style={styles.arrow}>→</Text> </Text>
+          </TouchableOpacity>
+        </View> */}
 
         {/* Login Button */}
-        <TouchableOpacity style={styles.logInButton}>
+        <TouchableOpacity style={styles.logInButton} onPress={() => navigation.navigate('Home Page')}>
           <Text style={styles.logInButtonText}>LOG IN</Text>
         </TouchableOpacity>
       </View>
@@ -62,7 +68,15 @@ const styles = StyleSheet.create({
     justifyContent: 'center', // Center vertically
     alignItems: 'center', // Center horizontally
   },
-
+  signInTextContainer: {
+    flexDirection: 'row',
+    justifyContent: 'flex-end',
+    alignItems: 'center',
+    marginBottom: 20,
+  },
+  signInText: {
+    marginRight: 5,
+  },
   backButton: {
     position: 'absolute',
     top: 20,
@@ -114,4 +128,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default LoginPage;
+export default LogInPage;

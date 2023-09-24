@@ -1,7 +1,7 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { View, Text, TextInput, TouchableOpacity, Button, StyleSheet } from 'react-native';
 
-const SignUpForm = () => {
+const SignUpForm = ({ navigation }) => {
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
@@ -45,12 +45,11 @@ const SignUpForm = () => {
           </View>
         </View>
         <View style={styles.signInTextContainer}>
-          <Text style={styles.signInText}>Already have an account?</Text>
-          <TouchableOpacity>
-            <Text style={styles.arrow}>→</Text>
+          <TouchableOpacity onPress={() => navigation.navigate('Log In Page')}>
+            <Text style={styles.signInText}>Already have an account? <Text style={styles.arrow}>→</Text> </Text>
           </TouchableOpacity>
         </View>
-        <TouchableOpacity style={styles.signUpButton}>
+        <TouchableOpacity style={styles.signUpButton} onPress={() => navigation.navigate('Account Created Page')}>
           <Text style={styles.signUpButtonText}>Sign Up</Text>
         </TouchableOpacity>
       </View>
