@@ -3,10 +3,14 @@ import { StyleSheet, ScrollView, View, Text, StatusBar, Animated, Image, Touchab
 import { useFonts } from 'expo-font';
 import { ImageHeaderScrollView, TriggeringView } from 'react-native-image-header-scroll-view';
 import { LinearGradient } from 'react-native-svg';
+import home from '../assets/home.svg';
+import scan from '../assets/scan.svg';
+import history from '../assets/history.svg';
+import userProfile from '../assets/user-profile.svg';
 
 const BANNER_HEIGHT = 400;
 
-const Homepage = () => {
+const Homepage = ({navigation}) => {
     const scrollA = useRef(new Animated.Value(0)).current;
     const homebannerIMG = require('../assets/homebanner.png');
     const sampleIMG1 = require('../assets/sampleIMG1.svg');
@@ -19,160 +23,171 @@ const Homepage = () => {
     }
 
     return (
-        <ImageHeaderScrollView
-            maxHeight={BANNER_HEIGHT}
-            minHeight={100}
-            renderHeader={() => (
-                <Animated.Image
-                    style={styles.banner(scrollA)}
-                    width="100%"
-                    height={BANNER_HEIGHT}
-                    source={homebannerIMG}
-                />
-            )}
-            // snapToOffsets={[...Array(4).keys()].map((item, index) => index * 240)}
-        >
-            <View style={styles.container}>
-                <View style={styles.TextView}>
-                    <View style={styles.header}>
-                        <View style={{ width: '75%' }}>
-                            <Text style={styles.title}>Recent Scans</Text>
-                            <View style={styles.lineUnder}></View>
+        <View style={styles.container}>
+            <ImageHeaderScrollView
+                maxHeight={BANNER_HEIGHT}
+                minHeight={100}
+                renderHeader={() => (
+                    <Animated.Image
+                        style={styles.banner(scrollA)}
+                        width="100%"
+                        height={BANNER_HEIGHT}
+                        source={homebannerIMG}
+                    />
+                )}
+                // snapToOffsets={[...Array(4).keys()].map((item, index) => index * 240)}
+            >
+                    <View style={styles.TextView}>
+                        <View style={styles.header}>
+                            <View style={{ width: '75%' }}>
+                                <Text style={styles.title}>Recent Scans</Text>
+                                <View style={styles.lineUnder}></View>
+                            </View>
+                            <TouchableOpacity style={styles.ViewButton}>
+                                <Text style={styles.viewAllText}>View all</Text>
+                            </TouchableOpacity>
                         </View>
-                        <TouchableOpacity style={styles.ViewButton}>
-                            <Text style={styles.viewAllText}>View all</Text>
-                        </TouchableOpacity>
-                    </View>
 
-                    <ScrollView
-                        horizontal
-                        showsHorizontalScrollIndicator={false}
-                        style={styles.imageScrollView} // Adjusted style
-                    >
-                        {/* <LinearGradient
-                            colors={["rgba(0, 164, 109, 0.09)", "transparent"]}
-                            style={styles.LGstyle}
-                        /> */}
-                        <TouchableOpacity
-                            onPress={() => navigation.navigate('Landing')}
-                            // style={styles.imageContainer} // Adjusted style
+                        <ScrollView
+                            horizontal
+                            showsHorizontalScrollIndicator={false}
+                            style={styles.imageScrollView} // Adjusted style
                         >
-                            <Image
-                                source={sampleIMG1}
-                                style={styles.imageStyle} // Added style
-                            />
+                            {/* <LinearGradient
+                                colors={["rgba(0, 164, 109, 0.09)", "transparent"]}
+                                style={styles.LGstyle}
+                            /> */}
+                            <TouchableOpacity
+                                onPress={() => navigation.navigate('Landing')}
+                                // style={styles.imageContainer} // Adjusted style
+                            >
+                                <Image
+                                    source={sampleIMG1}
+                                    style={styles.imageStyle} // Added style
+                                />
+                                
+                            </TouchableOpacity>
                             
-                        </TouchableOpacity>
-                        
-                        <TouchableOpacity
-                            onPress={() => navigation.navigate('Landing')}
-                            // style={styles.imageContainer} // Adjusted style
-                        >
-                            <Image
-                                source={sampleIMG1}
-                                style={styles.imageStyle} // Added style
-                            />
-                            
-                        </TouchableOpacity>
-                        <TouchableOpacity
-                            onPress={() => navigation.navigate('Landing')}
-                            // style={styles.imageContainer} // Adjusted style
-                        >
-                            <Image
-                                source={sampleIMG1}
-                                style={styles.imageStyle} // Added style
-                            />
-                            
-                        </TouchableOpacity>
+                            <TouchableOpacity
+                                onPress={() => navigation.navigate('Landing')}
+                                // style={styles.imageContainer} // Adjusted style
+                            >
+                                <Image
+                                    source={sampleIMG1}
+                                    style={styles.imageStyle} // Added style
+                                />
+                                
+                            </TouchableOpacity>
+                            <TouchableOpacity
+                                onPress={() => navigation.navigate('Landing')}
+                                // style={styles.imageContainer} // Adjusted style
+                            >
+                                <Image
+                                    source={sampleIMG1}
+                                    style={styles.imageStyle} // Added style
+                                />
+                                
+                            </TouchableOpacity>
 
 
-                    </ScrollView>
+                        </ScrollView>
 
-                    <View style={styles.header}>
-                        <View style={{ width: '75%' }}>
-                            <Text style={styles.title}>Stress Varieties</Text>
-                            <View style={styles.lineUnder}></View>
+                        <View style={styles.header}>
+                            <View style={{ width: '75%' }}>
+                                <Text style={styles.title}>Stress Varieties</Text>
+                                <View style={styles.lineUnder}></View>
+                            </View>
+                            <TouchableOpacity style={styles.ViewButton}>
+                                <Text style={styles.viewAllText}>View all</Text>
+                            </TouchableOpacity>
                         </View>
-                        <TouchableOpacity style={styles.ViewButton}>
-                            <Text style={styles.viewAllText}>View all</Text>
-                        </TouchableOpacity>
+
+                        <View style={styles.listContainer}>
+                            <TouchableOpacity
+                                onPress={() => navigation.navigate('Landing')}
+                                style={styles.imageContainer} // Adjusted style
+                            >
+                                <Image
+                                    source={sampleIMG1}
+                                    style={styles.imgStyle} // Added style
+                                />
+
+                            </TouchableOpacity>
+
+                            <TouchableOpacity
+                                onPress={() => navigation.navigate('Landing')}
+                                style={styles.imageContainer} // Adjusted style
+                            >
+                                <Image
+                                    source={sampleIMG1}
+                                    style={styles.imgStyle} // Added style
+                                />
+
+                            </TouchableOpacity>
+
+                            <TouchableOpacity
+                                onPress={() => navigation.navigate('Landing')}
+                                style={styles.imageContainer} // Adjusted style
+                            >
+                                <Image
+                                    source={sampleIMG1}
+                                    style={styles.imgStyle} // Added style
+                                />
+
+                            </TouchableOpacity>
+
+                            <TouchableOpacity
+                                onPress={() => navigation.navigate('Landing')}
+                                style={styles.imageContainer} // Adjusted style
+                            >
+                                <Image
+                                    source={sampleIMG1}
+                                    style={styles.imgStyle} // Added style
+                                />
+
+                            </TouchableOpacity>
+
+                            <TouchableOpacity
+                                onPress={() => navigation.navigate('Landing')}
+                                style={styles.imageContainer} // Adjusted style
+                            >
+                                <Image
+                                    source={sampleIMG1}
+                                    style={styles.imgStyle} // Added style
+                                />
+
+                            </TouchableOpacity>
+
+                            <TouchableOpacity
+                                onPress={() => navigation.navigate('Landing')}
+                                style={styles.imageContainer} // Adjusted style
+                            >
+                                <Image
+                                    source={sampleIMG1}
+                                    style={styles.imgStyle} // Added style
+                                />
+
+                            </TouchableOpacity>
+                        </View>
                     </View>
-
-                    <View style={styles.listContainer}>
-                        <TouchableOpacity
-                            onPress={() => navigation.navigate('Landing')}
-                            style={styles.imageContainer} // Adjusted style
-                        >
-                            <Image
-                                source={sampleIMG1}
-                                style={styles.imgStyle} // Added style
-                            />
-
-                        </TouchableOpacity>
-
-                        <TouchableOpacity
-                            onPress={() => navigation.navigate('Landing')}
-                            style={styles.imageContainer} // Adjusted style
-                        >
-                            <Image
-                                source={sampleIMG1}
-                                style={styles.imgStyle} // Added style
-                            />
-
-                        </TouchableOpacity>
-
-                        <TouchableOpacity
-                            onPress={() => navigation.navigate('Landing')}
-                            style={styles.imageContainer} // Adjusted style
-                        >
-                            <Image
-                                source={sampleIMG1}
-                                style={styles.imgStyle} // Added style
-                            />
-
-                        </TouchableOpacity>
-
-                        <TouchableOpacity
-                            onPress={() => navigation.navigate('Landing')}
-                            style={styles.imageContainer} // Adjusted style
-                        >
-                            <Image
-                                source={sampleIMG1}
-                                style={styles.imgStyle} // Added style
-                            />
-
-                        </TouchableOpacity>
-
-                        <TouchableOpacity
-                            onPress={() => navigation.navigate('Landing')}
-                            style={styles.imageContainer} // Adjusted style
-                        >
-                            <Image
-                                source={sampleIMG1}
-                                style={styles.imgStyle} // Added style
-                            />
-
-                        </TouchableOpacity>
-
-                        <TouchableOpacity
-                            onPress={() => navigation.navigate('Landing')}
-                            style={styles.imageContainer} // Adjusted style
-                        >
-                            <Image
-                                source={sampleIMG1}
-                                style={styles.imgStyle} // Added style
-                            />
-
-                        </TouchableOpacity>
-                    </View>
-
-                    
-
-
-
-                </View>
+            </ImageHeaderScrollView>
+                  {/* Footer with icon buttons */}
+            <View style={styles.footer}>
+                <TouchableOpacity onPress={() => navigation.navigate('Homepage')}>
+                    <Image source={home} style={styles.icon} />
+                </TouchableOpacity>
+                <TouchableOpacity onPress={() => navigation.navigate('Classification Page')}>
+                    <Image source={scan} style={styles.icon} />
+                </TouchableOpacity>
+                <TouchableOpacity onPress={() => navigation.navigate('History Page')}>
+                    <Image source={history} style={styles.icon} />
+                </TouchableOpacity>
+                <TouchableOpacity onPress={() => navigation.navigate('User Profile')}>
+                    <Image source={userProfile} style={styles.icon} />
+                </TouchableOpacity>
             </View>
-        </ImageHeaderScrollView>
+        </View>
+        
     );
 };
 
@@ -208,12 +223,22 @@ const styles = StyleSheet.create({
         transform: [{ translateY: scrollA }],
     }),
     footer: {
-        color: '#000',
-        fontSize: 16,
-        fontWeight: '400',
-        lineHeight: 24,
-        padding: 10,
-        // marginBottom: 100,
+        flexDirection: 'row',
+        justifyContent: 'space-around',
+        alignItems: 'center',
+        backgroundColor: 'white',
+        // borderTopRadius: 10,
+        bottom: 0,
+        width: '100%',
+        height: '3%',
+        position: 'absolute',
+        shadowColor: '#000',
+        shadowOffset: {
+          width: 0,
+          height: -2,
+        },
+        shadowOpacity: 0.3,
+        shadowRadius: 3,
     },
     lineUnder:{
         height: 3,
@@ -272,7 +297,10 @@ const styles = StyleSheet.create({
         width: 100, // Adjusted width to take full width of the container
         height: 100,
     },
-
+    icon: {
+        width: 20,
+        height: 20,
+    }
 
 });
 
