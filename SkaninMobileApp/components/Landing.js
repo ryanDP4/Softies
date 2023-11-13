@@ -3,15 +3,16 @@ import { StyleSheet, View, Image, Text, TouchableOpacity } from 'react-native';
 // import Homepage from './Homepage';
 
 export default function Landing( {navigation} ) {
-    const imagePath = require('./assets/skaninLanding.png')
+    const imagePath = require('../assets/skaninLanding.svg')
     const [fontsLoaded, fontError] = useFonts({
-        'Ultra-Regular': require('./assets/fonts/ultra/Ultra-Regular.ttf')
+        'Ultra-Regular': require('../assets/fonts/ultra/Ultra-Regular.ttf'),
+        'Montserrat-Regular': require('../assets/fonts/Montserrat-Regular.ttf')
     }) 
     
     return (
             <TouchableOpacity
             title="SplashScreen"
-            onPress={() => navigation.navigate('Are You A Page')}
+            onPress={() => navigation.navigate('AreYouA')}
             style={styles.touchable}
             >
                 <View style={styles.page} >
@@ -21,6 +22,7 @@ export default function Landing( {navigation} ) {
                             style={styles.image}
                         />
                         <Text style={styles.appTitle}>SKANIN</Text>
+                        <Text style={styles.appMiniTitle}>AgriScan</Text>
                     </View>
                     <View style={styles.continueContainer}>
                     <Text style={styles.continueText}>Tap anywhere to continue.</Text>
@@ -33,7 +35,7 @@ export default function Landing( {navigation} ) {
 const styles = StyleSheet.create({
     page: {
         flex:1,
-        backgroundColor: '#F8F6D6',
+        backgroundColor: '#FFF',
         alignItems: 'center',
         justifyContent: 'center'
     },
@@ -43,21 +45,25 @@ const styles = StyleSheet.create({
         width: '100%',
         height: '100%',
         alignItems: 'center',
+        justifyContent: 'center'
     },
     image: {
-        width: '40vw',
-        height: '40vh',
-        margin: 0,
-        padding: 0,
-        marginTop:  '15vh',
-        paddingLeft: '60vw',
-        paddingRight: '60vw',
+        width: '65%', // Use a percentage of the screen width
+        aspectRatio: 1, // Maintain aspect ratio (width:height = 1:1)
+        justifyContent: 'center',
+        alignItems: 'center'
     },
     appTitle: {
       fontSize: '42px',
-      marginTop: '-4vh',
+      marginTop: '1vh',
       fontFamily: 'Ultra-Regular',
-      color: '#D49A42'
+      color: 'green'
+    },
+    appMiniTitle: {
+        fontSize: '18px',
+      
+      fontFamily: 'Montserrat-Regular',
+      color: 'green'
     },
     continueContainer: {
       flex:1,
