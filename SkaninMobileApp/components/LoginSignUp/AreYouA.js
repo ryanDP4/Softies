@@ -20,16 +20,14 @@ export default function AreYouA({ navigation }) {
       style={styles.background}
     >
       <View style={styles.container}>
-        <View style={{ width: '75%' }}>
           <Text style={styles.text}>Are you a</Text>
+        </View>
           <Pressable style={styles.FarmerButton} onPress={() => navigation.navigate('LoginSignUp')}>
             <Text style={styles.FarmerButtonText}>FARMER/GUEST</Text>
           </Pressable>
           <Pressable style={styles.AgronomistButton} onPress={() => navigation.navigate('LoginSignUp')}>
             <Text style={styles.AgronomistButtonText}>AGRONOMIST</Text>
           </Pressable>
-        </View>
-      </View>
     </ImageBackground>
   );
 }
@@ -51,7 +49,7 @@ const styles = StyleSheet.create({
     color: '#086608',
     fontSize: 40,
     fontWeight: 'bold',
-    marginLeft: -5,
+    marginLeft: -10,
     fontFamily: 'Montserrat-Bold',
   },
   AgronomistButton: {
@@ -61,7 +59,7 @@ const styles = StyleSheet.create({
     borderRadius: 30,
     width: 350,
     alignItems: 'center',
-    marginLeft: -90,
+    marginLeft: 20,
   },
   FarmerButton: {
     backgroundColor: 'white',
@@ -70,7 +68,7 @@ const styles = StyleSheet.create({
     borderRadius: 30,
     width: 350,
     alignItems: 'center',
-    marginLeft: -90,
+    marginLeft: 20,
   },
   AgronomistButtonText: {
     color: 'white',

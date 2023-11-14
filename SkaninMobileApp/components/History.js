@@ -1,6 +1,6 @@
 import { StyleSheet, View, Image, Text, TouchableOpacity, Button } from 'react-native';
 
-export default function History({navigation}) {
+export default function History ({navigation}) {
     return(
         <View>
             <Text>History Page</Text>
