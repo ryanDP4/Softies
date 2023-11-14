@@ -1,8 +1,7 @@
 import React, { useRef } from 'react';
 import { StyleSheet, ScrollView, View, Text, StatusBar, Animated, Image, TouchableOpacity } from 'react-native';
 import { useFonts } from 'expo-font';
-import { ImageHeaderScrollView, TriggeringView } from 'react-native-image-header-scroll-view';
-import { LinearGradient } from 'react-native-svg';
+import { ImageHeaderScrollView } from 'react-native-image-header-scroll-view';
 import home from '../assets/home.svg';
 import scan from '../assets/scan.svg';
 import history from '../assets/history.svg';
@@ -35,7 +34,7 @@ const Homepage = ({navigation}) => {
                         source={homebannerIMG}
                     />
                 )}
-                // snapToOffsets={[...Array(4).keys()].map((item, index) => index * 240)}
+                
             >
                     <View style={styles.TextView}>
                         <View style={styles.header}>
@@ -158,6 +157,17 @@ const Homepage = ({navigation}) => {
 
                             </TouchableOpacity>
 
+                            {/* <TouchableOpacity
+                                onPress={() => navigation.navigate('Landing')}
+                                style={styles.imageContainer} // Adjusted style
+                            >
+                                <Image
+                                    source={sampleIMG1}
+                                    style={styles.imgStyle} // Added style
+                                />
+
+                            </TouchableOpacity>
+
                             <TouchableOpacity
                                 onPress={() => navigation.navigate('Landing')}
                                 style={styles.imageContainer} // Adjusted style
@@ -168,6 +178,28 @@ const Homepage = ({navigation}) => {
                                 />
 
                             </TouchableOpacity>
+
+                            <TouchableOpacity
+                                onPress={() => navigation.navigate('Landing')}
+                                style={styles.imageContainer} // Adjusted style
+                            >
+                                <Image
+                                    source={sampleIMG1}
+                                    style={styles.imgStyle} // Added style
+                                />
+
+                            </TouchableOpacity>
+
+                            <TouchableOpacity
+                                onPress={() => navigation.navigate('Landing')}
+                                style={styles.imageContainer} // Adjusted style
+                            >
+                                <Image
+                                    source={sampleIMG1}
+                                    style={styles.imgStyle} // Added style
+                                />
+
+                            </TouchableOpacity> */}
                         </View>
                     </View>
             </ImageHeaderScrollView>
