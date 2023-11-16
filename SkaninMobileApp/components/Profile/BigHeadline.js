@@ -1,55 +1,60 @@
 import { StyleSheet, View, Image, Text, TouchableOpacity, Button } from 'react-native'; 
-import { AntDesign } from '@expo/vector-icons'; 
-
+// import { Ionicons } from '@expo/vector-icons';
+// import { AntDesign } from '@expo/vector-icons'; 
+import { useFonts } from 'expo-font';
+import { useNavigation } from '@react-navigation/native';
+ 
 export default function BigHeadline ({Headline}) {
+    const [fontsLoaded] = useFonts({
+        'Monsteratt': require('../../assets/fonts/Montserrat-Regular.ttf'),
+      });
+const navigation = useNavigation()
     return (
         <View style={styles.topContainer}>
             <View style={styles.headerContainer}>
-                <AntDesign name="left" size={24} color="black" />
-                <Image style={styles.searchButton} 
-                source={require('../../assets/baseline-search-24px.svg')} />
+            <TouchableOpacity 
+                    style = {{width:24, height:24,}}
+                    title = 'Home'
+                    onPress={() => navigation.navigate('Homepage')}
+                    >
+                <Image source={require(`../../assets/icon.svg`)}
+                    style={{width:24, height:24,}} />
+            </TouchableOpacity>
             </View>
-            <Text style={styles.headerText}>{Headline}</Text>
+            <Text style={[styles.headerText,{fontStyle:'Monsteratt'}]}>{Headline}</Text>
+            
         </View>
-
     )
 }
 
+
+
 const styles = StyleSheet.create({
     headerContainer: {
-        // display: 'flex',
-        // flex:0,
-        flexDirection:'row',
         margin: 0,
         width: '100%',
-        height: 44,
-        paddingTop: 8,
-        paddingBottom: 16,
-        paddingLeft: 4,
-        paddingRight: 8,
-        // alignItems: 'flex-end',
+        padding: 0,
         justifyContent: 'space-between',
+        paddingLeft:'4%'
     },
     topContainer: {
-        // flex: 4,
         margin: 0,
-        padding:0,
-    },
-    searchButton: {
-        width: 24, 
-        height: 24,
-        padding: 0,
-        margin:0,
+        paddingTop:'6%'
     },
     headerText:{
         // flex:1,
         textAlign: 'left',
+        color: '#000',
+        fontSize: 30,
         color: '#222222',
         fontFamily: 'Montserrat',
         fontSize: 34,
         fontStyle: 'normal',
         fontWeight: '700',
         lineHeight: 'normal',
+        padding: 0,
+        margin:0,
+        paddingLeft:'5%',
         paddingTop: 15,
         paddingLeft: 8,
         paddingBottom: 16,
