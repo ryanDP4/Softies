@@ -9,7 +9,7 @@ export default function Profile({navigation}) {
             <View style={styles.profileContainer}>
                 <Image 
                 source={require('../../assets/sampleUser.png')}  
-                style={{width: '69px', height: '69px', borderRadius: 69/ 2}} 
+                style={{width: 69, height: 69, borderRadius: 69/ 2}} 
                 />
                 <Text style={styles.nameText}>Matilda Brown</Text>
                 <Text style={styles.emailText}>matildabrown@mail.com</Text>
@@ -38,8 +38,8 @@ const styles = StyleSheet.create({
     profileContainer: {
         flex: 3,
         width: '100%',
-        height: '812px',
-        borderRadius: '20px',
+        height: 812,
+        borderRadius: 20,
         background: '#F9F9F9',
     },
     itemContainer: {
@@ -51,17 +51,17 @@ const styles = StyleSheet.create({
     nameText:{
         color: '#222',
         fontFamily: 'Montserrat',
-        fontSize: '18px',
+        fontSize: 18,
         fontStyle: 'italic',
         fontWeight: '100',
-        lineHeight: '22px', /* 122.222% */
+        lineHeight: 22, /* 122.222% */
     },
     emailText:{
         color: '#9B9B9B',
         fontFamily: 'Montserrat',
-        fontSize: '14px',
+        fontSize: 14,
         fontStyle: 'normal',
         fontWeight: '500',
-        lineHeight: '20px', /* 142.857% */
+        lineHeight: 20, /* 142.857% */
     }
 }) 

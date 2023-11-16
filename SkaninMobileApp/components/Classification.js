@@ -8,7 +8,7 @@ export default function Classification({navigation}) {
                 <Text>Back to Home</Text>
                 <Button 
                     title = 'Home'
-                    onPress={() => navigation.navigate('Home Page')}
+                    onPress={() => navigation.navigate('Homepage')}
                 />
             </View>
         </View>
