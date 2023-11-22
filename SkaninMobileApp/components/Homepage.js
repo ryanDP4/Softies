@@ -208,7 +208,7 @@ const Homepage = ({navigation}) => {
                 <TouchableOpacity onPress={() => navigation.navigate('Homepage')}>
                     <Image source={home} style={styles.icon} />
                 </TouchableOpacity>
-                <TouchableOpacity onPress={() => navigation.navigate('Classification Page')}>
+                <TouchableOpacity onPress={() => navigation.navigate('Scan Page')}>
                     <Image source={scan} style={styles.icon} />
                 </TouchableOpacity>
                 <TouchableOpacity onPress={() => navigation.navigate('History Page')}>

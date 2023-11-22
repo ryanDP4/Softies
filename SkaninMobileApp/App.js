@@ -6,10 +6,11 @@ import AreYouA from './components/LoginSignUp/AreYouA';
 import LoginSignUp from './components/LoginSignUp/LoginSignUp';
 import LoginPage from './components/LoginSignUp/LoginPage';
 import SignUp from './components/LoginSignUp/SignUp';
+import ScanPage from './components/Classification/Scan';
+
 import { useFonts } from 'expo-font';
 import Homepage from './components/Homepage';
 import Landing from './components/Landing';
-import Classification from './components/Classification';
 import History from './components/History';
 import Summary from './components/Summary';
 import Profile from './components/Profile/UserProfile';
@@ -27,7 +28,7 @@ export default function App() {
         <Screen name="SignUpPage" component={SignUp}/>
 
         <Screen name="Homepage" component={Homepage} />
-        <Screen name="Classification Page" component={Classification} />
+        <Screen name="Scan Page" component={ScanPage} />
         <Screen name="History Page" component={History} />
         <Screen name="Summary Page" component={Summary} />
         <Screen name = "User Profile" component = {Profile}/>
