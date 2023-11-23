@@ -26,7 +26,6 @@ export default function SignUp( {navigation}) {
     const [password, setPassword] = useState('');
 
     
-
     return(
         <ImageBackground
         source={login_bg3}
@@ -36,82 +35,86 @@ export default function SignUp( {navigation}) {
                 <Pressable style = {styles.goBackButton} onPress={() => navigation.goBack()}>
                     <Image source={button1} style={styles.buttonImage} />
                 </Pressable>
-                <Text style = {styles.registerText}>
-                    Register
-                </Text>
-                <Text style = {styles.text}>
-                    Create your new account 
-                    {'\n'}
-                    {'\n'}
-                    {'\n'}
-                </Text>
+                <View style = {styles.textContainer}> 
+                    <Text style = {styles.registerText}>
+                        Register 
+                    </Text>
+                    <Text style = {styles.text}>
+                        Create your new account 
+                        {'\n'}
+                    </Text>
+                </View>
                 
-                {/* First Name input */}
-                <View style={styles.inputContainer}>
-                    <Image source={infoIcon} style={styles.inputIcon} />
-                    <TextInput
-                        style={styles.input}
-                        placeholder="First Name"
-                        value={firstName}
-                        onChangeText={setfirstName}
-                        keyboardType="first-name"
-                        autoCapitalize="none"
-                    />
-                </View>
+                <View style = {styles.inputContainer}>
+                    {/* First Name input */}
+                    <View style={styles.textInput}>
+                        <Image source={infoIcon} style={styles.inputIcon} />
+                        <TextInput
+                            style={styles.input}
+                            placeholder="First Name"
+                            value={firstName}
+                            onChangeText={setfirstName}
+                            keyboardType="first-name"
+                            autoCapitalize="none"
+                        />
+                    </View>
 
-                {/* Last Name input */}
-                <View style={styles.inputContainer}>
-                    <Image source={infoIcon} style={styles.inputIcon} />
-                    <TextInput
-                        style={styles.input}
-                        placeholder="Last name"
-                        value={lastName}
-                        onChangeText={setlastName}
-                        keyboardType="last-name"
-                        autoCapitalize="none"
-                    />
-                </View>
+                    {/* Last Name input */}
+                    <View style={styles.textInput}>
+                        <Image source={infoIcon} style={styles.inputIcon} />
+                        <TextInput
+                            style={styles.input}
+                            placeholder="Last name"
+                            value={lastName}
+                            onChangeText={setlastName}
+                            keyboardType="last-name"
+                            autoCapitalize="none"
+                        />
+                    </View>
 
-                {/* Email Input */}
-                <View style={styles.inputContainer}>
-                    <Image source={emailIcon} style={styles.inputIcon} />
-                    <TextInput
-                        style={styles.input}
-                        placeholder="Email"
-                        value={email}
-                        onChangeText={setEmail}
-                        keyboardType="email-address"
-                        autoCapitalize="none"
-                    />
-                </View>
+                    {/* Email Input */}
+                    <View style={styles.textInput}>
+                        <Image source={emailIcon} style={styles.inputIcon} />
+                        <TextInput
+                            style={styles.input}
+                            placeholder="Email"
+                            value={email}
+                            onChangeText={setEmail}
+                            keyboardType="email-address"
+                            autoCapitalize="none"
+                        />
+                    </View>
 
-                {/* Contact Input */}
-                <View style={styles.inputContainer}>
-                    <Image source={contactIcon} style={styles.inputIcon} />
-                    <TextInput
-                        style={styles.input}
-                        placeholder="Contact"
-                        value={contact}
-                        onChangeText={setContact}
-                        keyboardType="contact"
-                        autoCapitalize="none"
-                    />
-                </View>
+                    {/* Contact Input */}
+                    <View style={styles.textInput}>
+                        <Image source={contactIcon} style={styles.inputIcon} />
+                        <TextInput
+                            style={styles.input}
+                            placeholder="Contact"
+                            value={contact}
+                            onChangeText={setContact}
+                            keyboardType="contact"
+                            autoCapitalize="none"
+                        />
+                    </View>
 
-                {/* Password Input */}
-                <View style={styles.inputContainer}>
-                    <Image source={lockIcon} style={styles.inputIcon} />
-                    <TextInput style={styles.input}
-                        placeholder="Password"
-                        value={password}
-                        onChangeText={setPassword}
-                        secureTextEntry = {true}
-                    />
-                </View>
+                    {/* Password Input */}
+                    <View style={styles.textInput}>
+                        <Image source={lockIcon} style={styles.inputIcon} />
+                        <TextInput style={styles.input}
+                            placeholder="Password"
+                            value={password}
+                            onChangeText={setPassword}
+                            secureTextEntry = {true}
+                        />
+                    </View>
 
-                <Pressable style={styles.SignUpButton} onPress={() => navigation.navigate('Homepage')}>
-                    <Text style={styles.SignUpButtonText}>Sign Up</Text>
-                </Pressable>
+                </View>
+                <View style = {styles.buttonContainer}>
+                    <Pressable style={styles.SignUpButton} onPress={() => navigation.navigate('Homepage')}>
+                        <Text style={styles.SignUpButtonText}>Sign Up</Text>
+                    </Pressable>
+                </View>
 
             </View>
 
@@ -121,10 +124,8 @@ export default function SignUp( {navigation}) {
 
 const styles = StyleSheet.create({
     container: {
-        top: 0,
+        flex: 1,
         backgroundColor: 'transparent',
-        alignItems: 'flex-start', 
-        marginLeft: 25,
     },
     background: {
         flex: 1,
@@ -133,42 +134,47 @@ const styles = StyleSheet.create({
     },
     goBackButton: {
         position: 'absolute',
-        marginTop: -15,
-        left: -10,
-    },
+        marginTop: 80,
+        left: 10,
+      },
     buttonImage: {
         width: 40,
         height: 40,
     },
+    textContainer: {
+        color: '#086608',
+        fontSize: 35,
+        marginTop: 200,
+        marginBottom: 10, // Space between text and buttons
+        alignItems: 'center',
+    }, 
     registerText: {
         color: '#086608',
-        fontSize: 40,
-        fontWeight: 'bold',
-        marginLeft: 95,
-        marginTop: 150,
+        fontSize: 35,
         fontFamily: 'Montserrat-Bold',
     },
     text: {
         color: '#086608',
-        fontSize: 18, 
-        fontWeight: 'bold',
-        marginLeft: 65, 
-        shadowOffset: 10,
+        fontSize: 16, 
         fontFamily: 'Montserrat-Medium',
     },
     inputContainer: {
+        alignItems: 'center',
+        marginBottom: 60,
+    }, 
+    textInput: {
         flexDirection: 'row',
         alignItems: 'center',
         marginBottom: 15,
-        marginLeft: 10, 
-        width: 320, 
-        height: 50,
+        // marginLeft: 10, 
+        width: 315, 
+        height: 40,
         backgroundColor: 'white',
-        borderRadius: 5,
+        borderRadius: 10,
     },
     inputIcon: {
-        width: 24,
-        height: 24,
+        width: 25,
+        height: 25,
         marginLeft: 10,
     },
     input: {
@@ -178,20 +184,23 @@ const styles = StyleSheet.create({
         borderBottomWidth: 1,
         color: '#086608',
         marginLeft: 15,
-        fontSize: 16,
+        fontSize: 12,
         fontFamily: 'Montserrat-Regular',
     },
+    buttonContainer: {
+        alignItems: 'center',
+    }, 
     SignUpButton: {
         backgroundColor: '#086608',
-        padding: 10,
-        marginTop: 100,
         borderRadius: 30,
-        width: 350,
+        padding: 10,
+        marginVertical: 10, 
+        width: 320,
         alignItems: 'center',
     },
     SignUpButtonText: {
         color: 'white',
-        fontSize: 18,
+        fontSize: 16,
         fontFamily: 'Montserrat-Regular',
     },
 })

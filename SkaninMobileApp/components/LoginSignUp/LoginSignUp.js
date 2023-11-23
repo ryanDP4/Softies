@@ -11,9 +11,9 @@ export default function LoginSignUp( {navigation} ) {
     'Montserrat-Medium': require('../../assets/fonts/Montserrat-Medium.ttf')
   });
 
-  if (!fontsLoaded) {                                                                                                                                                                                                                                                                                           
-    return null;
-}
+//   if (!fontsLoaded) {                                                                                                                                                                                                                                                                                           
+//     return null;
+// }
 
   return (
     <ImageBackground
@@ -21,23 +21,29 @@ export default function LoginSignUp( {navigation} ) {
       style={styles.background}
     >
       <View style={styles.container}>
-        <Pressable style={styles.goBackButton} onPress={() => navigation.goBack()}>
-          <Image source={button1} style={styles.buttonImage} />
-        </Pressable>
-        <Text style={styles.text}>
-          The best {'\n'} 
-          app {'\n'}
-          for your {'\n'}
-          rice crops {'\n'}
-          {'\n'}
-          {'\n'}
-        </Text>
-        <Pressable style={styles.LoginButton} onPress={() => navigation.navigate('LoginPage')}>
-          <Text style={styles.LoginButtonText}>Login</Text>
-        </Pressable>
-        <Pressable style={styles.SignUpButton} onPress={() => navigation.navigate('SignUpPage')}>
-          <Text style={styles.SignUpButtonText}>Sign Up</Text>
-        </Pressable>
+        <View style={styles.goBackButton}>
+          <Pressable onPress={() => navigation.goBack()}>
+            <Image source={button1} style={styles.buttonImage} />
+          </Pressable>
+        </View>
+        <View style = {styles.textContainer}>
+          <Text style={styles.text}>
+            The best {'\n'} 
+            app {'\n'}
+            for your {'\n'}
+            rice crops {'\n'}
+            {'\n'}
+            {'\n'}
+          </Text>
+        </View>
+        <View style = {styles.buttonContainer}>
+          <Pressable style={styles.LoginButton} onPress={() => navigation.navigate('LoginPage')}>
+            <Text style={styles.LoginButtonText}>Login</Text>
+          </Pressable>
+          <Pressable style={styles.SignUpButton} onPress={() => navigation.navigate('SignUpPage')}>
+            <Text style={styles.SignUpButtonText}>Sign Up</Text>
+          </Pressable>
+        </View>
       </View>
     </ImageBackground>
   );
@@ -45,52 +51,56 @@ export default function LoginSignUp( {navigation} ) {
 
 const styles = StyleSheet.create({
   container: {
-    top: 0,
+    flex: 1,
     backgroundColor: 'transparent',
-    alignItems: 'flex-start', 
-    marginLeft: 25,
   },
   background: {
     flex: 1,
     resizeMode: 'cover',
     justifyContent: 'center',
   },
+  textContainer: {
+    marginTop: 200,
+    marginLeft: 20,
+  },
   text: {
-    marginTop: 0,
     color: '#086608',
-    fontSize: 50,
+    fontSize: 40,
     fontFamily: 'Montserrat-Bold',
   },
+  buttonContainer: {
+    alignItems: 'center',
+  }, 
   SignUpButton: {
     backgroundColor: '#086608',
-    padding: 10,
-    marginTop: 20,
-    borderRadius: 30,
-    width: 350,
     alignItems: 'center',
+    borderRadius: 30,
+    padding: 10,
+    marginVertical: 10, 
+    width: 320,
   },
   LoginButton: {
     backgroundColor: 'white',
-    padding: 10,
-    marginTop: 20,
-    borderRadius: 30,
-    width: 350,
     alignItems: 'center',
+    borderRadius: 30,
+    padding: 10,
+    marginVertical: 10, 
+    width: 320,
   },
   SignUpButtonText: {
     color: 'white',
-    fontSize: 18,
+    fontSize: 16,
     fontFamily: 'Montserrat-Regular',
   },
   LoginButtonText: {
     color: '#086608',
-    fontSize: 18,
+    fontSize: 16,
     fontFamily: 'Montserrat-Regular',
   },
   goBackButton: {
     position: 'absolute',
-    marginTop: -110,
-    left: -10,
+    marginTop: 80,
+    left: 10,
   },
   buttonImage: {
     width: 40,

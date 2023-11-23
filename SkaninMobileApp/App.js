@@ -1,38 +1,69 @@
 import React from 'react';
 import { NavigationContainer } from '@react-navigation/native';
+import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { createStackNavigator } from '@react-navigation/stack';
-
 import AreYouA from './components/LoginSignUp/AreYouA';
 import LoginSignUp from './components/LoginSignUp/LoginSignUp';
 import LoginPage from './components/LoginSignUp/LoginPage';
 import SignUp from './components/LoginSignUp/SignUp';
-import ScanPage from './components/Classification/Scan';
-
-import { useFonts } from 'expo-font';
-import Homepage from './components/Homepage';
 import Landing from './components/Landing';
+import Homepage from './components/Homepage';
 import History from './components/History';
-import Summary from './components/Summary';
-import Profile from './components/Profile/UserProfile';
+import ScanPage from './components/Classification/Scan';
+import { Image } from 'react-native';
 
-const { Navigator, Screen } = createStackNavigator();
+const Stack = createStackNavigator();
+const Tab = createBottomTabNavigator();
+
+function HomeTabs() {
+  return (
+    <Tab.Navigator
+      screenOptions={({ route }) => ({
+        headerShown: false,
+        tabBarIcon: ({ focused, color, size }) => {
+          let iconName;
+          if (route.name === 'Homepage') {
+            iconName = require('./assets/home.png');
+          } else if (route.name === 'Scan Page') {
+            iconName = require('./assets/scan.png');
+          } else if (route.name === 'History Page') {
+            iconName = require('./assets/history.png');
+          }
+
+          return <Image source={iconName} style={{ width: size, height: size }} />;
+        },
+        tabBarLabel: () => null, 
+        tabBarStyle: {
+          backgroundColor: '#049B04', 
+          borderTopRightRadius: 20,
+          borderTopLeftRadius: 20,
+          display: route.name === 'Scan Page' ? 'none' : 'flex',
+        },
+      })}
+      tabBarOptions={{
+        activeTintColor: 'tomato',
+        inactiveTintColor: 'gray',
+      }}
+    >
+      <Tab.Screen name="Homepage" component={Homepage} />
+      <Tab.Screen name="Scan Page" component={ScanPage} />
+      <Tab.Screen name="History Page" component={History} />
+    </Tab.Navigator>
+  );
+}
 
 export default function App() {
   return (
     <NavigationContainer>
-      <Navigator screenOptions={{ headerShown: false }} initialRouteName="Home">
-        <Screen name="Landing Page" component={Landing}/>
-        <Screen name="AreYouA" component={AreYouA} />
-        <Screen name="LoginSignUp" component={LoginSignUp} />
-        <Screen name="LoginPage" component={LoginPage} />
-        <Screen name="SignUpPage" component={SignUp}/>
+      <Stack.Navigator screenOptions={{ headerShown: false }} initialRouteName="LandingPage">
+        <Stack.Screen name="LandingPage" component={Landing}/> 
+        <Stack.Screen name="AreYouA" component={AreYouA}/>
+        <Stack.Screen name="LoginSignUp" component={LoginSignUp}/>
+        <Stack.Screen name="LoginPage" component={LoginPage}/>
+        <Stack.Screen name="SignUpPage" component={SignUp}/>
+        <Stack.Screen name="Homepage" component={HomeTabs} />
 
-        <Screen name="Homepage" component={Homepage} />
-        <Screen name="Scan Page" component={ScanPage} />
-        <Screen name="History Page" component={History} />
-        <Screen name="Summary Page" component={Summary} />
-        <Screen name = "User Profile" component = {Profile}/>
-      </Navigator>
+      </Stack.Navigator>
     </NavigationContainer>
   );
 }

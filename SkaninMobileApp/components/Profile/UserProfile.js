@@ -4,9 +4,9 @@ import BigHeadline from './BigHeadline';
 import { useFonts } from 'expo-font';
 
 export default function Profile({navigation}) {
-    const [fontsLoaded] = useFonts({
-        'Monsteratt': require('../../assets/fonts/Montserrat-Regular.ttf'),
-      });
+    // const [fontsLoaded] = useFonts({
+    //     'Monsteratt': require('../../assets/fonts/Montserrat-Regular.ttf'),
+    //   });
     return(
         <View style={styles.pageContainer}>
             <BigHeadline Headline={"My Profile"}></BigHeadline>

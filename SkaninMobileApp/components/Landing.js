@@ -1,12 +1,13 @@
 import { useFonts } from 'expo-font';
 import { StyleSheet, View, Image, Text, TouchableOpacity } from 'react-native';
+import imagePath from '../assets/skanin_logo.png';
 // import Homepage from './Homepage';
 
 export default function Landing( {navigation} ) {
-    const imagePath = require('../assets/skaninLanding.svg')
+
     const [fontsLoaded, fontError] = useFonts({
         'Ultra-Regular': require('../assets/fonts/ultra/Ultra-Regular.ttf'),
-        'Montserrat-Regular': require('../assets/fonts/Montserrat-Regular.ttf')
+        'Montserrat-Regular': require('../assets/fonts/Montserrat-Regular.ttf'),
     }) 
     
     return (
@@ -17,12 +18,10 @@ export default function Landing( {navigation} ) {
             >
                 <View style={styles.page} >
                     <View style={styles.imageContainer}>
-                        <Image 
+                        <Image
                             source= {imagePath}
                             style={styles.image}
                         />
-                        <Text style={styles.appTitle}>SKANIN</Text>
-                        <Text style={styles.appMiniTitle}>AgriScan</Text>
                     </View>
                     <View style={styles.continueContainer}>
                     <Text style={styles.continueText}>Tap anywhere to continue.</Text>
@@ -35,7 +34,7 @@ export default function Landing( {navigation} ) {
 const styles = StyleSheet.create({
     page: {
         flex:1,
-        backgroundColor: '#FFF',
+        backgroundColor: '#white',
         alignItems: 'center',
         justifyContent: 'center'
     },
@@ -53,14 +52,17 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
         alignItems: 'center'
     },
+    appTitleContainer: { 
+        
+    },  
     appTitle: {
-      fontSize: '42px',
+      fontSize: 42,
       marginTop: '1vh',
       fontFamily: 'Ultra-Regular',
       color: 'green'
     },
     appMiniTitle: {
-        fontSize: '18px',
+        fontSize: 18,
       
       fontFamily: 'Montserrat-Regular',
       color: 'green'
@@ -69,8 +71,7 @@ const styles = StyleSheet.create({
       flex:1,
     },  
     continueText: {
-        fontFamily: 'mosterratt-medium',
-        fontSize: '13px',
+        fontSize: 13,
         color: '#222222',
     },
     touchable: {

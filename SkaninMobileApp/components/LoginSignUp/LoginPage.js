@@ -33,47 +33,47 @@ export default function LoginPage({ navigation }) {
                 <Pressable style={styles.goBackButton} onPress={() => navigation.goBack()}>
                     <Image source={button1} style={styles.buttonImage} />
                 </Pressable>
-                <Text style={styles.Welcometext}>
-                    Welcome back!
-                </Text>
-                <Text style={styles.text}>
-                    Login to your personal account
-                    {'\n'}
-                    {'\n'}
-                    {'\n'}
-                    {'\n'}
-                    {'\n'}
-                    {'\n'}
-                </Text>
-
-                {/* Email Input */}
-                <View style={styles.inputContainer}>
-                    <Image source={userIcon} style={styles.inputIcon} />
-                    <TextInput
-                        style={styles.input}
-                        placeholder="Email Address"
-                        value={email}
-                        onChangeText={setEmail}
-                        keyboardType="email-address"
-                        autoCapitalize="none"
-                    />
+                <View style = {styles.textContainer}> 
+                    <Text style={styles.Welcometext}>
+                        Welcome back! {'\n'}
+                        <Text style={styles.text}>
+                            Login to your personal account
+                            {'\n'}
+                            {'\n'}
+                        </Text>
+                    </Text>
                 </View>
+                <View style = {styles.inputContainer}>
+                    {/* Email Input */}
+                    <View style={styles.textInput}>
+                        <Image source={userIcon} style={styles.inputIcon} />
+                        <TextInput
+                            style={styles.input}
+                            placeholder="Email Address"
+                            value={email}
+                            onChangeText={setEmail}
+                            keyboardType="email-address"
+                            autoCapitalize="none"
+                        />
+                    </View>
 
-                {/* Password Input */}
-                <View style={styles.inputContainer}>
-                    <Image source={lockIcon} style={styles.inputIcon} />
-                    <TextInput
-                        style={styles.input}
-                        placeholder="Password"
-                        value={password}
-                        onChangeText={setPassword}
-                        secureTextEntry={true}
-                    />
+                    {/* Password Input */}
+                    <View style={styles.textInput}>
+                        <Image source={lockIcon} style={styles.inputIcon} />
+                        <TextInput
+                            style={styles.input}
+                            placeholder="Password"
+                            value={password}
+                            onChangeText={setPassword}
+                            secureTextEntry={true}
+                        />
+                    </View>
                 </View>
-
-                <Pressable style={styles.LoginButton} onPress={() => navigation.navigate('Homepage')}>
-                    <Text style={styles.LoginButtonText}>Login</Text>
-                </Pressable>
+                <View style = {styles.buttonContainer}>
+                    <Pressable style={styles.LoginButton} onPress={() => navigation.navigate('Homepage')}>
+                        <Text style={styles.LoginButtonText}>Login</Text>
+                    </Pressable>
+                </View>
             </View>
         </ImageBackground>
     );
@@ -82,10 +82,8 @@ export default function LoginPage({ navigation }) {
 
 const styles = StyleSheet.create({
     container: {
-        top: 0,
+        flex: 1,
         backgroundColor: 'transparent',
-        alignItems: 'flex-start', 
-        marginLeft: 25,
     },
     background: {
         flex: 1,
@@ -94,53 +92,63 @@ const styles = StyleSheet.create({
     },
     goBackButton: {
         position: 'absolute',
-        marginTop: -15,
-        left: -10,
-    },
+        marginTop: 80,
+        left: 10,
+      },
     buttonImage: {
         width: 40,
         height: 40,
     },
+    textContainer: {
+        color: '#086608',
+        fontSize: 35,
+        marginTop: 200,
+        marginBottom: 10, // Space between text and buttons
+        alignItems: 'center',
+    }, 
     Welcometext: {
         color: '#086608',
-        fontSize: 40,
-        marginLeft: 10,
-        marginTop: 150,
+        fontSize: 35,
         fontFamily: 'Montserrat-Bold',
     },
     text: {
         color: '#086608',
         fontSize: 18, 
-        marginLeft:30, 
-        shadowOffset: 10,
         fontFamily: 'Montserrat-Medium',
     },
+    buttonContainer: {
+        alignItems: 'center',
+    }, 
     LoginButton: {
         backgroundColor: '#086608',
-        padding: 10,
-        marginTop: 200,
         borderRadius: 30,
-        width: 350,
+        padding: 10,
+        marginVertical: 10, 
+        width: 320,
         alignItems: 'center',
     },
     LoginButtonText: {
         color: 'white',
-        fontSize: 18,
+        fontSize: 16,
         fontFamily: 'Montserrat-Regular',
     },
     inputContainer: {
+        alignItems: 'center',
+        marginBottom: 170,
+    }, 
+    textInput: {
         flexDirection: 'row',
         alignItems: 'center',
         marginBottom: 15,
-        marginLeft: 10, 
-        width: 320, 
-        height: 50,
+        // marginLeft: 10, 
+        width: 315, 
+        height: 45,
         backgroundColor: 'white',
-        borderRadius: 5,
+        borderRadius: 10,
     },
     inputIcon: {
-        width: 24,
-        height: 24,
+        width: 25,
+        height: 25,
         marginLeft: 10,
     },
     input: {
@@ -150,7 +158,7 @@ const styles = StyleSheet.create({
         borderBottomWidth: 1,
         color: '#049B04',
         marginLeft: 15,
-        fontSize: 16,
+        fontSize: 12,
         fontFamily: 'Montserrat-Regular',
     },
 

@@ -3,9 +3,9 @@ import { AntDesign } from '@expo/vector-icons';
 import { useFonts } from 'expo-font';
 
 export default function ProfileContainer ({itemText, borderTopRadius = 0, borderBottomRadius = 0, svg=null, edit=null}) {
-    const [fontsLoaded] = useFonts({
-        'Monsteratt': require('../../assets/fonts/Montserrat-Regular.ttf'),
-      });
+    // const [fontsLoaded] = useFonts({
+    //     'Monsteratt': require('../../assets/fonts/Montserrat-Regular.ttf'),
+    //   });
     const Editor = ({ edit }) => {
         if (edit == 'edit') {
             return (

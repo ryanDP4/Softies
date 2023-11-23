@@ -4,21 +4,20 @@ import { StyleSheet, View, Image, Text, TouchableOpacity, Button } from 'react-n
 import { useFonts } from 'expo-font';
 
 export default function BigHeadline ({Headline}) {
-    const [fontsLoaded] = useFonts({
-        'Monsteratt': require('../../assets/fonts/Montserrat-Regular.ttf'),
-      });
+    // const [fontsLoaded] = useFonts({
+    //     'Monsteratt': require('../../assets/fonts/Montserrat-Regular.ttf'),
+    //   });
     return (
         <View style={styles.topContainer}>
             <View style={styles.headerContainer}>
                 <Image source={require(`../../assets/icon.svg`)}
                     style={{width:24, height:24,}} />
             </View>
-            <Text style={[styles.headerText,{fontStyle:'Monsteratt'}]}>{Headline}</Text>
+            <Text style={[styles.headerText]}>{Headline}</Text>
             
         </View>
     )
 }
-
 
 
 const styles = StyleSheet.create({

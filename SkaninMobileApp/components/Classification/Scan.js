@@ -1,17 +1,26 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { View, Text, TouchableOpacity, Image, StyleSheet, Modal } from 'react-native';
-import Icon from 'react-native-vector-icons/MaterialIcons';
-import FontAwesome from 'react-native-vector-icons/FontAwesome';
+import { View, Text, TouchableOpacity, Image, StyleSheet, Modal, Pressable } from 'react-native';
 import * as ImagePicker from 'expo-image-picker';
 import { Camera } from 'expo-camera';
-import focusFrameImg from '../../assets/fframe.png';
+import { useFonts } from 'expo-font';
+import capture from '../../assets/capture.png';
+import upload from '../../assets/add_image.png';
+import button1 from '../../assets/button-1.png';
+import next from '../../assets/next.png';
 
-const ScanPage = () => {
+const ScanPage = ({ navigation }) => {
+  const [fontsLoaded] = useFonts({
+    'Montserrat-Bold': require('../../assets/fonts/Montserrat-Bold.ttf'),
+    'Montserrat-Regular': require('../../assets/fonts/Montserrat-Regular.ttf')
+  });
+
+  // State for managing camera and selected image
   const [hasCameraPermission, setHasCameraPermission] = useState(null);
-  const [cameraVisible, setCameraVisible] = useState(false);
+  const [cameraVisible, setCameraVisible] = useState(true);
   const [selectedImage, setSelectedImage] = useState(null);
   const cameraRef = useRef(null);
 
+  // Check camera permissions
   useEffect(() => {
     (async () => {
       const cameraStatus = await Camera.requestCameraPermissionsAsync();
@@ -19,15 +28,22 @@ const ScanPage = () => {
     })();
   }, []);
 
-  const goBack = () => {
-    // Functionality to go back
-  };
+  // Reset states when leaving the screen
+  useEffect(() => {
+    const unsubscribe = navigation.addListener('blur', () => {
+      setSelectedImage(null);
+      setCameraVisible(true);
+    });
 
+    return unsubscribe;
+  }, [navigation]);
+
+  // Function to handle taking a picture
   const takePicture = async () => {
     if (cameraRef.current && cameraVisible) {
       const photo = await cameraRef.current.takePictureAsync();
       setSelectedImage(photo.uri);
-      setCameraVisible(false); // Close camera after taking picture
+      setCameraVisible(false);
     }
   };
 
@@ -39,79 +55,73 @@ const ScanPage = () => {
         aspect: [4, 3],
         quality: 1,
       });
-
-      if (!result.cancelled && result.assets && result.assets.length > 0) {
-        setSelectedImage(result.assets[0].uri);
-      } else {
-        console.log('Image selection cancelled or no URI found');
+  
+      // Check if the image selection process was not cancelled
+      if (!result.cancelled) {
+        setSelectedImage(result.uri); // Set the selected image URI
       }
     } catch (error) {
       console.error('Error picking image: ', error);
     }
   };
 
-  const handlePressCircleArrow = () => {
-    // Placeholder for future functionality
-    console.log('Circled arrow pressed');
-  };
-
-  if (hasCameraPermission === null) {
+  // Render null while loading fonts or if camera permission is null
+  if (!fontsLoaded || hasCameraPermission === null) {
     return <View />;
   }
-
+  // Show error if no access to camera
   if (hasCameraPermission === false) {
     return <Text>No access to camera</Text>;
   }
 
   return (
     <View style={styles.container}>
-      <View style={styles.header}>
-        <TouchableOpacity onPress={goBack} style={styles.backButton}>
-          <Icon name="arrow-back" size={28} color="#000" />
-        </TouchableOpacity>
-        <Text style={styles.headerTitle}>SCAN</Text>
-      </View>
+      <Pressable style={styles.goBackButton} onPress={() => navigation.navigate('Homepage')}>
+        {/* Replace with your button image source */}
+        <Image source={button1} style={styles.buttonImage} />
+      </Pressable>
 
-      <View style={styles.imageContainer}>
-        {selectedImage ? (
-          <Image source={{ uri: selectedImage }} style={styles.image} />
-        ) : (
-          <Text>Select an image or take a photo</Text>
-        )}
-      </View>
-
-      <View style={styles.toolbar}>
-        <TouchableOpacity onPress={uploadImage} style={styles.uploadButton}>
-          <Icon name="photo-library" size={28} color="#FFF" />
-        </TouchableOpacity>
-
-        <TouchableOpacity onPress={() => setCameraVisible(true)} style={styles.captureButton}>
-          <FontAwesome name="camera" size={30} color="white" />
-        </TouchableOpacity>
-
-        <TouchableOpacity onPress={handlePressCircleArrow} style={styles.circleArrowButton}>
-          <FontAwesome name="arrow-right" size={30} color="white" />
-        </TouchableOpacity>
-      </View>
-
-      <Modal
-        animationType="slide"
-        transparent={false}
-        visible={cameraVisible}
-        onRequestClose={() => setCameraVisible(false)}
-      >
-        <Camera style={{ flex: 1 }} ref={cameraRef}>
-          <Image source={focusFrameImg} style={styles.focusFrame} />
-          <View style={styles.cameraControls}>
-            <TouchableOpacity onPress={takePicture} style={styles.cameraButton}>
-              <FontAwesome name="camera" size={30} color="white" />
+      {cameraVisible && !selectedImage ? (
+        <Modal
+          animationType="slide"
+          transparent={false}
+          visible={cameraVisible}
+          onRequestClose={() => setCameraVisible(false)}
+        >
+          <Pressable style={styles.goBackButton} onPress={() => navigation.navigate('Homepage')}>
+            {/* Replace with your button image source */}
+            <Image source={button1} style={styles.buttonImage} />
+          </Pressable>
+          <Camera style={{ flex: 1 }} ref={cameraRef}>
+            {/* Replace with your focus frame image source */}
+            <Image source={require('../../assets/fframe.png')} style={styles.focusFrame} />
+          </Camera>
+          <View style={styles.toolbar}>
+            {/* Replace with your upload and capture image sources */}
+            <TouchableOpacity onPress={uploadImage}>
+              <Image source={upload} style={styles.icon} />
             </TouchableOpacity>
-            <TouchableOpacity onPress={() => setCameraVisible(false)} style={styles.cameraButton}>
-              <FontAwesome name="times" size={30} color="white" />
+            <TouchableOpacity onPress={takePicture}>
+              <Image source={capture} style={styles.icon} />
             </TouchableOpacity>
           </View>
-        </Camera>
-      </Modal>
+        </Modal>
+      ) : null}
+
+      {selectedImage && (
+        <Image source={{ uri: selectedImage }} style={styles.image} />
+      )}
+
+      <View style = {styles.classify}>
+          <Pressable style = {styles.nextButton} onPress={() => navigation.navigate('LandingPage')}>
+            <Image source = {next} style = {styles.buttonImage}/>
+          </Pressable>
+          <View style = {styles.textContainer}> 
+            <Text style = {styles.textGreen}>Stress Type</Text>
+            <Text style = {styles.text}>Biotic/Abiotic Stress</Text>
+          </View>
+      </View>
+
     </View>
   );
 };
@@ -119,7 +129,6 @@ const ScanPage = () => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#FFF',
   },
   header: {
     flexDirection: 'row',
@@ -144,26 +153,17 @@ const styles = StyleSheet.create({
   },
   image: {
     width: '100%',
-    height: '80%',
+    height: '100%',
   },
   toolbar: {
     flexDirection: 'row',
     alignItems: 'center',
-    justifyContent: 'space-between', // Adjusted for even spacing
-    backgroundColor: '#F8F8F8',
-    paddingVertical: 10,
-    borderTopWidth: 1,
-    borderTopColor: '#E0E0E0',
-  },
-  uploadButton: {
-    // Adjusted for left alignment
-    justifyContent: 'center',
-    alignItems: 'center',
-    width: 60,
-    height: 60,
-    borderRadius: 30,
-    backgroundColor: "#086608",
-    marginLeft: 50,
+    justifyContent: 'space-around', 
+    borderTopLeftRadius: 30,
+    borderTopRightRadius: 30,
+    paddingHorizontal: 10,
+    paddingVertical: 5,
+    backgroundColor: 'white',
   },
   circleArrowButton: {
     // Adjusted for right alignment
@@ -174,15 +174,6 @@ const styles = StyleSheet.create({
     borderRadius: 30,
     backgroundColor: "#086608",
     marginRight: 50,
-  },
-  captureButton: {
-    // Adjusted for center alignment
-    justifyContent: 'center',
-    alignItems: 'center',
-    width: 60,
-    height: 60,
-    borderRadius: 30,
-    backgroundColor: "#086608"
   },
   modalButtonContainer: {
     flex: 1,
@@ -216,6 +207,61 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
   },
+  goBackButton: {
+    position: 'absolute',
+    marginTop: 40,
+    left: 10,
+    zIndex: 20,
+  },
+  icon: {
+    height: 50,
+    width: 50,
+  },
+  classify: {
+    position: 'absolute',
+    alignItems: 'center',
+    height: 110,
+    width: '75%',
+    borderRadius: 20,
+    backgroundColor: '#D9D9D9', 
+    opacity: 0.5,
+    bottom: 50, 
+    left: '12.5%',
+  },
+  textContainer: {
+    flexDirection: 'column',
+    marginLeft: -90,
+    marginTop: -60,
+  },
+  textGreen: {
+    color: '#086608',
+    fontSize: 25,
+    fontFamily: 'Montserrat-Bold',
+  },
+  text: {
+    fontFamily: 'Montserrat-Regular',
+    fontSize: 15,
+    paddingTop: 10,
+  },
+  goBackButton: {
+    position: 'absolute',
+    top: 40, 
+    left: 15,
+    zIndex: 10, 
+    width: 40,
+    height: 40,
+  },
+  buttonImage: {
+    width: '100%',
+    height: '100%',
+  },
+  nextButton: {
+    height: 60, 
+    width: 60,
+    marginTop: 20,
+    marginRight: -180,
+    flexDirection: 'row',
+  }
 });
 
 export default ScanPage;
