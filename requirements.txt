@@ -1,4 +1,0 @@
-plotly
-pandas
-seaborn
-nbformat>=4.2.0
