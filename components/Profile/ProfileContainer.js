@@ -2,10 +2,10 @@ import { StyleSheet, View, Image, Text, TouchableOpacity, Button } from 'react-n
 import { AntDesign } from '@expo/vector-icons'; 
 import { useFonts } from 'expo-font';
 
-export default function ProfileContainer ({itemText, borderTopRadius = 0, borderBottomRadius = 0, svg=null, edit=null}) {
-    // const [fontsLoaded] = useFonts({
-    //     'Monsteratt': require('../../assets/fonts/Montserrat-Regular.ttf'),
-    //   });
+export default function ProfileContainer ({itemText, borderTopRadius = 0, borderBottomRadius = 0, png, edit=null}) {
+    const [fontsLoaded] = useFonts({
+        'Monsteratt': require('../../assets/fonts/Montserrat-Regular.ttf'),
+      });
     const Editor = ({ edit }) => {
         if (edit == 'edit') {
             return (
@@ -18,22 +18,29 @@ export default function ProfileContainer ({itemText, borderTopRadius = 0, border
         }
         else if (edit == 'arrow'){
             return (
-                <Image source={require(`../../assets/Right Arrow.svg`)}
+                <Image source={require('../../assets/Right Arrow.png')}
                 style={{width:21, height:37, paddingBottom:4}} />
             )
         }
         return ( <Text style={{paddingRight:20}}></Text> )
     }
+    const imageMap = {
+        'Email': require('../../assets/Email.png'),
+        'Call': require('../../assets/Call.png'),
+        'Lock': require('../../assets/Lock.png'),
+        'Logout': require('../../assets/Logout.png'),
+    };
     return (
-    <View style={[styles.itemContainer, {
-        borderTopLeftRadius:borderTopRadius, borderTopRightRadius:borderTopRadius,
-        borderBottomLeftRadius:borderBottomRadius, borderBottomRightRadius:borderBottomRadius
+        <View style={[styles.itemContainer, {
+            borderTopLeftRadius: borderTopRadius, 
+            borderTopRightRadius: borderTopRadius,
+            borderBottomLeftRadius: borderBottomRadius, 
+            borderBottomRightRadius: borderBottomRadius
         }]}>
-        <Image source={require(`../../assets/${svg}.svg`)}style={styles.imageStyle} 
-        />
-        <Text style={styles.itemText}>{itemText}</Text>
-        <Editor edit={edit}/>
-    </View>
+            <Image source={imageMap[png]} style={styles.imageStyle} />
+            <Text style={styles.itemText}>{itemText}</Text>
+            <Editor edit={edit}/>
+        </View>
     )
 }
 
@@ -53,11 +60,11 @@ const styles = StyleSheet.create({
     },
     itemText: {
         width:'75%',
-        paddingTop: '2%',
+        paddingTop: 5,
         paddingLeft: 8,
         fontSize: 16,
         color:'#6A5F5F',
-        fontStyle:'Montserrat',
+        fontStyle:'Monsteratt',
         textAlign: 'left',
     },
     imageStyle:{
