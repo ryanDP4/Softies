@@ -73,7 +73,7 @@ const styles = StyleSheet.create({
     color: '#000',
     fontSize: 30,
     fontWeight: '600',
-    lineHeight: 26,
+    // lineHeight: 26,
     padding: 20,
     fontFamily: 'Montserrat-Regular',
   },
@@ -106,7 +106,7 @@ imgStyle: {
   },
   goBackButton: {
     position: 'absolute',
-    marginTop: 50,
+    marginTop: 30,
     left: 10,
   },
 });

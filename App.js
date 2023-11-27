@@ -11,6 +11,7 @@ import Homepage from './components/Homepage';
 import History from './components/History';
 import ScanPage from './components/Classification/Scan';
 import { Image } from 'react-native';
+import UserProfile from './components/Profile/UserProfile';
 
 const Stack = createStackNavigator();
 const Tab = createBottomTabNavigator();
@@ -28,6 +29,8 @@ function HomeTabs() {
             iconName = require('./assets/scan.png');
           } else if (route.name === 'History Page') {
             iconName = require('./assets/history.png');
+          } else if (route.name === 'User Profile') {
+            iconName = require('./assets/User.png');
           }
 
           return <Image source={iconName} style={{ width: size, height: size }} />;
@@ -48,6 +51,7 @@ function HomeTabs() {
       <Tab.Screen name="Homepage" component={Homepage} />
       <Tab.Screen name="Scan Page" component={ScanPage} />
       <Tab.Screen name="History Page" component={History} />
+      <Tab.Screen name="User Profile" component={UserProfile}/>
     </Tab.Navigator>
   );
 }
