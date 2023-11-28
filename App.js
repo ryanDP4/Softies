@@ -12,6 +12,7 @@ import History from './components/History';
 import ScanPage from './components/Classification/Scan';
 import { Image } from 'react-native';
 import UserProfile from './components/Profile/UserProfile';
+import ChangePassword from './components/Profile/ChangePassword';
 
 const Stack = createStackNavigator();
 const Tab = createBottomTabNavigator();
@@ -66,6 +67,7 @@ export default function App() {
         <Stack.Screen name="LoginPage" component={LoginPage}/>
         <Stack.Screen name="SignUpPage" component={SignUp}/>
         <Stack.Screen name="Homepage" component={HomeTabs} />
+        <Stack.Screen name="ChangePassword" component={ChangePassword} />
 
       </Stack.Navigator>
     </NavigationContainer>

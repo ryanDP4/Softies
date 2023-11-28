@@ -3,16 +3,18 @@ import { StyleSheet, Text, View, ImageBackground, TextInput, Image, Pressable, T
 import Icon from 'react-native-vector-icons/MaterialIcons';
 import React, { useState } from 'react';
 
+
 export default function UserProfile({navigation}) {
   const [fontsLoaded] = useFonts({
     'Montserrat-Regular': require('../../assets/fonts/Montserrat-Regular.ttf'),
     'Montserrat-Bold': require('../../assets/fonts/Montserrat-Bold.ttf'),
     'Montserrat-Medium': require('../../assets/fonts/Montserrat-Medium.ttf')
 });
-
   const [isEditMode, setIsEditMode] = useState(false);
   const [username, setUsername] = useState('User Name');
   const [occupation, setOccupation] = useState('Agronomist/Farmer');
+  const handleLogout = () => {navigation.navigate('LandingPage')};
+  const handleChangePassowrd = () => {navigation.navigate('ChangePassword')};
 
   return (
     <View style = {styles.screenContainer}>
@@ -61,15 +63,15 @@ export default function UserProfile({navigation}) {
             <Text style = {styles.detailsText}>+639 xxx xxx xxx </Text>
           </View>
 
-          <View style = {styles.eachDetailContainer}>
-            <Image style = {styles.iconDetails} source = {require('../../assets/Lock.png')}/>
-            <Text style = {styles.detailsText}>Change Password</Text>
-          </View>
+          <TouchableOpacity style={styles.eachDetailContainer} onPress={handleChangePassowrd}>
+            <Image style={styles.iconDetails} source={require('../../assets/Lock.png')}/>
+            <Text style={styles.detailsText}>Change Password</Text>
+          </TouchableOpacity>
 
-          <View style = {styles.eachDetailContainer}>
-            <Image style = {styles.iconDetails} source = {require('../../assets/Logout.png')}/>
-            <Text style = {styles.detailsText}>Logout</Text>
-          </View>
+          <TouchableOpacity style={styles.eachDetailContainer} onPress={handleLogout}>
+            <Image style={styles.iconDetails} source={require('../../assets/Logout.png')}/>
+            <Text style={styles.detailsText}>Logout</Text>
+          </TouchableOpacity>
 
 
         </View>
