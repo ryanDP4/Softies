@@ -14,13 +14,12 @@ const ScanPage = ({ navigation }) => {
     'Montserrat-Regular': require('../../assets/fonts/Montserrat-Regular.ttf')
   });
 
-  // State for managing camera and selected image
   const [hasCameraPermission, setHasCameraPermission] = useState(null);
   const [cameraVisible, setCameraVisible] = useState(true);
   const [selectedImage, setSelectedImage] = useState(null);
+  const [isModalVisible, setIsModalVisible] = useState(false);
   const cameraRef = useRef(null);
 
-  // Check camera permissions
   useEffect(() => {
     (async () => {
       const cameraStatus = await Camera.requestCameraPermissionsAsync();
@@ -28,7 +27,6 @@ const ScanPage = ({ navigation }) => {
     })();
   }, []);
 
-  // Reset states when leaving the screen
   useEffect(() => {
     const unsubscribe = navigation.addListener('blur', () => {
       setSelectedImage(null);
@@ -38,7 +36,6 @@ const ScanPage = ({ navigation }) => {
     return unsubscribe;
   }, [navigation]);
 
-  // Function to handle taking a picture
   const takePicture = async () => {
     if (cameraRef.current && cameraVisible) {
       const photo = await cameraRef.current.takePictureAsync();
@@ -56,20 +53,22 @@ const ScanPage = ({ navigation }) => {
         quality: 1,
       });
   
-      // Check if the image selection process was not cancelled
       if (!result.cancelled) {
-        setSelectedImage(result.uri); // Set the selected image URI
+        setSelectedImage(result.uri);
       }
     } catch (error) {
       console.error('Error picking image: ', error);
     }
   };
 
-  // Render null while loading fonts or if camera permission is null
+  const handleNextPress = () => {
+    setIsModalVisible(true);
+  };
+
   if (!fontsLoaded || hasCameraPermission === null) {
     return <View />;
   }
-  // Show error if no access to camera
+
   if (hasCameraPermission === false) {
     return <Text>No access to camera</Text>;
   }
@@ -77,7 +76,6 @@ const ScanPage = ({ navigation }) => {
   return (
     <View style={styles.container}>
       <Pressable style={styles.goBackButton} onPress={() => navigation.navigate('Homepage')}>
-        {/* Replace with your button image source */}
         <Image source={button1} style={styles.buttonImage} />
       </Pressable>
 
@@ -89,15 +87,12 @@ const ScanPage = ({ navigation }) => {
           onRequestClose={() => setCameraVisible(false)}
         >
           <Pressable style={styles.goBackButton} onPress={() => navigation.navigate('Homepage')}>
-            {/* Replace with your button image source */}
             <Image source={button1} style={styles.buttonImage} />
           </Pressable>
           <Camera style={{ flex: 1 }} ref={cameraRef}>
-            {/* Replace with your focus frame image source */}
             <Image source={require('../../assets/fframe.png')} style={styles.focusFrame} />
           </Camera>
           <View style={styles.toolbar}>
-            {/* Replace with your upload and capture image sources */}
             <TouchableOpacity onPress={uploadImage}>
               <Image source={upload} style={styles.icon} />
             </TouchableOpacity>
@@ -109,19 +104,49 @@ const ScanPage = ({ navigation }) => {
       ) : null}
 
       {selectedImage && (
-        <Image source={{ uri: selectedImage }} style={styles.image} />
+        <>
+          <Image source={{ uri: selectedImage }} style={styles.image} />
+          <View style={styles.classify}>
+            <Pressable style={styles.nextButton} onPress={handleNextPress}>
+              <Image source={next} style={styles.buttonImage} />
+            </Pressable>
+            <View style={styles.textContainer}>
+              <Text style={styles.textGreen}>Stress Type</Text>
+              <Text style={styles.text}>Biotic/Abiotic Stress</Text>
+            </View>
+          </View>
+        </>
       )}
 
-      <View style = {styles.classify}>
-          <Pressable style = {styles.nextButton} onPress={() => navigation.navigate('LandingPage')}>
-            <Image source = {next} style = {styles.buttonImage}/>
-          </Pressable>
-          <View style = {styles.textContainer}> 
-            <Text style = {styles.textGreen}>Stress Type</Text>
-            <Text style = {styles.text}>Biotic/Abiotic Stress</Text>
+      <Modal
+        animationType="slide"
+        transparent={true}
+        visible={isModalVisible}
+        onRequestClose={() => setIsModalVisible(false)}
+      >
+        <View style={styles.centeredView}>
+          <View style={styles.modalView}>
+            <Text style={styles.modalTitle}>Stress Type</Text>
+            <Text style={styles.modalTitle2}>Biotic Stress</Text>
+            <Text style={styles.modalSubtitle}>Recommendations:</Text>
+            <Text style={styles.modalContent}>
+              1. Plant Resistant Varieties: Use resistant rice varieties; consult local agricultural authorities for updated lists.{"\n"}
+              2. Crop Management Measures:{"\n"}
+              • Adjust Planting Time: Sow seeds early in the rainy season.{"\n"}
+              • Nitrogen Fertilizer Application: Split into multiple treatments to avoid excessive use.{"\n"}
+              • Field Flooding: Flood the field as frequently as possible.{"\n"}
+              • Silicon Fertilizers: Apply to silicon-deficient soils. Consider cost-effective sources like rice genotypes high in silicon. Avoid using infected straw as a silicon source.{"\n"}
+              • Systemic Fungicides: Use judiciously, such as triazoles and strobilurins, particularly during heading stage for effective control.
+            </Text>
+            <Pressable
+              style={styles.buttonClose}
+              onPress={() => setIsModalVisible(false)}
+            >
+              <Text style={styles.textStyle}>Close</Text>
+            </Pressable>
           </View>
-      </View>
-
+        </View>
+      </Modal>
     </View>
   );
 };
@@ -261,7 +286,67 @@ const styles = StyleSheet.create({
     marginTop: 20,
     marginRight: -180,
     flexDirection: 'row',
-  }
+  },
+  centeredView: {
+    flex: 1,
+    justifyContent: 'flex-end', // Aligns the modal to the bottom of the screen
+  },
+  modalView: {
+    backgroundColor: 'white',
+    borderTopLeftRadius: 20, // Rounded corners at the top
+    borderTopRightRadius: 20, // Rounded corners at the top
+    padding: 25,
+    shadowColor: '#000',
+    shadowOffset: {
+      width: 0,
+      height: 2
+    },
+    shadowOpacity: 0.25,
+    shadowRadius: 3.84,
+    elevation: 5
+  },
+  modalTitle: {
+    marginBottom: 15,
+    textAlign: 'center', // Aligns title to the left
+    fontFamily: 'Montserrat-Bold',
+    fontSize: 30,
+    color: '#049B04',
+    fontWeight: 'bold'
+  },
+  modalContent: {
+    fontFamily: 'Montserrat-Regular',
+    fontSize: 16,
+    textAlign: 'left', // Aligns content to the left
+    marginBottom: 10
+  },
+  buttonClose: {
+    position: 'absolute', // Positions the close button absolutely
+    right: 10, // To the right
+    top: 10, // At the top
+    backgroundColor: '#049B04', // Button color
+    borderRadius: 20, // Rounded button
+    padding: 10, // Padding inside the button
+    elevation: 2, // Shadow for the button
+  },
+  textStyle: {
+    color: 'white',
+    fontWeight: 'bold',
+    textAlign: 'center'
+  },
+  modalSubtitle: {
+    fontFamily: 'Montserrat-Bold',
+    fontSize: 16,
+    textAlign: 'left',
+    marginTop: 15,
+    marginBottom: 5,
+    fontWeight: 'bold'
+  },
+  modalTitle2: {
+    fontFamily: 'Montserrat-Bold',
+    fontSize: 16,
+    textAlign: 'center',
+    fontWeight: 'bold'
+  },
 });
 
 export default ScanPage;
