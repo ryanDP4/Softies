@@ -1,19 +1,13 @@
 import React, { useState } from 'react';
 import { StyleSheet, View, Text, TouchableOpacity, ScrollView, Image } from 'react-native'; 
 const arrowBack = require('../assets/back.png');
-import GalleryItem from './GalleryItem';
 
 const sampleImages = [
-  require('../assets/Grain-Gallery/1.png'),
-  require('../assets/Grain-Gallery/2.png'),
-  require('../assets/Grain-Gallery/3.png'),
-  require('../assets/Grain-Gallery/4.png'),
-  require('../assets/Grain-Gallery/5.png'),
-  require('../assets/Grain-Gallery/6.png'),
-  require('../assets/Grain-Gallery/7.png'),
-  require('../assets/Grain-Gallery/8.png'),
-  require('../assets/Grain-Gallery/9.png'),
-  require('../assets/Grain-Gallery/10.png'),
+  require('../assets/sampleIMG1.png'),
+  require('../assets/sampleIMG2.png'),
+  require('../assets/sampleIMG3.png'),
+  require('../assets/sampleIMG4.png'),
+  require('../assets/sampleIMG5.png'),
 ];
 
 const previousArrow = require('../assets/previousArrow.png');
@@ -46,22 +40,17 @@ const Pagination = ({ currentPage, totalPages, onPageChange }) => {
 };
 
 const diseases = [
-  { name: 'Blast', type: 'Biotic Stress' },
-  { name: 'Green Leaf Hopper', type: 'Biotic Stress' },
-  { name: 'Brown Leaf Hopper', type: 'Biotic Stress' },
-  { name: 'Sheath Blight', type: 'Biotic Stress' },
   { name: 'False Smut', type: 'Biotic Stress' },
-  { name: 'Tungro', type: 'Biotic Stress' },
-  { name: 'Bacterial Leaf Blight', type: 'Biotic Stress' },
-  { name: 'Yellow Stem Borer', type: 'Biotic Stress' },
+  { name: 'Green Leaf Hopper', type: 'Biotic Stress' },
+  { name: 'Blast', type: 'Biotic Stress' },
   { name: 'Stem Borer', type: 'Biotic Stress' },
-  { name: 'Healthy', type: 'Normal Condition' },
+  { name: 'Brown Plant Hopper', type: 'Biotic Stress' },
 ];
 
 
 export default function GrainGallery({ navigation }) {
   const [currentPage, setCurrentPage] = useState(0);
-  const itemsPerPage = 4;
+  const itemsPerPage = 5;
   const totalPages = Math.ceil(diseases.length / itemsPerPage);
 
   const onPageChange = (page) => {
@@ -80,7 +69,7 @@ export default function GrainGallery({ navigation }) {
         <TouchableOpacity onPress={() => navigation.goBack()} style={styles.goBackButton}>
           <Image source={arrowBack} style={styles.backIcon}/>
         </TouchableOpacity>
-        <Text style={styles.headerTitle}>Grain Gallery</Text>
+        <Text style={styles.headerTitle}>History</Text>
       </View>
       <ScrollView style={styles.scrollView}>
         {itemsToDisplay.map((disease, index) => (

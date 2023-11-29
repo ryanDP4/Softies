@@ -56,9 +56,13 @@ const Homepage = () => {
                 <Text style={styles.title}>Recent Scans</Text>
                 <View style={styles.lineUnder}></View>
               </View>
-              <TouchableOpacity style={styles.ViewButton}>
+              <TouchableOpacity
+                    style={styles.ViewButton}
+                    onPress={() => navigation.navigate('RecentScans')}
+                > 
                 <Text style={styles.viewAllText}>View all</Text>
-              </TouchableOpacity>
+                </TouchableOpacity>
+
             </View>
   
             <ScrollView
