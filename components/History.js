@@ -3,7 +3,7 @@ import Icon from 'react-native-vector-icons/MaterialIcons';
 import { useFonts } from 'expo-font';
 
 export default function History({ navigation }) {
-    const sampleIMG1 = require('../assets/sampleIMG1.svg');
+  const sampleIMG1 = require('../assets/sampleIMG1.png');
     const [fontsLoaded] = useFonts({
       'Montserrat-Regular': require('../assets/fonts/Montserrat-Regular.ttf')
   });
@@ -12,7 +12,6 @@ export default function History({ navigation }) {
       return null;
   }
   return (
-    <>
     <View style = {styles.container}>
         <TouchableOpacity onPress={() => navigation.goBack()} style={styles.goBackButton}>
           <Icon name="arrow-back" size={28} color="#000" /> 
@@ -57,7 +56,6 @@ export default function History({ navigation }) {
         </TouchableOpacity>
       </View>
     </View>
-    </>
   );
 }
 
