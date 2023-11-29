@@ -13,8 +13,9 @@ import ScanPage from './components/Classification/Scan';
 import { Image } from 'react-native';
 import UserProfile from './components/Profile/UserProfile';
 import ChangePassword from './components/Profile/ChangePassword';
-import Details from './components/Details';
 import GrainGallery from './components/GrainGallery';
+import RecentScans from './components/RecentScans';
+
 
 const Stack = createStackNavigator();
 const Tab = createBottomTabNavigator();
@@ -70,9 +71,9 @@ export default function App() {
         <Stack.Screen name="SignUpPage" component={SignUp}/>
         <Stack.Screen name="Homepage" component={HomeTabs} />
         <Stack.Screen name="ChangePassword" component={ChangePassword} />
-        <Stack.Screen name="Details" component={Details} />
         <Stack.Screen name="GrainGallery" component={GrainGallery} />
-
+        <Stack.Screen name="RecentScans" component={RecentScans} />
+       
       </Stack.Navigator>
     </NavigationContainer>
   );
