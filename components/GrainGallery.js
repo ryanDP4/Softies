@@ -46,10 +46,10 @@ const Pagination = ({ currentPage, totalPages, onPageChange }) => {
 };
 
 const diseases = [
-  { name: 'Blast', type: 'Biotic Stress' },
-  { name: 'Green Leaf Hopper', type: 'Biotic Stress' },
-  { name: 'Brown Leaf Hopper', type: 'Biotic Stress' },
   { name: 'Sheath Blight', type: 'Biotic Stress' },
+  { name: 'False Smut', type: 'Biotic Stress' },
+  { name: 'Bacterial Leaf Blight', type: 'Biotic Stress' },
+  { name: 'Tungro', type: 'Biotic Stress' },
   { name: 'False Smut', type: 'Biotic Stress' },
   { name: 'Tungro', type: 'Biotic Stress' },
   { name: 'Bacterial Leaf Blight', type: 'Biotic Stress' },
@@ -67,8 +67,15 @@ export default function GrainGallery({ navigation }) {
   const onPageChange = (page) => {
     if (page >= 0 && page < totalPages) {
       setCurrentPage(page);
+    };
+  }
+}
+
+  const onImagePress = (disease) => {
+    console.log('Pressed image for disease:', 'Blast');
+    if (disease.name == 'Blast') {
+      navigation.navigate('GrainGallery1', {diseaseName:'Blast'});
     }
-  };
 
   const startIndex = currentPage * itemsPerPage;
   const endIndex = startIndex + itemsPerPage;
@@ -85,7 +92,9 @@ export default function GrainGallery({ navigation }) {
       <ScrollView style={styles.scrollView}>
         {itemsToDisplay.map((disease, index) => (
           <View key={index} style={styles.listItem}>
-            <Image source={sampleImages[index % sampleImages.length]} style={styles.image} />
+            <TouchableOpacity onPress={() => onImagePress(disease)}>
+              <Image source={sampleImages[index % sampleImages.length]} style={styles.image} />
+            </TouchableOpacity>
             <View style={styles.textContainer}>
               <Text style={styles.name}>{disease.name}</Text>
               <Text style={styles.type}>{disease.type}</Text>

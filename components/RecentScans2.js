@@ -19,28 +19,33 @@ const RecentScans1 = ({ navigation, route }) => {
           </View>
 
 
-        <Image source={require('../assets/sampleIMG1.png')} style={styles.image} />
+        <Image source={require('../assets/sampleIMG2.png')} style={styles.image} />
         <View style={styles.contentContainer}>
-          <Text style={styles.class}>False Smut</Text>
+          <Text style={styles.class}>Green Leaf Hopper</Text>
           <Text style={styles.title}>Biotic Stress</Text>
           <Text style={styles.classification}>Classification:</Text>
           <Text style={styles.description}>
-            False smut causes chalkiness of grains which leads to reduction in grain weight. It also reduces seed germination.
+            Green leafhoppers are the most common leafhoppers in rice fields and are primarily critical because they spread the viral disease tungro. Both nymphs and adults feed by extracting plant sap with their needle-shaped mouthparts.
           </Text>
           <Text style={styles.recommendationTitle}>Recommendation:</Text>
           <Text style={styles.recommendationText}>
-            The disease affects the early flowering stage of the rice crop when the ovary is destroyed. The second stage of infection occurs when the spikelet nearly reaches maturity.
-            These causes chalkiness and can reduce 1,000-grain weight. It also causes a reduction in seed germination of up to 35%. In damp weather, the disease can be severe and losses can reach 25%. In India, a yield loss of 7−75% was observed.
+          Rice fields infested by GLH can have tungro, yellow dwarf, yellow-orange leaf, and transitory yellowing diseases. Green leafhoppers are important pests. They are vectors of viral diseases such as tungro, yellow dwarf, yellow-orange leaf, transitory yellowing, and dwarf.  Tungro infected crops may sometimes be confused with nitrogen deficiency or iron toxicity or acid soils. 
 
-            How to manage:
-            Keep the field clean.
-            Remove infected seeds, panicles, and plant debris after harvest.
-            Reduce humidity levels through alternate wetting and drying (AWD) rather than permanently flooding the fields.
-            Where possible, perform conservation tillage and continuous rice cropping.
-            Use moderate rates of Nitrogen.
-            Use certified seeds.
-            Resistant varieties have been reported. Contact your local agriculture office for an up-to-date list of available varieties.
-            Treat seeds at 52°C for 10 min.
+            To confirm the cause of the problem, check for virus infected plants in the fields, and the presence of the insect:
+            white or pale yellow eggs inside leaf sheaths or midribs
+            yellow or pale green nymphs with or without black markings
+            pale green adults with or without black markings feeding on upper parts of the crop
+
+            How to Manage:
+            Use GLH-resistant and tungro-resistant varieties. Contact your local agriculture office for an up-to-date list of available varieties.
+            Reduce the number of rice crops to two per year and synchronized crop establishment across farms reduces leafhoppers and other insect vectors.
+            Transplant older seedlings (less than 3 weeks) to reduce viral disease susceptibility transmitted by leafhoppers.
+            Plant early within a given planting period, particularly in the dry season to reduce the risk of insect-vector disease.
+            Avoid planting during the peak of GLH activity (shown by historical records) to avoid infestation. Light traps can be used to show GLH numbers.
+            Apply nitrogen as needed (e.g., using the Leaf Color Chart) to avoid contributing to population outbreaks by applying too much nitrogen, or hindering plant recovery from planthopper damage by applying insufficient nitrogen.
+            Control weeds in the field and on the bunds to remove the preferred grassy hosts of GLH and promotes crop vigor.
+            Perform crop rotation with a non-rice crop during the dry season to decrease alternate hosts for diseases.
+            Intercrop upland rice with soybean to reduce the incidence of leafhoppers on rice.
           </Text>
         
         </View>

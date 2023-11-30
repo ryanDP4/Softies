@@ -19,28 +19,32 @@ const RecentScans1 = ({ navigation, route }) => {
           </View>
 
 
-        <Image source={require('../assets/sampleIMG1.png')} style={styles.image} />
+        <Image source={require('../assets/sampleIMG4.png')} style={styles.image} />
         <View style={styles.contentContainer}>
-          <Text style={styles.class}>False Smut</Text>
+          <Text style={styles.class}>Storm Borer</Text>
           <Text style={styles.title}>Biotic Stress</Text>
           <Text style={styles.classification}>Classification:</Text>
           <Text style={styles.description}>
-            False smut causes chalkiness of grains which leads to reduction in grain weight. It also reduces seed germination.
+          Six species of stemborer attack rice. These are the yellow stemborer, white stemborer, striped stemborer, gold-fringed stemborer, dark-headed striped stemborer, and the pink stemborer
           </Text>
           <Text style={styles.recommendationTitle}>Recommendation:</Text>
           <Text style={styles.recommendationText}>
-            The disease affects the early flowering stage of the rice crop when the ovary is destroyed. The second stage of infection occurs when the spikelet nearly reaches maturity.
-            These causes chalkiness and can reduce 1,000-grain weight. It also causes a reduction in seed germination of up to 35%. In damp weather, the disease can be severe and losses can reach 25%. In India, a yield loss of 7−75% was observed.
+          Excessive boring through the sheath can destroy the crop. Its damage can reduce the number of reproductive tillers. At late infection, plants develop whiteheads.
 
-            How to manage:
-            Keep the field clean.
-            Remove infected seeds, panicles, and plant debris after harvest.
-            Reduce humidity levels through alternate wetting and drying (AWD) rather than permanently flooding the fields.
-            Where possible, perform conservation tillage and continuous rice cropping.
-            Use moderate rates of Nitrogen.
-            Use certified seeds.
-            Resistant varieties have been reported. Contact your local agriculture office for an up-to-date list of available varieties.
-            Treat seeds at 52°C for 10 min.
+          Yellow stemborer damage can lead to about 20% yield loss in early planted rice crops, and 80% in late-planted crops.
+          White stemborer is an important pest in rainfed wetland rice. It can cause outbreaks and destroy rice fields.
+          Striped stemborer is one of the most important insect pests in Asia. Its damage can be as high as 100% when severe.
+          Gold-fringed stemborer can cause yield loss of about 30%.
+
+          How to manage
+          Use resistant varieties
+          At seedbed and transplanting, handpick and destroy egg masses
+          Raise level of irrigation water periodically to submerge the eggs deposited on the lower parts of the plant
+          Before transplanting, cut the leaf-top to reduce carry-over of eggs from the seedbed to the field
+          Ensure proper timing of planting and synchronous planting, harvest crops at ground level to remove the larvae in stubble, remove stubble and volunteer rice, plow and flood the field
+          Encourage biological control agents: braconid, eulophid, mymarid, scelionid, chalcid, pteromalid and trichogrammatid wasps, ants, lady beetles, staphylinid beetles, gryllid, green meadow grasshopper, and mirid, phorid and platystomatid flies, bethylid, braconid, elasmid, eulophid, eurytomid and ichneumonid wasps, carabid and lady bird beetles, chloropid fly, gerrid and pentatomid bugs, ants, and mites, earwigs, bird, asilid fly, vespid wasp, dragonflies, damselflies, and spiders
+          Bacteria and fungi also infect the larvae: mermithid nematode, chalcid, elasmid and eulophid
+          Apply nitrogen fertilizer in split following the recommended rate and time of application.
           </Text>
         
         </View>

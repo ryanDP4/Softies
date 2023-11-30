@@ -1,13 +1,21 @@
 import React, { useState } from 'react';
 import { StyleSheet, View, Text, TouchableOpacity, ScrollView, Image } from 'react-native'; 
-const arrowBack = require('../assets/back.png');
+import { useNavigation } from '@react-navigation/native';
 
+
+const arrowBack = require('../assets/back.png');
+import GalleryItem from './GalleryItem';
 const sampleImages = [
   require('../assets/sampleIMG1.png'),
   require('../assets/sampleIMG2.png'),
   require('../assets/sampleIMG3.png'),
   require('../assets/sampleIMG4.png'),
   require('../assets/sampleIMG5.png'),
+  //require('../assets/Grain-Gallery/6.png'),
+  //require('../assets/Grain-Gallery/7.png'),
+  //require('../assets/Grain-Gallery/8.png'),
+  //require('../assets/Grain-Gallery/9.png'),
+  //require('../assets/Grain-Gallery/10.png'),
 ];
 
 const previousArrow = require('../assets/previousArrow.png');
@@ -39,16 +47,17 @@ const Pagination = ({ currentPage, totalPages, onPageChange }) => {
   );
 };
 
+const RecentScans = () => {
+
 const diseases = [
   { name: 'False Smut', type: 'Biotic Stress' },
   { name: 'Green Leaf Hopper', type: 'Biotic Stress' },
   { name: 'Blast', type: 'Biotic Stress' },
-  { name: 'Stem Borer', type: 'Biotic Stress' },
+  { name: 'Storm Borer', type: 'Biotic Stress' },
   { name: 'Brown Plant Hopper', type: 'Biotic Stress' },
 ];
 
-
-export default function GrainGallery({ navigation }) {
+  const navigation = useNavigation();
   const [currentPage, setCurrentPage] = useState(0);
   const itemsPerPage = 5;
   const totalPages = Math.ceil(diseases.length / itemsPerPage);
@@ -56,7 +65,26 @@ export default function GrainGallery({ navigation }) {
   const onPageChange = (page) => {
     if (page >= 0 && page < totalPages) {
       setCurrentPage(page);
+  };}
+
+  const onImagePress = (disease) => {
+    console.log('Pressed image for disease:', 'Blast');
+    if (disease.name == 'False Smut') {
+      navigation.navigate('RecentScans1', {diseaseName:'False Smut'});
     }
+    if (disease.name == 'Green Leaf Hopper') {
+      navigation.navigate('RecentScans2' , {diseaseName: 'Green Leaf Hopper'}); 
+    }
+    if (disease.name =='Blast') {
+      navigation.navigate('RecentScans3', {diseaseName: 'Blast'});
+    }
+    if (disease.name == 'Storm Borer') {
+      navigation.navigate('RecentScans4', {diseaseName: 'Storm Borer'});
+    }
+    if (disease.name == 'Brown Plant Hopper') {
+      navigation.navigate('RecentScans5', {diseaseName: 'Brown Plant Hopper'});
+    }
+    // Include additional logic for other diseases if needed
   };
 
   const startIndex = currentPage * itemsPerPage;
@@ -74,7 +102,9 @@ export default function GrainGallery({ navigation }) {
       <ScrollView style={styles.scrollView}>
         {itemsToDisplay.map((disease, index) => (
           <View key={index} style={styles.listItem}>
-            <Image source={sampleImages[index % sampleImages.length]} style={styles.image} />
+            <TouchableOpacity onPress={() => onImagePress(disease)}>
+              <Image source={sampleImages[index % sampleImages.length]} style={styles.image} />
+            </TouchableOpacity>
             <View style={styles.textContainer}>
               <Text style={styles.name}>{disease.name}</Text>
               <Text style={styles.type}>{disease.type}</Text>
@@ -229,5 +259,6 @@ imgStyle: {
     color: '#388E3C', // dark green color
     fontSize: 14, // smaller font size
   },
-
 });
+
+export default RecentScans;

@@ -8,7 +8,7 @@ import GrainGallery from './GrainGallery';
 
 const BANNER_HEIGHT = 400;
 
-// ... (imports)
+// ... (imports)    
 
 const Homepage = () => {
     const navigation = useNavigation();
