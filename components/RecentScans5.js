@@ -19,28 +19,33 @@ const RecentScans1 = ({ navigation, route }) => {
           </View>
 
 
-        <Image source={require('../assets/sampleIMG1.png')} style={styles.image} />
+        <Image source={require('../assets/sampleIMG5.png')} style={styles.image} />
         <View style={styles.contentContainer}>
-          <Text style={styles.class}>False Smut</Text>
+          <Text style={styles.class}>Brown Plant Hopper</Text>
           <Text style={styles.title}>Biotic Stress</Text>
           <Text style={styles.classification}>Classification:</Text>
           <Text style={styles.description}>
-            False smut causes chalkiness of grains which leads to reduction in grain weight. It also reduces seed germination.
+          Two species of planthopper infest rice. These are the brown planthopper (BPH), Nilaparvata lugens (Stal); and the whitebacked planthopper (WBPH), Sogatella furcifera (Horvath).
           </Text>
           <Text style={styles.recommendationTitle}>Recommendation:</Text>
           <Text style={styles.recommendationText}>
-            The disease affects the early flowering stage of the rice crop when the ovary is destroyed. The second stage of infection occurs when the spikelet nearly reaches maturity.
-            These causes chalkiness and can reduce 1,000-grain weight. It also causes a reduction in seed germination of up to 35%. In damp weather, the disease can be severe and losses can reach 25%. In India, a yield loss of 7−75% was observed.
+          The feeding damage caused by planthoppers results in the yellowing of the plants. At high population density, hopperburn or complete drying of the plants is observed. At this level, crop loss may be 100%.
+
+            In field conditions, plants nearing maturity can have hopperburns if infested with about 400−500 BPH nymphs. In the 1970s and 1980s, BPH was considered a threat to rice production in Asia. BPH also transmit Rice Ragged Stunt and Rice Grassy Stunt viruses..
+
+            At a population density of 400−500 nymphs or 200 adults per plant, WBPH can cause complete loss of rice plants. Outbreaks of WBPH were reported in Pakistan in 1978, Malaysia in 1979, and India in 1982, 1984, and 1985.
 
             How to manage:
-            Keep the field clean.
-            Remove infected seeds, panicles, and plant debris after harvest.
-            Reduce humidity levels through alternate wetting and drying (AWD) rather than permanently flooding the fields.
-            Where possible, perform conservation tillage and continuous rice cropping.
-            Use moderate rates of Nitrogen.
-            Use certified seeds.
-            Resistant varieties have been reported. Contact your local agriculture office for an up-to-date list of available varieties.
-            Treat seeds at 52°C for 10 min.
+            Outbreaks result from pesticides destroying natural enemies (BPH eggs hatch unchecked, and surviving BPH quickly build-up populations to damaging levels), or when longwinged planthoppers are being carried in by the wind.
+
+            To prevent outbreaks of planthopper:
+            Remove weeds from the field and surrounding areas.
+            Avoid indiscriminate use of insecticide, which destroys natural enemies.
+            Use a resistant variety. Contact your local agriculture office for an up-to-date list of available varities.
+            Critical numbers: At a density of 1 BPH/stem or less there is still time to act in case the numbers increase.
+            Look for BPH daily in the seedbed, or weekly in the field, on stems and the water surface. Check each side of the seed bed (or direct-seeded fields). For older rice plants, grasp the plant, bend it over slightly, and gently tap it near the base to see if planthoppers fall onto the water surface. For transplanted rice look at bases of 10 to 20 hills as you cross the field diagonally. There is no need to scout for BPH or WBPH beyond the milk stage.
+            Use light traps (e.g., an electric bulb or kerosene lamp near a light colored wall or over a pan of water) at night when rice is prone to planthopper attack. Do not place lights near seedbeds or fields. If the light trap is inundated with hundreds of BPH, it's a signal to check your seedbed or field immediately; then scout every day for the next few weeks. If farmers monitor on a daily basis anyway, then a light trap is unnecessary.
+
           </Text>
         
         </View>

@@ -1,14 +1,16 @@
 import React, { useState } from 'react';
 import { StyleSheet, View, Text, TouchableOpacity, ScrollView, Image } from 'react-native'; 
+import { useNavigation } from '@react-navigation/native';
+
+
 const arrowBack = require('../assets/back.png');
 import GalleryItem from './GalleryItem';
-
 const sampleImages = [
-  require('../assets/Grain-Gallery/1.png'),
-  require('../assets/Grain-Gallery/2.png'),
-  require('../assets/Grain-Gallery/3.png'),
-  require('../assets/Grain-Gallery/4.png'),
-  require('../assets/Grain-Gallery/5.png'),
+  require('../assets/sample1.png'),
+  require('../assets/sample2.png'),
+  require('../assets/sample3.png'),
+  require('../assets/sample4.png'),
+  require('../assets/sampleIMG5.png'),
   require('../assets/Grain-Gallery/6.png'),
   require('../assets/Grain-Gallery/7.png'),
   require('../assets/Grain-Gallery/8.png'),
@@ -45,21 +47,17 @@ const Pagination = ({ currentPage, totalPages, onPageChange }) => {
   );
 };
 
+const RecentScans = () => {
+
 const diseases = [
-  { name: 'Blast', type: 'Biotic Stress' },
-  { name: 'Green Leaf Hopper', type: 'Biotic Stress' },
-  { name: 'Brown Leaf Hopper', type: 'Biotic Stress' },
   { name: 'Sheath Blight', type: 'Biotic Stress' },
   { name: 'False Smut', type: 'Biotic Stress' },
-  { name: 'Tungro', type: 'Biotic Stress' },
   { name: 'Bacterial Leaf Blight', type: 'Biotic Stress' },
-  { name: 'Yellow Stem Borer', type: 'Biotic Stress' },
-  { name: 'Stem Borer', type: 'Biotic Stress' },
-  { name: 'Healthy', type: 'Normal Condition' },
+  { name: 'Tungro', type: 'Biotic Stress' },
+  { name: 'Brown Plant Hopper', type: 'Biotic Stress' },
 ];
 
-
-export default function GrainGallery({ navigation }) {
+  const navigation = useNavigation();
   const [currentPage, setCurrentPage] = useState(0);
   const itemsPerPage = 4;
   const totalPages = Math.ceil(diseases.length / itemsPerPage);
@@ -67,7 +65,27 @@ export default function GrainGallery({ navigation }) {
   const onPageChange = (page) => {
     if (page >= 0 && page < totalPages) {
       setCurrentPage(page);
+    };
+  }
+
+  const onImagePress = (disease) => {
+    console.log('Pressed image for disease:', 'Blast');
+    if (disease.name == 'Sheath Blight') {
+      navigation.navigate('GrainGallery1', {diseaseName:'Sheath Blight'});
     }
+    if (disease.name == 'False Smut') {
+      navigation.navigate('GrainGallery2' , {diseaseName: 'False Smut'}); 
+    }
+    if (disease.name =='Bacterial Leaf Blight') {
+      navigation.navigate('GrainGallery3', {diseaseName: 'Bacterial Leaf Blight'});
+    }
+    if (disease.name == 'Tungro') {
+      navigation.navigate('GrainGallery4', {diseaseName: 'Tungro'});
+    }
+    if (disease.name == 'Brown Plant Hopper') {
+      navigation.navigate('RecentScans5', {diseaseName: 'Brown Plant Hopper'});
+    }
+    // Include additional logic for other diseases if needed
   };
 
   const startIndex = currentPage * itemsPerPage;
@@ -85,7 +103,9 @@ export default function GrainGallery({ navigation }) {
       <ScrollView style={styles.scrollView}>
         {itemsToDisplay.map((disease, index) => (
           <View key={index} style={styles.listItem}>
-            <Image source={sampleImages[index % sampleImages.length]} style={styles.image} />
+            <TouchableOpacity onPress={() => onImagePress(disease)}>
+              <Image source={sampleImages[index % sampleImages.length]} style={styles.image} />
+            </TouchableOpacity>
             <View style={styles.textContainer}>
               <Text style={styles.name}>{disease.name}</Text>
               <Text style={styles.type}>{disease.type}</Text>
@@ -240,5 +260,6 @@ imgStyle: {
     color: '#388E3C', // dark green color
     fontSize: 14, // smaller font size
   },
-
 });
+
+export default RecentScans;

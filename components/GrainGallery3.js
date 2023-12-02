@@ -19,28 +19,24 @@ const RecentScans1 = ({ navigation, route }) => {
           </View>
 
 
-        <Image source={require('../assets/sampleIMG1.png')} style={styles.image} />
+        <Image source={require('../assets/sample3.png')} style={styles.image} />
         <View style={styles.contentContainer}>
-          <Text style={styles.class}>False Smut</Text>
+          <Text style={styles.class}>Bacterial Leaf Blight</Text>
           <Text style={styles.title}>Biotic Stress</Text>
-          <Text style={styles.classification}>Classification:</Text>
+          <Text style={styles.classification}>What it does</Text>
           <Text style={styles.description}>
-            False smut causes chalkiness of grains which leads to reduction in grain weight. It also reduces seed germination.
+          Damage to Plants: Bacterial leaf blight primarily affects the leaves of rice plants, causing lesions that eventually lead to drying and wilting of the leaves. This damage can lead to significant yield loss in severe cases.
+            Spread and Impact: The bacterium spreads primarily through water, infected seeds, and equipment used in rice cultivation. Once established, it can rapidly affect large areas of a rice field, leading to widespread damage.
           </Text>
-          <Text style={styles.recommendationTitle}>Recommendation:</Text>
+          <Text style={styles.recommendationTitle}>Why and where it occurs</Text>
           <Text style={styles.recommendationText}>
-            The disease affects the early flowering stage of the rice crop when the ovary is destroyed. The second stage of infection occurs when the spikelet nearly reaches maturity.
-            These causes chalkiness and can reduce 1,000-grain weight. It also causes a reduction in seed germination of up to 35%. In damp weather, the disease can be severe and losses can reach 25%. In India, a yield loss of 7−75% was observed.
-
-            How to manage:
-            Keep the field clean.
-            Remove infected seeds, panicles, and plant debris after harvest.
-            Reduce humidity levels through alternate wetting and drying (AWD) rather than permanently flooding the fields.
-            Where possible, perform conservation tillage and continuous rice cropping.
-            Use moderate rates of Nitrogen.
-            Use certified seeds.
-            Resistant varieties have been reported. Contact your local agriculture office for an up-to-date list of available varieties.
-            Treat seeds at 52°C for 10 min.
+          Environmental Conditions: The disease is more prevalent in areas with warm and humid climates, which are ideal for the growth and spread of the bacterium. It's commonly found in many rice-growing regions of Asia, Africa, and Latin America.
+            Cultivation Practices: Overhead irrigation and continuous flooding of rice fields can facilitate the spread of the bacterium. Dense planting and excessive use of nitrogen fertilizer can also increase the susceptibility of rice plants to this disease.
+          </Text>
+          <Text style={styles.identifyTitle}>How to identify</Text>
+          <Text style={styles.identifyText}>Symptoms on Leaves: The most noticeable symptom is the appearance of yellow to straw-colored lesions on the leaf blades, starting from the leaf tips or edges and progressing downwards.
+            Pattern of Spread: The lesions often expand and coalesce, forming larger areas of infected tissue. The leaf margins might roll upwards, and the affected leaves eventually wither and die.
+            Additional Signs: In severe cases, the infection can progress to the leaf sheath and even the stem, causing wilting of the entire plant.
           </Text>
         
         </View>
@@ -119,6 +115,16 @@ const styles = StyleSheet.create({
     color: '#049B04', // Adjusted to match the theme color in the image
   },
   recommendationText: {
+    fontSize: 16,
+    marginTop: 5,
+  },
+  identifyTitle: {
+    fontSize: 18,
+    fontWeight: 'bold',
+    marginTop: 10,
+    color: '#049B04',
+  },
+  identifyText: {
     fontSize: 16,
     marginTop: 5,
   },

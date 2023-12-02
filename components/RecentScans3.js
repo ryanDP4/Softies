@@ -19,28 +19,27 @@ const RecentScans1 = ({ navigation, route }) => {
           </View>
 
 
-        <Image source={require('../assets/sampleIMG1.png')} style={styles.image} />
+        <Image source={require('../assets/sampleIMG3.png')} style={styles.image} />
         <View style={styles.contentContainer}>
-          <Text style={styles.class}>False Smut</Text>
+          <Text style={styles.class}>Blast</Text>
           <Text style={styles.title}>Biotic Stress</Text>
           <Text style={styles.classification}>Classification:</Text>
           <Text style={styles.description}>
-            False smut causes chalkiness of grains which leads to reduction in grain weight. It also reduces seed germination.
+          Blast is caused by the fungus Magnaporthe oryzae. It can affect all above ground parts of a rice plant: leaf, collar, node, neck, parts of panicle, and sometimes leaf sheath.
           </Text>
           <Text style={styles.recommendationTitle}>Recommendation:</Text>
           <Text style={styles.recommendationText}>
-            The disease affects the early flowering stage of the rice crop when the ovary is destroyed. The second stage of infection occurs when the spikelet nearly reaches maturity.
-            These causes chalkiness and can reduce 1,000-grain weight. It also causes a reduction in seed germination of up to 35%. In damp weather, the disease can be severe and losses can reach 25%. In India, a yield loss of 7−75% was observed.
+            Rice blast is one of the most destructive diseases of rice. A leaf blast infection can kill seedlings or plants up to the tillering stage. At later growth stages, a severe leaf blast infection reduces leaf area for grain fill, reducing grain yield.
+            Leaf blast can kill rice plants at seedling stage and cause yield losses in cases of severe infection.
 
-            How to manage:
-            Keep the field clean.
-            Remove infected seeds, panicles, and plant debris after harvest.
-            Reduce humidity levels through alternate wetting and drying (AWD) rather than permanently flooding the fields.
-            Where possible, perform conservation tillage and continuous rice cropping.
-            Use moderate rates of Nitrogen.
-            Use certified seeds.
-            Resistant varieties have been reported. Contact your local agriculture office for an up-to-date list of available varieties.
-            Treat seeds at 52°C for 10 min.
+            How to manage: 
+            The primary control option for blast is to plant resistant varieties. Contact your local agriculture office for up-to-date lists of varieties available.
+            Other crop management measures can also be done, such as:
+            Adjust planting time. Sow seeds early, when possible, after the onset of the rainy season.
+            Split nitrogen fertilizer application in two or more treatments. Excessive use of fertilizer can increase blast intensity.
+            Flood the field as often as possible.
+            Silicon fertilizers (e.g., calcium silicate) can be applied to soils that are silicon deficient to reduce blast. However, because of its high cost, silicon should be applied efficiently. Cheap sources of silicon, such as straws of rice genotypes with high silicon content, can be an alternative. Care should be taken to ensure that the straw is free from blast as the fungus can survive on rice straw and the use of infected straw as a silicon source can spread the disease further.
+            Systemic fungicides like triazoles and strobilurins can be used judiciously for control to control blast. A fungicide application at heading can be effective in controlling the disease.
           </Text>
         
         </View>
