@@ -19,30 +19,25 @@ const RecentScans1 = ({ navigation, route }) => {
           </View>
 
 
-        <Image source={require('../assets/sample1.png')} style={styles.image} />
+        <Image source={require('../assets/sample3.png')} style={styles.image} />
         <View style={styles.contentContainer}>
-          <Text style={styles.class}>Sheath Blight</Text>
+          <Text style={styles.class}>Bacterial Leaf Blight</Text>
           <Text style={styles.title}>Biotic Stress</Text>
           <Text style={styles.classification}>What it does</Text>
           <Text style={styles.description}>
-          Sheath blight is a fungal disease caused by Rhizoctonia solani. Infected leaves senesce or dry out and die more rapidly, young tillers can also be destroyed.
-          As a result, the leaf area of the canopy can significantly be reduced by the disease. This reduction in leaf area, along with the diseased-induced senescence of leaves and young infected tillers are the primary causes of yield reduction.
+          Damage to Plants: Bacterial leaf blight primarily affects the leaves of rice plants, causing lesions that eventually lead to drying and wilting of the leaves. This damage can lead to significant yield loss in severe cases.
+            Spread and Impact: The bacterium spreads primarily through water, infected seeds, and equipment used in rice cultivation. Once established, it can rapidly affect large areas of a rice field, leading to widespread damage.
           </Text>
           <Text style={styles.recommendationTitle}>Why and where it occurs</Text>
           <Text style={styles.recommendationText}>
-          Sheath blight occurs in areas with high temperature (28 - 32°C), high levels of nitrogen fertilizer, and relative humidity of crop canopy from 85−100%.
-
-          Plants are more vulnerable to sheath blight during the rainy season.
-          High seeding rate or close plant spacing, dense canopy, disease in the soil, sclerotia or infection bodies floating on the water, and growing of high yielding improved varieties also favor disease development.
+          Environmental Conditions: The disease is more prevalent in areas with warm and humid climates, which are ideal for the growth and spread of the bacterium. It's commonly found in many rice-growing regions of Asia, Africa, and Latin America.
+            Cultivation Practices: Overhead irrigation and continuous flooding of rice fields can facilitate the spread of the bacterium. Dense planting and excessive use of nitrogen fertilizer can also increase the susceptibility of rice plants to this disease.
           </Text>
           <Text style={styles.identifyTitle}>How to identify</Text>
-          <Text style={styles.identifyText}>Symptoms are usually observed from tillering to milk stage in a rice crop and include the following:
-          oval or ellipsoidal greenish gray lesions, usually 1-3 cm long, on the leaf sheath, initially just above the soil or water level in the case of conventionally flooded rice.
-          under favorable conditions, these initial lesions multiply and expand to the upper part of the sheaths, the leaves, and then spread to neighboring tillers belonging to different hills (transplanted rice) or plants (direct-seeded rice).
-          lesions on the leaves usually have irregular lesions, often with gray-white centers and brown margins as they grow older.
-          in subtropical environments, the disease is mostly initiated by sclerotia (up to two million of which can be produced per square meter in a diseased crop).
-          In tropical ecosystems, however, the role of sclerotia in initiating the disease is uncertain. In any case, the pathogen does not produce aerially dispersed spores; its dispersal is essentially dependent on hyphae running on plant tissues and producing new infections
-          Sheath blight has symptoms similar to stem rot and stemborer infestation. To confirm the cause of disease, check for irregular lesions usually found on the leaf sheaths (initially water-soaked to greenish gray and later becomes grayish white with brown margin). Also check for presence of sclerotia.</Text>
+          <Text style={styles.identifyText}>Symptoms on Leaves: The most noticeable symptom is the appearance of yellow to straw-colored lesions on the leaf blades, starting from the leaf tips or edges and progressing downwards.
+            Pattern of Spread: The lesions often expand and coalesce, forming larger areas of infected tissue. The leaf margins might roll upwards, and the affected leaves eventually wither and die.
+            Additional Signs: In severe cases, the infection can progress to the leaf sheath and even the stem, causing wilting of the entire plant.
+          </Text>
         
         </View>
       </ScrollView>

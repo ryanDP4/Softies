@@ -65,7 +65,8 @@ const diseases = [
   const onPageChange = (page) => {
     if (page >= 0 && page < totalPages) {
       setCurrentPage(page);
-  };}
+    };
+  }
 
   const onImagePress = (disease) => {
     console.log('Pressed image for disease:', 'Blast');

@@ -21,6 +21,9 @@ import RecentScans3 from './components/RecentScans3';
 import RecentScans4 from './components/RecentScans4';
 import RecentScans5 from './components/RecentScans5';
 import GrainGallery1 from './components/GrainGallery1';
+import GrainGallery2 from './components/GrainGallery2';
+import GrainGallery3 from './components/GrainGallery3';
+import GrainGallery4 from './components/GrainGallery4';
 
 const Stack = createStackNavigator();
 const Tab = createBottomTabNavigator();
@@ -84,6 +87,9 @@ export default function App() {
         <Stack.Screen name="RecentScans4" component={RecentScans4}/>
         <Stack.Screen name="RecentScans5" component={RecentScans5}/>
         <Stack.Screen name="GrainGallery1" component={GrainGallery1}/>
+        <Stack.Screen name="GrainGallery2" component={GrainGallery2}/>
+        <Stack.Screen name="GrainGallery3" component={GrainGallery3}/>
+        <Stack.Screen name="GrainGallery4" component={GrainGallery4}/>
 
       </Stack.Navigator>
     </NavigationContainer>

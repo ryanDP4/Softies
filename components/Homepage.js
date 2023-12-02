@@ -70,15 +70,15 @@ const Homepage = () => {
               showsHorizontalScrollIndicator={false}
               style={styles.imageScrollView}
             >
-              <TouchableOpacity onPress={() => navigation.navigate('Details')}>
+              <TouchableOpacity onPress={() => navigation.navigate('RecentScans1', {diseaseName:'False Smut'})}>
                 <Image source={sampleIMG1} style={styles.imageStyle} />
               </TouchableOpacity>
   
-              <TouchableOpacity onPress={() => navigation.navigate('Details')}>
+              <TouchableOpacity onPress={() => navigation.navigate('RecentScans2' , {diseaseName: 'Green Leaf Hopper'})}>
                 <Image source={sampleIMG2} style={styles.imageStyle} />
               </TouchableOpacity>
   
-              <TouchableOpacity onPress={() => navigation.navigate('Details')}>
+              <TouchableOpacity onPress={() => navigation.navigate('RecentScans3', {diseaseName: 'Blast'})}>
                 <Image source={sampleIMG3} style={styles.imageStyle} />
               </TouchableOpacity>
             </ScrollView>
