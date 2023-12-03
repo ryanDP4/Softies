@@ -1,5 +1,5 @@
 import React, { useState , useEffect} from 'react';
-import { StyleSheet, Text, View, ImageBackground, TextInput, Image, Pressable } from 'react-native';
+import { StyleSheet, Text, View, ImageBackground, TextInput, Image, Pressable,ToastAndroid } from 'react-native';
 import login_bg3 from '../../assets/login_bg-3.png';
 import button1 from '../../assets/button-1.png';
 import userIcon from '../../assets/User.png';
@@ -9,6 +9,9 @@ export default function LoginPage({ navigation }) {
 
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
+    const showToast = (message) => {
+        ToastAndroid.show(message, ToastAndroid.SHORT);
+      };
 
     const handleLogin = async () => {
         try {
@@ -24,16 +27,16 @@ export default function LoginPage({ navigation }) {
         });
           const result = await response.json();
           if (result.msg== "Logged in successfully!"){
+            showToast(result.msg)
             navigation.navigate('Homepage')
           }
+          showToast(result.msg)
          console.log("error")
         } catch (error) {
           console.log(error)
         }
       };
-      useEffect(() => {
-        // fetchData();
-      }, []);
+ 
       
     //   useEffect(() => {
     //     console.log(articles, "AR");
@@ -79,7 +82,7 @@ export default function LoginPage({ navigation }) {
                             style={styles.input}
                             placeholder="Password"
                             value={password}
-                            onChangeText={text => setPassword(text)}
+                            onChangeText={setPassword}
                             secureTextEntry={true}
                         />
                     </View>
