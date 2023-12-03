@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState , useEffect} from 'react';
 import { StyleSheet, Text, View, ImageBackground, TextInput, Image, Pressable } from 'react-native';
 import login_bg3 from '../../assets/login_bg-3.png';
 import button1 from '../../assets/button-1.png';
@@ -10,9 +10,34 @@ export default function LoginPage({ navigation }) {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
 
-    const handleLogin = () => {
-        console.log('Login button pressed');
-    };
+    const handleLogin = async () => {
+        try {
+          const response = await fetch('https://softies-backend-production.up.railway.app/api/users/login', { 
+          method: 'POST',
+          body: JSON.stringify({
+              "email":email,
+              "password": password
+            }),
+          headers: {
+            'Content-Type': 'application/json',
+          },
+        });
+          const result = await response.json();
+          if (result.msg== "Logged in successfully!"){
+            navigation.navigate('Homepage')
+          }
+         console.log("error")
+        } catch (error) {
+          console.log(error)
+        }
+      };
+      useEffect(() => {
+        // fetchData();
+      }, []);
+      
+    //   useEffect(() => {
+    //     console.log(articles, "AR");
+    //   }, [articles]);
 
     return (
         <ImageBackground
@@ -54,13 +79,13 @@ export default function LoginPage({ navigation }) {
                             style={styles.input}
                             placeholder="Password"
                             value={password}
-                            onChangeText={setPassword}
+                            onChangeText={text => setPassword(text)}
                             secureTextEntry={true}
                         />
                     </View>
                 </View>
                 <View style = {styles.buttonContainer}>
-                    <Pressable style={styles.LoginButton} onPress={() => navigation.navigate('Homepage')}>
+                    <Pressable style={styles.LoginButton} onPress={() => handleLogin()}>
                         <Text style={styles.LoginButtonText}>Login</Text>
                     </Pressable>
                 </View>

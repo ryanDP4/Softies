@@ -1,9 +1,26 @@
-import { StyleSheet, View, Image, Text, TouchableOpacity } from 'react-native'; 
+import { FlatList, StyleSheet, View, Image, Text, TouchableOpacity } from 'react-native'; 
 const arrowBack = require('../assets/back.png');
 import React from 'react';
 
 export default function History({ navigation }) {
   const sampleIMG1 = require('../assets/sampleIMG1.png');
+
+  const data = [
+    { id: '1', imageSource: sampleIMG1 },
+    { id: '2', imageSource: sampleIMG1 },
+    { id: '3', imageSource: sampleIMG1 },
+    { id: '4', imageSource: sampleIMG1 },
+    // Add more items as needed
+  ];
+
+  const renderItem = ({ item }) => (
+    <TouchableOpacity
+      onPress={() => navigation.navigate('LandingPage')}
+      style={styles.imageContainer}
+    >
+      <Image source={item.imageSource} style={styles.imgStyle} />
+    </TouchableOpacity>
+  );
 
   return (
     <View style = {styles.container}>
@@ -11,43 +28,15 @@ export default function History({ navigation }) {
           <Image source={arrowBack} style={styles.backIcon}/>
         </TouchableOpacity>
       <View style={styles.header}>
-        <Text style={styles.headerText}>History</Text>
+        <Text style={styles.headerText}>Histfdory</Text>
       </View>
 
       <View style={styles.listContainer}>
-        <TouchableOpacity
-          onPress={() => navigation.navigate('LandingPage')}
-          style={styles.imageContainer}>
-            <Image
-              source={sampleIMG1}
-              style={styles.imgStyle} />
-        </TouchableOpacity>
-
-        <TouchableOpacity
-          onPress={() => navigation.navigate('LandingPage')}
-          style={styles.imageContainer}>          
-            <Image
-              source={sampleIMG1}
-               style={styles.imgStyle}/>
-        </TouchableOpacity>
-
-        <TouchableOpacity
-          onPress={() => navigation.navigate('LandingPage')}
-          style={styles.imageContainer} >
-            <Image
-              source={sampleIMG1}
-              style={styles.imgStyle}
-            />
-        </TouchableOpacity>
-
-        <TouchableOpacity
-          onPress={() => navigation.navigate('LandingPage')}
-          style={styles.imageContainer}>
-          <Image
-            source={sampleIMG1}
-             style={styles.imgStyle} />
-
-        </TouchableOpacity>
+         <FlatList
+          data={data}
+          keyExtractor={(item) => item.id}
+          renderItem={renderItem}
+        />
       </View>
     </View>
   );
