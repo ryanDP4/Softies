@@ -1,4 +1,4 @@
-import { StyleSheet, Text, View, TextInput, Image, TouchableOpacity } from 'react-native';
+import { StyleSheet, Text, View, TextInput, Image, TouchableOpacity, ToastAndroid } from 'react-native';
 import React, { useState } from 'react';
 
 const arrowBack = require('../../assets/back.png');
@@ -7,29 +7,26 @@ export default function UserProfile({navigation}) {
   const [isEditMode, setIsEditMode] = useState(false);
   const [username, setUsername] = useState('User Name');
   const [occupation, setOccupation] = useState('Agronomist/Farmer');
+
+  const showToast = (message) => {
+    ToastAndroid.show(message, ToastAndroid.SHORT);
+  };
+
   const handleLogout = async () => {
-    try {
-      const response = await fetch('https://softies-backend-production.up.railway.app/api/users/logout', { 
+    const response = await fetch('https://softies-backend-production.up.railway.app/api/users/logout', { 
       method: 'POST',
+      body: JSON.stringify({}),
       headers: {
         'Content-Type': 'application/json',
       },
     });
       const result = await response.json();
-      console.log(result)
+      showToast(result.msg)
       navigation.navigate('LandingPage')
-      // if (result.msg == "User Logged Out"){
-      //   navigation.navigate('Homepage')
-      //     console.log("working but not quite")
-      // //   return true
-      // } 
-    //  console.log("error")
-    } catch (error) {
-      console.log(error)
-    }
+
   };
   const handleChangePassowrd = () => {navigation.navigate('ChangePassword')};
-
+  
   return (
     <View style = {styles.screenContainer}>
         <TouchableOpacity onPress={() => navigation.goBack()} style={styles.goBackButton}>
@@ -40,11 +37,11 @@ export default function UserProfile({navigation}) {
         </View>
         <View style={styles.profileIconContainer}>
           <View style={styles.profileIcon}>
-            <Image style={styles.profilePicture} source={require('../../assets/user_profile.png')}/>
+            {/* <Image style={styles.profilePicture} source={require('../../assets/user_profile.png')}/> */}
         </View>
         <TouchableOpacity onPress={() => setIsEditMode(!isEditMode)} style={styles.editIconContainer}>
           <View style={styles.editIcon}>
-            <Image style={styles.editPicture} source={require('../../assets/edit_profile.png')}/>
+            {/* <Image style={styles.editPicture} source={require('../../assets/edit_profile')}/> */}
           </View>
         </TouchableOpacity>
       </View>
@@ -68,22 +65,22 @@ export default function UserProfile({navigation}) {
         )}
         <View style = {styles.detailsContainer}>
           <View style = {styles.firstDetailContainer}>
-            <Image style = {styles.iconDetails} source = {require('../../assets/Email.png')}/>
+            {/* <Image style = {styles.iconDetails} source = {require('../../assets/Email.png')}/> */}
             <Text style = {styles.detailsText}>teamsofties@tip.edu.ph</Text>
           </View>
 
           <View style = {styles.eachDetailContainer}>
-            <Image style = {styles.iconDetails} source = {require('../../assets/Call.png')}/>
+            {/* <Image style = {styles.iconDetails} source = {require('../../assets/Call.png')}/> */}
             <Text style = {styles.detailsText}>+639 xxx xxx xxx </Text>
           </View>
 
           <TouchableOpacity style={styles.eachDetailContainer} onPress={handleChangePassowrd}>
-            <Image style={styles.iconDetails} source={require('../../assets/Lock.png')}/>
+            {/* <Image style={styles.iconDetails} source={require('../../assets/Lock.png')}/> */}
             <Text style={styles.detailsText}>Change Password</Text>
           </TouchableOpacity>
 
           <TouchableOpacity style={styles.eachDetailContainer} onPress={handleLogout}>
-            <Image style={styles.iconDetails} source={require('../../assets/Logout.png')}/>
+            {/* <Image style={styles.iconDetails} source={require('../../assets/Logout.png')}/> */}
             <Text style={styles.detailsText}>Logout</Text>
           </TouchableOpacity>
 

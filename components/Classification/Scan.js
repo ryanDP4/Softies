@@ -39,9 +39,10 @@ const ScanPage = ({ navigation }) => {
   const takePicture = async () => {
     if (cameraRef.current && cameraVisible) {
       const photo = await cameraRef.current.takePictureAsync();
-      fetchClassification(photo.uri);
-      setSelectedImage(photo.uri);
+      await setSelectedImage(photo.uri);
+      await fetchClassification(photo.uri)
       setCameraVisible(false);
+      
     }
   };
 
@@ -108,7 +109,7 @@ const ScanPage = ({ navigation }) => {
       console.log("workin3")
       console.log(result)
     } catch (error) {
-      console.log(error)
+      // console.log(error)
     }
   };
   const convertImageToBase64 = async (imageUri) => {
@@ -130,7 +131,7 @@ const ScanPage = ({ navigation }) => {
         console.log(selectedImage)
         fetchClassification()
 
-      }, [selectedImage]);
+//       }, [selectedImage]);
 
 
   const handleNextPress = () => {

@@ -1,5 +1,5 @@
 import {React, useState} from 'react';
-import { StyleSheet, Text, View, ImageBackground, TextInput, Image, Pressable } from 'react-native';
+import { StyleSheet, Text, View, ImageBackground, TextInput, Image, Pressable, ToastAndroid } from 'react-native';
 import login_bg3 from '../../assets/login_bg-3.png';
 import button1 from '../../assets/button-1.png';
 import infoIcon from '../../assets/Name.png';
@@ -14,6 +14,40 @@ export default function SignUp( {navigation}) {
     const [email, setEmail] = useState('');
     const [contact, setContact] = useState('');
     const [password, setPassword] = useState('');
+    const [username, setUsername] = useState('');
+   
+    const showToast = (message) => {
+            ToastAndroid.show(message, ToastAndroid.SHORT);
+        };
+
+ 
+    const handleSignUp = async () => {
+        try {
+          const response = await fetch('https://softies-backend-production.up.railway.app/api/users/signup', { 
+          method: 'POST',
+          body: JSON.stringify({
+              "email":email,
+              "password": password,
+              "username":username,
+              "first_name": firstName,
+              "first_name": lastName,
+              "contact": contact
+            }),
+          headers: {
+            'Content-Type': 'application/json',
+          },
+        });
+          const result = await response.json();
+          if (result.msg== "Account created successfully"){
+            showToast(result.msg)
+            navigation.navigate('Homepage')
+          }
+          showToast(result.msg)
+         console.log("error")
+        } catch (error) {
+          console.log(error)
+        }
+      };
 
     
     return(
@@ -75,6 +109,18 @@ export default function SignUp( {navigation}) {
                         />
                     </View>
 
+                    <View style={styles.textInput}>
+                        <Image source={emailIcon} style={styles.inputIcon} />
+                        <TextInput
+                            style={styles.input}
+                            placeholder="Username"
+                            value={username}
+                            onChangeText={setUsername}
+                            keyboardType="user-name"
+                            autoCapitalize="none"
+                        />
+                    </View>
+
                     {/* Contact Input */}
                     <View style={styles.textInput}>
                         <Image source={contactIcon} style={styles.inputIcon} />
@@ -101,7 +147,7 @@ export default function SignUp( {navigation}) {
 
                 </View>
                 <View style = {styles.buttonContainer}>
-                    <Pressable style={styles.SignUpButton} onPress={() => navigation.navigate('Homepage')}>
+                    <Pressable style={styles.SignUpButton} onPress={()=>handleSignUp()}>
                         <Text style={styles.SignUpButtonText}>Sign Up</Text>
                     </Pressable>
                 </View>
