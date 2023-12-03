@@ -19,7 +19,7 @@ const ScanPage = ({ navigation }) => {
   const [selectedImage, setSelectedImage] = useState(null);
   const [isModalVisible, setIsModalVisible] = useState(false);
   const cameraRef = useRef(null);
-
+  
   useEffect(() => {
     (async () => {
       const cameraStatus = await Camera.requestCameraPermissionsAsync();
@@ -60,6 +60,30 @@ const ScanPage = ({ navigation }) => {
       console.error('Error picking image: ', error);
     }
   };
+  const fetchClassification = async () => {
+    try {
+      const response = await fetch('https://softies-backend-production.up.railway.app/api/recommendation/skan', { 
+      method: 'POST',
+      body: JSON.stringify({
+          "image":selectedImage,
+        }),
+      headers: {
+        'Content-Type': 'application/json',
+      },
+    });
+      const result = await response.json();
+      // result assign to state
+      console.log(result)
+    } catch (error) {
+      console.log(error)
+    }
+  };
+  useEffect(() => {
+        console.log(selectedImage)
+        fetchClassification()
+
+      }, [selectedImage]);
+
 
   const handleNextPress = () => {
     setIsModalVisible(true);
