@@ -10,12 +10,12 @@ const sampleImages = [
   require('../assets/sample2.png'),
   require('../assets/sample3.png'),
   require('../assets/sample4.png'),
+  require('../assets/sampleIMG4.png'),
+  require('../assets/sampleIMG2.png'),
   require('../assets/sampleIMG5.png'),
-  require('../assets/Grain-Gallery/6.png'),
-  require('../assets/Grain-Gallery/7.png'),
-  require('../assets/Grain-Gallery/8.png'),
-  require('../assets/Grain-Gallery/9.png'),
-  require('../assets/Grain-Gallery/10.png'),
+  require('../assets/sampleIMG3.png'),
+  //require('../assets/Grain-Gallery/9.png'),
+  //require('../assets/Grain-Gallery/10.png'),
 ];
 
 const previousArrow = require('../assets/previousArrow.png');
@@ -54,7 +54,12 @@ const diseases = [
   { name: 'False Smut', type: 'Biotic Stress' },
   { name: 'Bacterial Leaf Blight', type: 'Biotic Stress' },
   { name: 'Tungro', type: 'Biotic Stress' },
+  { name: 'Stem Borer', type: 'Biotic Stress' },
+  { name: 'Green Leaf Hopper', type: 'Biotic Stress' },
   { name: 'Brown Plant Hopper', type: 'Biotic Stress' },
+  { name: 'Blast', type: 'Biotic Stress' },
+  //{ name: 'Tungro', type: 'Biotic Stress' },
+  //{ name: 'Brown Plant Hopper', type: 'Biotic Stress' },
 ];
 
   const navigation = useNavigation();
@@ -82,8 +87,17 @@ const diseases = [
     if (disease.name == 'Tungro') {
       navigation.navigate('GrainGallery4', {diseaseName: 'Tungro'});
     }
+    if (disease.name == 'Stem Borer') {
+      navigation.navigate('GrainGallery5', {diseaseName: 'Stem Borer'});
+    }
+    if (disease.name == 'Green Leaf Hopper') {
+      navigation.navigate('GrainGallery6', {diseaseName: 'Green Leaf Hopper'});
+    }
     if (disease.name == 'Brown Plant Hopper') {
-      navigation.navigate('RecentScans5', {diseaseName: 'Brown Plant Hopper'});
+      navigation.navigate('GrainGallery7', {diseaseName: 'Brown Plant Hopper'});
+    }
+    if (disease.name == 'Blast') {
+      navigation.navigate('GrainGallery8', {diseaseName: 'Blast'});
     }
     // Include additional logic for other diseases if needed
   };

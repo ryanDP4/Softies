@@ -77,7 +77,7 @@ const diseases = [
       navigation.navigate('RecentScans2' , {diseaseName: 'Green Leaf Hopper'}); 
     }
     if (disease.name =='Blast') {
-      navigation.navigate('RecentScans3', {diseaseName: 'Blast'});
+      navigation.navigate(`'RecentScans3', {diseaseName: 'Blast'}`);
     }
     if (disease.name == 'Storm Borer') {
       navigation.navigate('RecentScans4', {diseaseName: 'Storm Borer'});
