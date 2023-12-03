@@ -39,8 +39,8 @@ const ScanPage = ({ navigation }) => {
   const takePicture = async () => {
     if (cameraRef.current && cameraVisible) {
       const photo = await cameraRef.current.takePictureAsync();
-      await setSelectedImage(photo.uri);
       await fetchClassification(photo.uri)
+      await setSelectedImage(photo.uri);
       setCameraVisible(false);
       
     }
@@ -59,8 +59,8 @@ const ScanPage = ({ navigation }) => {
         // console.log(result.assets.uri)
         console.log(result.assets[0].uri)
         URI = result.assets[0].uri
-        fetchClassification(URI);
-        setSelectedImage(URI);
+        await fetchClassification(URI);
+        await setSelectedImage(URI);
       }
     } catch (error) {
       console.error('Error picking image: ', error);
@@ -92,7 +92,7 @@ const ScanPage = ({ navigation }) => {
   const fetchClassification = async (imageUri) => {
     try {
       const base64Image = await convertImageToBase64(imageUri)
-      console.log("workin1")
+      console.log("LOADING LOADING LOADING...")
       // console.log(base64Image)
       const response = await fetch('https://softies-backend-production.up.railway.app/api/recommendation/skan', { 
       method: 'POST',
@@ -129,7 +129,7 @@ const ScanPage = ({ navigation }) => {
   };
   useEffect(() => {
         console.log(selectedImage)
-        fetchClassification()
+        fetchClassification()})
 
 //       }, [selectedImage]);
 
@@ -222,7 +222,7 @@ const ScanPage = ({ navigation }) => {
       </Modal>
     </View>
   );
-};
+}
 
 const styles = StyleSheet.create({
   container: {
