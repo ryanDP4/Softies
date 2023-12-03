@@ -1,18 +1,8 @@
 import React from 'react';
-import { useFonts } from 'expo-font';
 import { StyleSheet, Text, View, ImageBackground, Pressable } from 'react-native';
 import login_bg1 from '../../assets/login_bg-1.png';
 
-
 export default function AreYouA({ navigation }) {
-  const [fontsLoaded, fontError] = useFonts({
-    'Montserrat-Regular': require('../../assets/fonts/Montserrat-Regular.ttf'),
-    'Montserrat-Bold': require('../../assets/fonts/Montserrat-Bold.ttf'),
-}) 
-
-  if (!fontsLoaded) {                                                                                                                                                                                                                                                                                           
-    return null;
-  }
 
   return (
     <ImageBackground
@@ -56,8 +46,8 @@ const styles = StyleSheet.create({
   text: {
     color: '#086608',
     fontSize: 35,
-    fontFamily: 'Montserrat-Bold',
-    marginBottom: 40, // Space between text and buttons
+    marginBottom: 40,
+    fontWeight: 'bold' 
   },
   buttonContainer: {
     alignItems: 'center',
@@ -81,11 +71,9 @@ const styles = StyleSheet.create({
   AgronomistButtonText: {
     color: 'white',
     fontSize: 16,
-    fontFamily: 'Montserrat-Regular',
   },
   FarmerButtonText: {
     color: '#086608',
     fontSize: 16,
-    fontFamily: 'Montserrat-Regular',
   },
 });

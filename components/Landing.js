@@ -1,34 +1,47 @@
-import { useFonts } from 'expo-font';
+import React, { useState, useEffect } from 'react';
 import { StyleSheet, View, Image, Text, TouchableOpacity } from 'react-native';
 import imagePath from '../assets/skanin_logo.png';
-// import Homepage from './Homepage';
+import * as Font from 'expo-font';
 
-export default function Landing( {navigation} ) {
+export default function Landing({ navigation }) {
+    const [fontsLoaded, setFontsLoaded] = useState(false);
 
-    const [fontsLoaded, fontError] = useFonts({
-        'Ultra-Regular': require('../assets/fonts/ultra/Ultra-Regular.ttf'),
-        'Montserrat-Regular': require('../assets/fonts/Montserrat-Regular.ttf'),
-    }) 
-    
+    useEffect(() => {
+        async function loadFonts() {
+            try {
+                await Font.loadAsync({
+                    'Ultra-Regular': require('../assets/fonts/ultra/Ultra-Regular.ttf'),
+                    'Montserrat-Regular': require('../assets/fonts/Montserrat-Regular.ttf'),
+                });
+                setFontsLoaded(true);
+            } catch (e) {
+                console.log('Error loading fonts', e);
+            }
+        }
+
+        loadFonts();
+    }, []);
+
+    if (!fontsLoaded) {
+        return <View><Text>Loading...</Text></View>; 
+    }
+
     return (
-            <TouchableOpacity
+        <TouchableOpacity
             title="SplashScreen"
             onPress={() => navigation.navigate('AreYouA')}
             style={styles.touchable}
-            >
-                <View style={styles.page} >
-                    <View style={styles.imageContainer}>
-                        <Image
-                            source= {imagePath}
-                            style={styles.image}
-                        />
-                    </View>
-                    <View style={styles.continueContainer}>
-                    <Text style={styles.continueText}>Tap anywhere to continue.</Text>
-                    </View>
+        >
+            <View style={styles.page}>
+                <View style={styles.imageContainer}>
+                    <Image source={imagePath} style={styles.image} />
                 </View>
-            </TouchableOpacity>
-    )
+                <View style={styles.continueContainer}>
+                    <Text style={styles.continueText}>Tap anywhere to continue</Text>
+                </View>
+            </View>
+        </TouchableOpacity>
+    );
 }
 
 const styles = StyleSheet.create({
@@ -47,8 +60,8 @@ const styles = StyleSheet.create({
         justifyContent: 'center'
     },
     image: {
-        width: '65%', // Use a percentage of the screen width
-        aspectRatio: 1, // Maintain aspect ratio (width:height = 1:1)
+        width: '65%', 
+        aspectRatio: 1, 
         justifyContent: 'center',
         alignItems: 'center'
     },

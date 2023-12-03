@@ -4,7 +4,6 @@ import { useFonts } from 'expo-font';
 import { ImageHeaderScrollView } from 'react-native-image-header-scroll-view';
 import { useNavigation } from '@react-navigation/native';
 import GalleryItem from './GalleryItem';
-import GrainGallery from './GrainGallery';
 
 const BANNER_HEIGHT = 400;
 
@@ -17,13 +16,6 @@ const Homepage = () => {
     const sampleIMG1 = require('../assets/sampleIMG1.png');
     const sampleIMG2 = require('../assets/sampleIMG2.png');
     const sampleIMG3 = require('../assets/sampleIMG3.png');
-    const [fontsLoaded] = useFonts({
-      'Montserrat-Regular': require('../assets/fonts/Montserrat-Regular.ttf')
-    });
-  
-    if (!fontsLoaded) {
-      return null;
-    }
 
     const sampleImages = [
         require('../assets/Grain-Gallery/1.png'),
@@ -132,7 +124,7 @@ const styles = StyleSheet.create({
         color: '#000',
         fontSize: 24,
         fontWeight: '600',
-        fontFamily: 'Montserrat-Regular',
+        fontWeight: 'medium'
     },
     TextView: {
         justifyContent: 'center',
@@ -159,7 +151,7 @@ const styles = StyleSheet.create({
     viewAllText: {
         color: 'black', 
         fontSize: 14,
-        fontFamily: 'Montserrat-Regular',
+        fontWeight: 'medium',
         marginHorizontal: 10,
         paddingVertical: 10,
     },

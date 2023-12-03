@@ -1,5 +1,4 @@
-import React, { useState } from 'react'; // Added "React" and "useState"
-import { useFonts } from 'expo-font';
+import React, { useState } from 'react';
 import { StyleSheet, Text, View, ImageBackground, TextInput, Image, Pressable } from 'react-native';
 import login_bg3 from '../../assets/login_bg-3.png';
 import button1 from '../../assets/button-1.png';
@@ -7,15 +6,6 @@ import userIcon from '../../assets/User.png';
 import lockIcon from '../../assets/Lock.png';
 
 export default function LoginPage({ navigation }) {
-    const [fontsLoaded] = useFonts({
-        'Montserrat-Regular': require('../../assets/fonts/Montserrat-Regular.ttf'),
-        'Montserrat-Bold': require('../../assets/fonts/Montserrat-Bold.ttf'),
-        'Montserrat-Medium': require('../../assets/fonts/Montserrat-Medium.ttf')
-    });
-
-    // if (!fontsLoaded) {
-    //     return null;
-    // }
 
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
@@ -103,18 +93,18 @@ const styles = StyleSheet.create({
         color: '#086608',
         fontSize: 35,
         marginTop: 200,
-        marginBottom: 10, // Space between text and buttons
+        marginBottom: 10,
         alignItems: 'center',
     }, 
     Welcometext: {
         color: '#086608',
         fontSize: 35,
-        fontFamily: 'Montserrat-Bold',
+        fontWeight: 'bold'
     },
     text: {
         color: '#086608',
         fontSize: 18, 
-        fontFamily: 'Montserrat-Medium',
+        fontWeight: 'normal'
     },
     buttonContainer: {
         alignItems: 'center',
@@ -130,17 +120,16 @@ const styles = StyleSheet.create({
     LoginButtonText: {
         color: 'white',
         fontSize: 16,
-        fontFamily: 'Montserrat-Regular',
+        fontWeight: 'medium'
     },
     inputContainer: {
         alignItems: 'center',
-        marginBottom: 170,
+        marginBottom: 30,
     }, 
     textInput: {
         flexDirection: 'row',
         alignItems: 'center',
         marginBottom: 15,
-        // marginLeft: 10, 
         width: 315, 
         height: 45,
         backgroundColor: 'white',
@@ -159,7 +148,7 @@ const styles = StyleSheet.create({
         color: '#049B04',
         marginLeft: 15,
         fontSize: 12,
-        fontFamily: 'Montserrat-Regular',
+        fontWeight: 'medium'
     },
 
 });

@@ -1,5 +1,4 @@
 import {React, useState} from 'react';
-import { useFonts } from 'expo-font';
 import { StyleSheet, Text, View, ImageBackground, TextInput, Image, Pressable } from 'react-native';
 import login_bg3 from '../../assets/login_bg-3.png';
 import button1 from '../../assets/button-1.png';
@@ -9,15 +8,6 @@ import emailIcon from '../../assets/Email.png';
 import contactIcon from '../../assets/Call.png';
 
 export default function SignUp( {navigation}) {
-      const [fontsLoaded] = useFonts({
-        'Montserrat-Regular': require('../../assets/fonts/Montserrat-Regular.ttf'),
-        'Montserrat-Bold': require('../../assets/fonts/Montserrat-Bold.ttf'),
-        'Montserrat-Medium': require('../../assets/fonts/Montserrat-Medium.ttf')
-  });
-
-//   if (!fontsLoaded) {                                                                                                                                                                                                                                                                                           
-//     return null;
-// }
 
     const [firstName, setfirstName] = useState('');
     const [lastName, setlastName] = useState('');
@@ -145,28 +135,27 @@ const styles = StyleSheet.create({
         color: '#086608',
         fontSize: 35,
         marginTop: 200,
-        marginBottom: 10, // Space between text and buttons
+        marginBottom: 10,
         alignItems: 'center',
     }, 
     registerText: {
         color: '#086608',
         fontSize: 35,
-        fontFamily: 'Montserrat-Bold',
+        fontWeight: 'bold'
     },
     text: {
         color: '#086608',
         fontSize: 16, 
-        fontFamily: 'Montserrat-Medium',
+        fontWeight: 'medium'
     },
     inputContainer: {
         alignItems: 'center',
-        marginBottom: 60,
+        marginBottom: 30,
     }, 
     textInput: {
         flexDirection: 'row',
         alignItems: 'center',
         marginBottom: 15,
-        // marginLeft: 10, 
         width: 315, 
         height: 40,
         backgroundColor: 'white',
@@ -185,7 +174,7 @@ const styles = StyleSheet.create({
         color: '#086608',
         marginLeft: 15,
         fontSize: 12,
-        fontFamily: 'Montserrat-Regular',
+        fontWeight: 'medium'
     },
     buttonContainer: {
         alignItems: 'center',
@@ -201,6 +190,6 @@ const styles = StyleSheet.create({
     SignUpButtonText: {
         color: 'white',
         fontSize: 16,
-        fontFamily: 'Montserrat-Regular',
+        fontWeight: 'medium'
     },
 })

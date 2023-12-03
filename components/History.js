@@ -1,20 +1,14 @@
-import { StyleSheet, View, Image, Text, TouchableOpacity, Pressable } from 'react-native'; 
-import Icon from 'react-native-vector-icons/MaterialIcons';
-import { useFonts } from 'expo-font';
+import { StyleSheet, View, Image, Text, TouchableOpacity } from 'react-native'; 
+const arrowBack = require('../assets/back.png');
+import React from 'react';
 
 export default function History({ navigation }) {
   const sampleIMG1 = require('../assets/sampleIMG1.png');
-    const [fontsLoaded] = useFonts({
-      'Montserrat-Regular': require('../assets/fonts/Montserrat-Regular.ttf')
-  });
 
-  if (!fontsLoaded) {
-      return null;
-  }
   return (
     <View style = {styles.container}>
         <TouchableOpacity onPress={() => navigation.goBack()} style={styles.goBackButton}>
-          <Icon name="arrow-back" size={28} color="#000" /> 
+          <Image source={arrowBack} style={styles.backIcon}/>
         </TouchableOpacity>
       <View style={styles.header}>
         <Text style={styles.headerText}>History</Text>
@@ -73,7 +67,7 @@ const styles = StyleSheet.create({
     fontWeight: '600',
     // lineHeight: 26,
     padding: 20,
-    fontFamily: 'Montserrat-Regular',
+    fontWeight: 'medium'
   },
   pageContainer: {
     display: 'flex',
@@ -85,7 +79,7 @@ const styles = StyleSheet.create({
     marginTop: 5,
 },
 imageContainer: {
-    borderColor: 'black',  // Set border color to black
+    borderColor: 'black',  
     borderWidth: 1, 
     borderRadius: 10,
     overflow: 'hidden',
@@ -95,7 +89,7 @@ imageContainer: {
     backgroundColor: '#D7DFC9',
 },
 imgStyle: {
-    width: 100, // Adjusted width to take full width of the container
+    width: 100, 
     height: 100,
 },
   icon: {
@@ -106,5 +100,18 @@ imgStyle: {
     position: 'absolute',
     marginTop: 30,
     left: 10,
+  },
+  goBackButton: {
+    position: 'absolute',
+    top: 10,
+    left: 10,
+    width: 30,
+    height: 30,
+    marginTop: 40
+  },
+  backIcon: {
+    width: 25, // Adjust the width to match your design
+    height: 25, // Adjust the height to match your design
+    resizeMode: 'contain',
   },
 });

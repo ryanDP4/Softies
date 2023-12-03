@@ -1,15 +1,9 @@
-import { useFonts } from 'expo-font';
-import { StyleSheet, Text, View, ImageBackground, TextInput, Image, Pressable, TouchableOpacity } from 'react-native';
-import Icon from 'react-native-vector-icons/MaterialIcons';
+import { StyleSheet, Text, View, TextInput, Image, TouchableOpacity } from 'react-native';
 import React, { useState } from 'react';
 
+const arrowBack = require('../../assets/back.png');
 
 export default function UserProfile({navigation}) {
-  const [fontsLoaded] = useFonts({
-    'Montserrat-Regular': require('../../assets/fonts/Montserrat-Regular.ttf'),
-    'Montserrat-Bold': require('../../assets/fonts/Montserrat-Bold.ttf'),
-    'Montserrat-Medium': require('../../assets/fonts/Montserrat-Medium.ttf')
-});
   const [isEditMode, setIsEditMode] = useState(false);
   const [username, setUsername] = useState('User Name');
   const [occupation, setOccupation] = useState('Agronomist/Farmer');
@@ -19,7 +13,7 @@ export default function UserProfile({navigation}) {
   return (
     <View style = {styles.screenContainer}>
         <TouchableOpacity onPress={() => navigation.goBack()} style={styles.goBackButton}>
-          <Icon name="arrow-back" size={28} color="#000" /> 
+          <Image source={arrowBack} style={styles.backIcon}/>
         </TouchableOpacity>
         <View style = {styles.headerContainer}>
           <Text style = {styles.headerText}>My Profile</Text>
@@ -30,7 +24,7 @@ export default function UserProfile({navigation}) {
         </View>
         <TouchableOpacity onPress={() => setIsEditMode(!isEditMode)} style={styles.editIconContainer}>
           <View style={styles.editIcon}>
-            <Image style={styles.editPicture} source={require('../../assets/Pencil Drawing.png')}/>
+            <Image style={styles.editPicture} source={require('../../assets/edit_profile')}/>
           </View>
         </TouchableOpacity>
       </View>
@@ -101,44 +95,52 @@ const styles = StyleSheet.create({
     fontSize: 30,
     fontWeight: '600',
     padding: 20,
-    fontFamily: 'Montserrat-Regular',
+    fontWeight: 'medium'
   }, 
   profileIconContainer: {
     flexDirection: 'row',
     alignItems: 'center', 
     justifyContent: 'center',
     marginTop: 25,
+    position: 'relative',
   }, 
   profileIcon: {
-    borderRadius: 100,
+    borderRadius: 75, // The border radius should be half of the height and width
     height: 150,
     width: 150,
     borderColor: '#D7DFC9',
-    borderWidth: 10,
-    overflow: 'hidden',
+    borderWidth: 4,
+    justifyContent: 'center',
+    alignItems: 'center',
   },
   profilePicture: {
-    height: 120, 
-    width: 120,
-    borderRadius: 65, 
-    alignSelf: 'center',
-    borderWidth: 0,
-    overflow: 'hidden',
+    height: 150, // Full size to fill the container
+    width: 150, // Full size to fill the container
+    borderRadius: 75, // This will ensure the image itself is also rounded into a perfect circle
   },
   editIconContainer: {
     position: 'absolute',
-    marginLeft: 100,
-    marginTop: 120,
-    alignItems: 'center',
+    right: 0, // Align to the right side of the profileIconContainer
+    bottom: 0, // Align to the bottom of the profileIconContainer
+    backgroundColor: 'white', // Assuming the background of your edit icon is white
+    borderRadius: 25, // Half of the height and width to make it perfectly round
+    height: 50,
+    width: 50,
     justifyContent: 'center',
+    alignItems: 'center',
+    borderColor: '#D7DFC9', // Match the border color with the profileIcon border
+    borderWidth: 2,
+    // You may need to adjust the elevation or shadow to match the design
+    elevation: 3,
+    shadowColor: 'black',
+    shadowOffset: { width: 0, height: 2 },
+    shadowOpacity: 0.25,
+    shadowRadius: 3.84,
   },
   editIcon: {
-    borderRadius: 80,
-    height: 45,
-    width: 45,
-    borderColor: '#D7DFC9',
-    borderWidth: 6,
-    backgroundColor: 'white',
+    height: 20, // Adjust the size of your pencil icon accordingly
+    width: 20, // Adjust the size of your pencil icon accordingly
+    resizeMode: 'contain',
   },
   editPicture: {
     height: 30, 
@@ -159,7 +161,7 @@ const styles = StyleSheet.create({
     fontSize: 20,
     alignSelf: 'center',
     textAlign: 'center',
-    fontFamily: 'Montserrat-Regular',
+    fontWeight: 'medium'
   },
   userPosition: {
     color: '#000',
@@ -167,7 +169,7 @@ const styles = StyleSheet.create({
     paddingTop: 5,
     alignSelf: 'center',
     textAlign: 'center',
-    fontFamily: 'Montserrat-Regular',
+    fontWeight: 'medium'
   },
   detailsContainer: {
     backgroundColor: '#D9D9D9',
@@ -202,8 +204,21 @@ const styles = StyleSheet.create({
   },
   
   detailsText: {
-    fontFamily: 'Montserrat-Regular',
+    fontWeight: 'medium',
     fontSize: 13,
     marginLeft: 20,
+  },
+  goBackButton: {
+    position: 'absolute',
+    top: 10,
+    left: 10,
+    width: 30,
+    height: 30,
+    marginTop: 40
+  },
+  backIcon: {
+    width: 25, // Adjust the width to match your design
+    height: 25, // Adjust the height to match your design
+    resizeMode: 'contain',
   },
 })
