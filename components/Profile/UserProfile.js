@@ -7,7 +7,27 @@ export default function UserProfile({navigation}) {
   const [isEditMode, setIsEditMode] = useState(false);
   const [username, setUsername] = useState('User Name');
   const [occupation, setOccupation] = useState('Agronomist/Farmer');
-  const handleLogout = () => {navigation.navigate('LandingPage')};
+  const handleLogout = async () => {
+    try {
+      const response = await fetch('https://softies-backend-production.up.railway.app/api/users/logout', { 
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+    });
+      const result = await response.json();
+      console.log(result)
+      navigation.navigate('LandingPage')
+      // if (result.msg == "User Logged Out"){
+      //   navigation.navigate('Homepage')
+      //     console.log("working but not quite")
+      // //   return true
+      // } 
+    //  console.log("error")
+    } catch (error) {
+      console.log(error)
+    }
+  };
   const handleChangePassowrd = () => {navigation.navigate('ChangePassword')};
 
   return (
@@ -24,7 +44,7 @@ export default function UserProfile({navigation}) {
         </View>
         <TouchableOpacity onPress={() => setIsEditMode(!isEditMode)} style={styles.editIconContainer}>
           <View style={styles.editIcon}>
-            <Image style={styles.editPicture} source={require('../../assets/edit_profile')}/>
+            <Image style={styles.editPicture} source={require('../../assets/edit_profile.png')}/>
           </View>
         </TouchableOpacity>
       </View>

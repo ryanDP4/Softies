@@ -39,13 +39,13 @@ function HomeTabs() {
         headerShown: false,
         tabBarIcon: ({ focused, color, size }) => {
           let iconName;
-          if (route.name === 'Homepage') {
+          if (route.name === 'Home Page') {
             iconName = require('./assets/home.png');
-          } else if (route.name === 'Scan Page') {
+          } else if (route.name === 'ScanPage') {
             iconName = require('./assets/scan.png');
-          } else if (route.name === 'History Page') {
+          } else if (route.name === 'HistoryPage') {
             iconName = require('./assets/history.png');
-          } else if (route.name === 'User Profile') {
+          } else if (route.name === 'UserProfile') {
             iconName = require('./assets/User.png');
           }
 
@@ -56,7 +56,7 @@ function HomeTabs() {
           backgroundColor: '#049B04', 
           borderTopRightRadius: 20,
           borderTopLeftRadius: 20,
-          display: route.name === 'Scan Page' ? 'none' : 'flex',
+          display: route.name === 'ScanPage' ? 'none' : 'flex',
         },
       })}
       tabBarOptions={{
@@ -64,10 +64,10 @@ function HomeTabs() {
         inactiveTintColor: 'gray',
       }}
     >
-      <Tab.Screen name="Homepage" component={Homepage} />
-      <Tab.Screen name="Scan Page" component={ScanPage} />
-      <Tab.Screen name="History Page" component={History} />
-      <Tab.Screen name="User Profile" component={UserProfile}/>
+      <Tab.Screen name="Home Page" component={Homepage} />
+      <Tab.Screen name="ScanPage" component={ScanPage} />
+      <Tab.Screen name="HistoryPage" component={History} />
+      <Tab.Screen name="UserProfile" component={UserProfile}/>
     </Tab.Navigator>
   );
 }
@@ -98,6 +98,9 @@ export default function App() {
         <Stack.Screen name="GrainGallery6" component={GrainGallery6}/>
         <Stack.Screen name="GrainGallery7" component={GrainGallery7}/>
         <Stack.Screen name="GrainGallery8" component={GrainGallery8}/>
+        <Stack.Screen name="ScanPage" component={ScanPage} />
+        <Stack.Screen name="HistoryPage" component={History} />
+        <Stack.Screen name="UserProfile" component={UserProfile}/>
 
 
       </Stack.Navigator>

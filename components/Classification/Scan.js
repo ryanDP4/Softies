@@ -39,12 +39,13 @@ const ScanPage = ({ navigation }) => {
   const takePicture = async () => {
     if (cameraRef.current && cameraVisible) {
       const photo = await cameraRef.current.takePictureAsync();
+      fetchClassification(photo.uri);
       setSelectedImage(photo.uri);
       setCameraVisible(false);
     }
   };
 
-  const uploadImage = async () => {
+  const pickImage = async () => {
     try {
       let result = await ImagePicker.launchImageLibraryAsync({
         mediaTypes: ImagePicker.MediaTypeOptions.Images,
@@ -53,30 +54,77 @@ const ScanPage = ({ navigation }) => {
         quality: 1,
       });
   
-      if (!result.cancelled) {
-        setSelectedImage(result.uri);
+      if (!result.canceled) {
+        // console.log(result.assets.uri)
+        console.log(result.assets[0].uri)
+        URI = result.assets[0].uri
+        fetchClassification(URI);
+        setSelectedImage(URI);
       }
     } catch (error) {
       console.error('Error picking image: ', error);
     }
   };
-  const fetchClassification = async () => {
+
+  // const uploadPhoto = async (imageUri) => {
+  //   try {
+  //     // Convert the image to base64
+  //     const base64Image = await convertImageToBase64(imageUri);
+  
+  //     // Make a POST request to your API
+  //     const response = await fetch('YOUR_API_ENDPOINT', {
+  //       method: 'POST',
+  //       headers: {
+  //         'Content-Type': 'application/json',
+  //       },
+  //       body: JSON.stringify({ image: base64Image }),
+  //     });
+  
+  //     // Handle the response from the server
+  //     const result = await response.json();
+  //     console.log(result);
+  //   } catch (error) {
+  //     console.error('Error uploading image: ', error);
+  //   }
+  // };
+
+  const fetchClassification = async (imageUri) => {
     try {
+      const base64Image = await convertImageToBase64(imageUri)
+      console.log("workin1")
+      // console.log(base64Image)
       const response = await fetch('https://softies-backend-production.up.railway.app/api/recommendation/skan', { 
       method: 'POST',
       body: JSON.stringify({
-          "image":selectedImage,
+          "image":base64Image,
         }),
       headers: {
         'Content-Type': 'application/json',
       },
     });
+      console.log("workin2")
       const result = await response.json();
       // result assign to state
+      console.log("workin3")
       console.log(result)
     } catch (error) {
       console.log(error)
     }
+  };
+  const convertImageToBase64 = async (imageUri) => {
+    const response = await fetch(imageUri);
+    const blob = await response.blob();
+    const base64Image = await convertBlobToBase64(blob);
+    return base64Image;
+  };
+  
+  const convertBlobToBase64 = (blob) => {
+    return new Promise((resolve, reject) => {
+      const reader = new FileReader();
+      reader.onloadend = () => resolve(reader.result.split(',')[1]);
+      reader.onerror = reject;
+      reader.readAsDataURL(blob);
+    });
   };
   useEffect(() => {
         console.log(selectedImage)
@@ -117,7 +165,7 @@ const ScanPage = ({ navigation }) => {
             <Image source={require('../../assets/fframe.png')} style={styles.focusFrame} />
           </Camera>
           <View style={styles.toolbar}>
-            <TouchableOpacity onPress={uploadImage}>
+            <TouchableOpacity onPress={pickImage}>
               <Image source={upload} style={styles.icon} />
             </TouchableOpacity>
             <TouchableOpacity onPress={takePicture}>
