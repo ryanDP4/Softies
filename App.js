@@ -24,6 +24,10 @@ import GrainGallery1 from './components/GrainGallery1';
 import GrainGallery2 from './components/GrainGallery2';
 import GrainGallery3 from './components/GrainGallery3';
 import GrainGallery4 from './components/GrainGallery4';
+import GrainGallery5 from './components/GrainGallery5';
+import GrainGallery6 from './components/GrainGallery6';
+import GrainGallery7 from './components/GrainGallery7';
+import GrainGallery8 from './components/GrainGallery8';
 
 const Stack = createStackNavigator();
 const Tab = createBottomTabNavigator();
@@ -90,6 +94,11 @@ export default function App() {
         <Stack.Screen name="GrainGallery2" component={GrainGallery2}/>
         <Stack.Screen name="GrainGallery3" component={GrainGallery3}/>
         <Stack.Screen name="GrainGallery4" component={GrainGallery4}/>
+        <Stack.Screen name="GrainGallery5" component={GrainGallery5}/>
+        <Stack.Screen name="GrainGallery6" component={GrainGallery6}/>
+        <Stack.Screen name="GrainGallery7" component={GrainGallery7}/>
+        <Stack.Screen name="GrainGallery8" component={GrainGallery8}/>
+
 
       </Stack.Navigator>
     </NavigationContainer>
