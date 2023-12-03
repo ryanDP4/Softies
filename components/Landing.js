@@ -5,7 +5,29 @@ import * as Font from 'expo-font';
 
 export default function Landing({ navigation }) {
     const [fontsLoaded, setFontsLoaded] = useState(false);
-
+    const [loggedIn, setLoggedIn ] = useState(false)
+    const handleOnPress = async () => {
+      try {
+        const response = await fetch('https://softies-backend-production.up.railway.app/api/users/get_user', { 
+        method: 'GET',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+      });
+        const result = await response.json();
+        console.log(result.loggedin)
+        if (result.loggedin == true){
+            navigation.navigate('Homepage')
+        //   return true
+        } else{
+            navigation.navigate('AreYouA')
+            // return false
+        }
+      //  console.log("error")
+      } catch (error) {
+        console.log(error)
+      }
+    };
     useEffect(() => {
         async function loadFonts() {
             try {
@@ -29,7 +51,7 @@ export default function Landing({ navigation }) {
     return (
         <TouchableOpacity
             title="SplashScreen"
-            onPress={() => navigation.navigate('AreYouA')}
+            onPress={() => handleOnPress()}
             style={styles.touchable}
         >
             <View style={styles.page}>
