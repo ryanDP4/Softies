@@ -14,8 +14,8 @@ const sampleImages = [
   require('../assets/sampleIMG2.png'),
   require('../assets/sampleIMG5.png'),
   require('../assets/sampleIMG3.png'),
-  //require('../assets/Grain-Gallery/9.png'),
-  //require('../assets/Grain-Gallery/10.png'),
+  require('../assets/sample1.png'),
+  require('../assets/sample2.png'),
 ];
 
 const previousArrow = require('../assets/previousArrow.png');
@@ -58,8 +58,8 @@ const diseases = [
   { name: 'Green Leaf Hopper', type: 'Biotic Stress' },
   { name: 'Brown Plant Hopper', type: 'Biotic Stress' },
   { name: 'Blast', type: 'Biotic Stress' },
-  //{ name: 'Tungro', type: 'Biotic Stress' },
-  //{ name: 'Brown Plant Hopper', type: 'Biotic Stress' },
+  { name: 'Yellow Stem Borer', type: 'Biotic Stress' },
+  { name: 'Healthy', type: 'Biotic Stress' },
 ];
 
   const navigation = useNavigation();
@@ -98,6 +98,12 @@ const diseases = [
     }
     if (disease.name == 'Blast') {
       navigation.navigate('GrainGallery8', {diseaseName: 'Blast'});
+    }
+    if (disease.name == 'Yellow Stem Borer') {
+      navigation.navigate('GrainGallery9', {diseaseName: 'Yellow Stem Borer'});
+    }
+    if (disease.name == 'Healthy') {
+      navigation.navigate('GrainGallery10', {diseaseName: 'Healthy'});
     }
     // Include additional logic for other diseases if needed
   };
