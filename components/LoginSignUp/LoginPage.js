@@ -13,7 +13,7 @@ export default function LoginPage({ navigation }) {
         ToastAndroid.show(message, ToastAndroid.SHORT);
       };
 
-    const handleLogin = async () => {
+      const handleLogin = async () => {
         try {
           const response = await fetch('https://softies-backend-production.up.railway.app/api/users/login', { 
           method: 'POST',

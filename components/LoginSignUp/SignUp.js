@@ -30,7 +30,7 @@ export default function SignUp( {navigation}) {
               "password": password,
               "username":username,
               "first_name": firstName,
-              "first_name": lastName,
+              "last_name": lastName,
               "contact": contact
             }),
           headers: {

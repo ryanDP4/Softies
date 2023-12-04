@@ -17,7 +17,7 @@ GalleryItem.propTypes = {
 const styles = StyleSheet.create({
   image: {
     flex: 1,
-    height: 100, 
+    height: 200, 
     borderRadius: 10,
     width: '100%',
   },

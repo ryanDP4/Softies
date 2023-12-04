@@ -21,11 +21,8 @@ export default function Landing({ navigation }) {
         //   return true
         } else{
             navigation.navigate('AreYouA')
-            // return false
         }
-      //  console.log("error")
       } catch (error) {
-        console.log(error)
       }
     };
     useEffect(() => {
@@ -37,7 +34,6 @@ export default function Landing({ navigation }) {
                 });
                 setFontsLoaded(true);
             } catch (e) {
-                console.log('Error loading fonts', e);
             }
         }
 

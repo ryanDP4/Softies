@@ -2,17 +2,12 @@ import React, { useState, useEffect, useRef } from 'react';
 import { View, Text, TouchableOpacity, Image, StyleSheet, Modal, Pressable } from 'react-native';
 import * as ImagePicker from 'expo-image-picker';
 import { Camera } from 'expo-camera';
-import { useFonts } from 'expo-font';
 import capture from '../../assets/capture.png';
 import upload from '../../assets/add_image.png';
 import button1 from '../../assets/button-1.png';
 import next from '../../assets/next.png';
 
 const ScanPage = ({ navigation }) => {
-  const [fontsLoaded] = useFonts({
-    'Montserrat-Bold': require('../../assets/fonts/Montserrat-Bold.ttf'),
-    'Montserrat-Regular': require('../../assets/fonts/Montserrat-Regular.ttf')
-  });
 
   const [hasCameraPermission, setHasCameraPermission] = useState(null);
   const [cameraVisible, setCameraVisible] = useState(true);
@@ -138,7 +133,7 @@ const ScanPage = ({ navigation }) => {
     setIsModalVisible(true);
   };
 
-  if (!fontsLoaded || hasCameraPermission === null) {
+  if (hasCameraPermission === null) {
     return <View />;
   }
 
@@ -148,7 +143,7 @@ const ScanPage = ({ navigation }) => {
 
   return (
     <View style={styles.container}>
-      <Pressable style={styles.goBackButton} onPress={() => navigation.navigate('Homepage')}>
+      <Pressable style={styles.goBackButton} onPress={() => navigation.goBack()}>
         <Image source={button1} style={styles.buttonImage} />
       </Pressable>
 
@@ -159,7 +154,7 @@ const ScanPage = ({ navigation }) => {
           visible={cameraVisible}
           onRequestClose={() => setCameraVisible(false)}
         >
-          <Pressable style={styles.goBackButton} onPress={() => navigation.navigate('Homepage')}>
+          <Pressable style={styles.goBackButton} onPress={() => navigation.goBack()}>
             <Image source={button1} style={styles.buttonImage} />
           </Pressable>
           <Camera style={{ flex: 1 }} ref={cameraRef}>
@@ -283,9 +278,9 @@ const styles = StyleSheet.create({
   focusFrame: {
     position: 'absolute',
     alignSelf: 'center',
-    top: '20%', // Adjust these values as needed
-    width: '80%', // Resize to be smaller than the full view
-    height: '60%', // Resize to be smaller than the full view
+    top: '20%', 
+    width: '80%', 
+    height: '60%', 
     resizeMode: 'contain',
   },
   cameraControls: {
@@ -362,12 +357,12 @@ const styles = StyleSheet.create({
   },
   centeredView: {
     flex: 1,
-    justifyContent: 'flex-end', // Aligns the modal to the bottom of the screen
+    justifyContent: 'flex-end', 
   },
   modalView: {
     backgroundColor: 'white',
-    borderTopLeftRadius: 20, // Rounded corners at the top
-    borderTopRightRadius: 20, // Rounded corners at the top
+    borderTopLeftRadius: 20, 
+    borderTopRightRadius: 20, 
     padding: 25,
     shadowColor: '#000',
     shadowOffset: {
@@ -380,7 +375,7 @@ const styles = StyleSheet.create({
   },
   modalTitle: {
     marginBottom: 15,
-    textAlign: 'center', // Aligns title to the left
+    textAlign: 'center', 
     fontFamily: 'Montserrat-Bold',
     fontSize: 30,
     color: '#049B04',
@@ -389,17 +384,17 @@ const styles = StyleSheet.create({
   modalContent: {
     fontFamily: 'Montserrat-Regular',
     fontSize: 16,
-    textAlign: 'left', // Aligns content to the left
+    textAlign: 'left', 
     marginBottom: 10
   },
   buttonClose: {
-    position: 'absolute', // Positions the close button absolutely
-    right: 10, // To the right
-    top: 10, // At the top
-    backgroundColor: '#049B04', // Button color
-    borderRadius: 20, // Rounded button
-    padding: 10, // Padding inside the button
-    elevation: 2, // Shadow for the button
+    position: 'absolute', 
+    right: 10, 
+    top: 10, 
+    backgroundColor: '#049B04', 
+    borderRadius: 20, 
+    padding: 10, 
+    elevation: 2, 
   },
   textStyle: {
     color: 'white',

@@ -74,7 +74,6 @@ const diseases = [
   }
 
   const onImagePress = (disease) => {
-    console.log('Pressed image for disease:', 'Blast');
     if (disease.name == 'Sheath Blight') {
       navigation.navigate('GrainGallery1', {diseaseName:'Sheath Blight'});
     }
@@ -179,7 +178,7 @@ const styles = StyleSheet.create({
     marginTop: 5,
 },
 imageContainer: {
-    borderColor: 'black',  // Set border color to black
+    borderColor: '#191919',  // Set border color to black
     borderWidth: 1, 
     borderRadius: 10,
     overflow: 'hidden',

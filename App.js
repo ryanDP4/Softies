@@ -8,7 +8,7 @@ import LoginPage from './components/LoginSignUp/LoginPage';
 import SignUp from './components/LoginSignUp/SignUp';
 import Landing from './components/Landing';
 import Homepage from './components/Homepage';
-import History from './components/History';
+import History from './components/RecentScans';
 import ScanPage from './components/Classification/Scan';
 import { Image } from 'react-native';
 import UserProfile from './components/Profile/UserProfile';
