@@ -2,24 +2,19 @@ import React, { useState, useEffect, useRef } from 'react';
 import { View, Text, TouchableOpacity, Image, StyleSheet, Modal, Pressable } from 'react-native';
 import * as ImagePicker from 'expo-image-picker';
 import { Camera } from 'expo-camera';
-import { useFonts } from 'expo-font';
 import capture from '../../assets/capture.png';
 import upload from '../../assets/add_image.png';
 import button1 from '../../assets/button-1.png';
 import next from '../../assets/next.png';
 
 const ScanPage = ({ navigation }) => {
-  const [fontsLoaded] = useFonts({
-    'Montserrat-Bold': require('../../assets/fonts/Montserrat-Bold.ttf'),
-    'Montserrat-Regular': require('../../assets/fonts/Montserrat-Regular.ttf')
-  });
 
   const [hasCameraPermission, setHasCameraPermission] = useState(null);
   const [cameraVisible, setCameraVisible] = useState(true);
   const [selectedImage, setSelectedImage] = useState(null);
   const [isModalVisible, setIsModalVisible] = useState(false);
   const cameraRef = useRef(null);
-
+  
   useEffect(() => {
     (async () => {
       const cameraStatus = await Camera.requestCameraPermissionsAsync();
@@ -39,12 +34,14 @@ const ScanPage = ({ navigation }) => {
   const takePicture = async () => {
     if (cameraRef.current && cameraVisible) {
       const photo = await cameraRef.current.takePictureAsync();
-      setSelectedImage(photo.uri);
+      await fetchClassification(photo.uri)
+      await setSelectedImage(photo.uri);
       setCameraVisible(false);
+      
     }
   };
 
-  const uploadImage = async () => {
+  const pickImage = async () => {
     try {
       let result = await ImagePicker.launchImageLibraryAsync({
         mediaTypes: ImagePicker.MediaTypeOptions.Images,
@@ -53,19 +50,90 @@ const ScanPage = ({ navigation }) => {
         quality: 1,
       });
   
-      if (!result.cancelled) {
-        setSelectedImage(result.uri);
+      if (!result.canceled) {
+        // console.log(result.assets.uri)
+        console.log(result.assets[0].uri)
+        URI = result.assets[0].uri
+        await fetchClassification(URI);
+        await setSelectedImage(URI);
       }
     } catch (error) {
       console.error('Error picking image: ', error);
     }
   };
 
+  // const uploadPhoto = async (imageUri) => {
+  //   try {
+  //     // Convert the image to base64
+  //     const base64Image = await convertImageToBase64(imageUri);
+  
+  //     // Make a POST request to your API
+  //     const response = await fetch('YOUR_API_ENDPOINT', {
+  //       method: 'POST',
+  //       headers: {
+  //         'Content-Type': 'application/json',
+  //       },
+  //       body: JSON.stringify({ image: base64Image }),
+  //     });
+  
+  //     // Handle the response from the server
+  //     const result = await response.json();
+  //     console.log(result);
+  //   } catch (error) {
+  //     console.error('Error uploading image: ', error);
+  //   }
+  // };
+
+  const fetchClassification = async (imageUri) => {
+    try {
+      const base64Image = await convertImageToBase64(imageUri)
+      console.log("LOADING LOADING LOADING...")
+      // console.log(base64Image)
+      const response = await fetch('https://softies-backend-production.up.railway.app/api/recommendation/skan', { 
+      method: 'POST',
+      body: JSON.stringify({
+          "image":base64Image,
+        }),
+      headers: {
+        'Content-Type': 'application/json',
+      },
+    });
+      console.log("workin2")
+      const result = await response.json();
+      // result assign to state
+      console.log("workin3")
+      console.log(result)
+    } catch (error) {
+      // console.log(error)
+    }
+  };
+  const convertImageToBase64 = async (imageUri) => {
+    const response = await fetch(imageUri);
+    const blob = await response.blob();
+    const base64Image = await convertBlobToBase64(blob);
+    return base64Image;
+  };
+  
+  const convertBlobToBase64 = (blob) => {
+    return new Promise((resolve, reject) => {
+      const reader = new FileReader();
+      reader.onloadend = () => resolve(reader.result.split(',')[1]);
+      reader.onerror = reject;
+      reader.readAsDataURL(blob);
+    });
+  };
+  useEffect(() => {
+        console.log(selectedImage)
+        fetchClassification()})
+
+//       }, [selectedImage]);
+
+
   const handleNextPress = () => {
     setIsModalVisible(true);
   };
 
-  if (!fontsLoaded || hasCameraPermission === null) {
+  if (hasCameraPermission === null) {
     return <View />;
   }
 
@@ -75,7 +143,7 @@ const ScanPage = ({ navigation }) => {
 
   return (
     <View style={styles.container}>
-      <Pressable style={styles.goBackButton} onPress={() => navigation.navigate('Homepage')}>
+      <Pressable style={styles.goBackButton} onPress={() => navigation.goBack()}>
         <Image source={button1} style={styles.buttonImage} />
       </Pressable>
 
@@ -86,14 +154,14 @@ const ScanPage = ({ navigation }) => {
           visible={cameraVisible}
           onRequestClose={() => setCameraVisible(false)}
         >
-          <Pressable style={styles.goBackButton} onPress={() => navigation.navigate('Homepage')}>
+          <Pressable style={styles.goBackButton} onPress={() => navigation.goBack()}>
             <Image source={button1} style={styles.buttonImage} />
           </Pressable>
           <Camera style={{ flex: 1 }} ref={cameraRef}>
             <Image source={require('../../assets/fframe.png')} style={styles.focusFrame} />
           </Camera>
           <View style={styles.toolbar}>
-            <TouchableOpacity onPress={uploadImage}>
+            <TouchableOpacity onPress={pickImage}>
               <Image source={upload} style={styles.icon} />
             </TouchableOpacity>
             <TouchableOpacity onPress={takePicture}>
@@ -149,7 +217,7 @@ const ScanPage = ({ navigation }) => {
       </Modal>
     </View>
   );
-};
+}
 
 const styles = StyleSheet.create({
   container: {
@@ -210,9 +278,9 @@ const styles = StyleSheet.create({
   focusFrame: {
     position: 'absolute',
     alignSelf: 'center',
-    top: '20%', // Adjust these values as needed
-    width: '80%', // Resize to be smaller than the full view
-    height: '60%', // Resize to be smaller than the full view
+    top: '20%', 
+    width: '80%', 
+    height: '60%', 
     resizeMode: 'contain',
   },
   cameraControls: {
@@ -289,12 +357,12 @@ const styles = StyleSheet.create({
   },
   centeredView: {
     flex: 1,
-    justifyContent: 'flex-end', // Aligns the modal to the bottom of the screen
+    justifyContent: 'flex-end', 
   },
   modalView: {
     backgroundColor: 'white',
-    borderTopLeftRadius: 20, // Rounded corners at the top
-    borderTopRightRadius: 20, // Rounded corners at the top
+    borderTopLeftRadius: 20, 
+    borderTopRightRadius: 20, 
     padding: 25,
     shadowColor: '#000',
     shadowOffset: {
@@ -307,7 +375,7 @@ const styles = StyleSheet.create({
   },
   modalTitle: {
     marginBottom: 15,
-    textAlign: 'center', // Aligns title to the left
+    textAlign: 'center', 
     fontFamily: 'Montserrat-Bold',
     fontSize: 30,
     color: '#049B04',
@@ -316,17 +384,17 @@ const styles = StyleSheet.create({
   modalContent: {
     fontFamily: 'Montserrat-Regular',
     fontSize: 16,
-    textAlign: 'left', // Aligns content to the left
+    textAlign: 'left', 
     marginBottom: 10
   },
   buttonClose: {
-    position: 'absolute', // Positions the close button absolutely
-    right: 10, // To the right
-    top: 10, // At the top
-    backgroundColor: '#049B04', // Button color
-    borderRadius: 20, // Rounded button
-    padding: 10, // Padding inside the button
-    elevation: 2, // Shadow for the button
+    position: 'absolute', 
+    right: 10, 
+    top: 10, 
+    backgroundColor: '#049B04', 
+    borderRadius: 20, 
+    padding: 10, 
+    elevation: 2, 
   },
   textStyle: {
     color: 'white',

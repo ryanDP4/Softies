@@ -1,6 +1,5 @@
 import {React, useState} from 'react';
-import { useFonts } from 'expo-font';
-import { StyleSheet, Text, View, ImageBackground, TextInput, Image, Pressable } from 'react-native';
+import { StyleSheet, Text, View, ImageBackground, TextInput, Image, Pressable, ToastAndroid } from 'react-native';
 import login_bg3 from '../../assets/login_bg-3.png';
 import button1 from '../../assets/button-1.png';
 import infoIcon from '../../assets/Name.png';
@@ -9,21 +8,46 @@ import emailIcon from '../../assets/Email.png';
 import contactIcon from '../../assets/Call.png';
 
 export default function SignUp( {navigation}) {
-      const [fontsLoaded] = useFonts({
-        'Montserrat-Regular': require('../../assets/fonts/Montserrat-Regular.ttf'),
-        'Montserrat-Bold': require('../../assets/fonts/Montserrat-Bold.ttf'),
-        'Montserrat-Medium': require('../../assets/fonts/Montserrat-Medium.ttf')
-  });
-
-//   if (!fontsLoaded) {                                                                                                                                                                                                                                                                                           
-//     return null;
-// }
 
     const [firstName, setfirstName] = useState('');
     const [lastName, setlastName] = useState('');
     const [email, setEmail] = useState('');
     const [contact, setContact] = useState('');
     const [password, setPassword] = useState('');
+    const [username, setUsername] = useState('');
+   
+    const showToast = (message) => {
+            ToastAndroid.show(message, ToastAndroid.SHORT);
+        };
+
+ 
+    const handleSignUp = async () => {
+        try {
+          const response = await fetch('https://softies-backend-production.up.railway.app/api/users/signup', { 
+          method: 'POST',
+          body: JSON.stringify({
+              "email":email,
+              "password": password,
+              "username":username,
+              "first_name": firstName,
+              "last_name": lastName,
+              "contact": contact
+            }),
+          headers: {
+            'Content-Type': 'application/json',
+          },
+        });
+          const result = await response.json();
+          if (result.msg== "Account created successfully"){
+            showToast(result.msg)
+            navigation.navigate('Homepage')
+          }
+          showToast(result.msg)
+         console.log("error")
+        } catch (error) {
+          console.log(error)
+        }
+      };
 
     
     return(
@@ -85,6 +109,18 @@ export default function SignUp( {navigation}) {
                         />
                     </View>
 
+                    <View style={styles.textInput}>
+                        <Image source={emailIcon} style={styles.inputIcon} />
+                        <TextInput
+                            style={styles.input}
+                            placeholder="Username"
+                            value={username}
+                            onChangeText={setUsername}
+                            keyboardType="user-name"
+                            autoCapitalize="none"
+                        />
+                    </View>
+
                     {/* Contact Input */}
                     <View style={styles.textInput}>
                         <Image source={contactIcon} style={styles.inputIcon} />
@@ -111,7 +147,7 @@ export default function SignUp( {navigation}) {
 
                 </View>
                 <View style = {styles.buttonContainer}>
-                    <Pressable style={styles.SignUpButton} onPress={() => navigation.navigate('Homepage')}>
+                    <Pressable style={styles.SignUpButton} onPress={()=>handleSignUp()}>
                         <Text style={styles.SignUpButtonText}>Sign Up</Text>
                     </Pressable>
                 </View>
@@ -145,28 +181,27 @@ const styles = StyleSheet.create({
         color: '#086608',
         fontSize: 35,
         marginTop: 200,
-        marginBottom: 10, // Space between text and buttons
+        marginBottom: 10,
         alignItems: 'center',
     }, 
     registerText: {
         color: '#086608',
         fontSize: 35,
-        fontFamily: 'Montserrat-Bold',
+        fontWeight: 'bold'
     },
     text: {
         color: '#086608',
         fontSize: 16, 
-        fontFamily: 'Montserrat-Medium',
+        fontWeight: 'medium'
     },
     inputContainer: {
         alignItems: 'center',
-        marginBottom: 60,
+        marginBottom: 30,
     }, 
     textInput: {
         flexDirection: 'row',
         alignItems: 'center',
         marginBottom: 15,
-        // marginLeft: 10, 
         width: 315, 
         height: 40,
         backgroundColor: 'white',
@@ -185,7 +220,7 @@ const styles = StyleSheet.create({
         color: '#086608',
         marginLeft: 15,
         fontSize: 12,
-        fontFamily: 'Montserrat-Regular',
+        fontWeight: 'medium'
     },
     buttonContainer: {
         alignItems: 'center',
@@ -201,6 +236,6 @@ const styles = StyleSheet.create({
     SignUpButtonText: {
         color: 'white',
         fontSize: 16,
-        fontFamily: 'Montserrat-Regular',
+        fontWeight: 'medium'
     },
 })

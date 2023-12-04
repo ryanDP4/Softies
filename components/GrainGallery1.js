@@ -3,11 +3,11 @@ import { StyleSheet, View, Text, Image, ScrollView, TouchableOpacity } from 'rea
 
 const arrowBack = require('../assets/back.png');
 const RecentScans1 = ({ navigation, route }) => {
-  console.log(route)//
-  console.log(route.params)
+  // console.log(route)//
+  // console.log(route.params)
     const { diseaseName} = route.params.diseaseName//.split(" ")[-1];
-    console.log(route)//
-    console.log(route.params)
+    // console.log(route)//
+    // console.log(route.params)
     return (
       <View style={styles.container}>
         <ScrollView style={styles.scrollView}>

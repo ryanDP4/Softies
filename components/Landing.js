@@ -1,34 +1,65 @@
-import { useFonts } from 'expo-font';
+import React, { useState, useEffect } from 'react';
 import { StyleSheet, View, Image, Text, TouchableOpacity } from 'react-native';
 import imagePath from '../assets/skanin_logo.png';
-// import Homepage from './Homepage';
+import * as Font from 'expo-font';
 
-export default function Landing( {navigation} ) {
+export default function Landing({ navigation }) {
+    const [fontsLoaded, setFontsLoaded] = useState(false);
+    const [loggedIn, setLoggedIn ] = useState(false)
+    const handleOnPress = async () => {
+      try {
+        const response = await fetch('https://softies-backend-production.up.railway.app/api/users/get_user', { 
+        method: 'GET',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+      });
+        const result = await response.json();
+        console.log(result.loggedin)
+        if (result.loggedin == true){
+            navigation.navigate('Homepage')
+        //   return true
+        } else{
+            navigation.navigate('AreYouA')
+        }
+      } catch (error) {
+      }
+    };
+    useEffect(() => {
+        async function loadFonts() {
+            try {
+                await Font.loadAsync({
+                    'Ultra-Regular': require('../assets/fonts/ultra/Ultra-Regular.ttf'),
+                    'Montserrat-Regular': require('../assets/fonts/Montserrat-Regular.ttf'),
+                });
+                setFontsLoaded(true);
+            } catch (e) {
+            }
+        }
 
-    const [fontsLoaded, fontError] = useFonts({
-        'Ultra-Regular': require('../assets/fonts/ultra/Ultra-Regular.ttf'),
-        'Montserrat-Regular': require('../assets/fonts/Montserrat-Regular.ttf'),
-    }) 
-    
+        loadFonts();
+    }, []);
+
+    if (!fontsLoaded) {
+        return <View><Text>Loading...</Text></View>; 
+    }
+
     return (
-            <TouchableOpacity
+        <TouchableOpacity
             title="SplashScreen"
-            onPress={() => navigation.navigate('AreYouA')}
+            onPress={() => handleOnPress()}
             style={styles.touchable}
-            >
-                <View style={styles.page} >
-                    <View style={styles.imageContainer}>
-                        <Image
-                            source= {imagePath}
-                            style={styles.image}
-                        />
-                    </View>
-                    <View style={styles.continueContainer}>
-                    <Text style={styles.continueText}>Tap anywhere to continue.</Text>
-                    </View>
+        >
+            <View style={styles.page}>
+                <View style={styles.imageContainer}>
+                    <Image source={imagePath} style={styles.image} />
                 </View>
-            </TouchableOpacity>
-    )
+                <View style={styles.continueContainer}>
+                    <Text style={styles.continueText}>Tap anywhere to continue</Text>
+                </View>
+            </View>
+        </TouchableOpacity>
+    );
 }
 
 const styles = StyleSheet.create({
@@ -47,8 +78,8 @@ const styles = StyleSheet.create({
         justifyContent: 'center'
     },
     image: {
-        width: '65%', // Use a percentage of the screen width
-        aspectRatio: 1, // Maintain aspect ratio (width:height = 1:1)
+        width: '65%', 
+        aspectRatio: 1, 
         justifyContent: 'center',
         alignItems: 'center'
     },

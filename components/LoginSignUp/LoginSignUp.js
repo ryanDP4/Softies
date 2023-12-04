@@ -1,19 +1,9 @@
 import React from 'react';
-import { useFonts } from 'expo-font';
 import { StyleSheet, Text, View, ImageBackground, TouchableOpacity, Image, Pressable } from 'react-native';
 import login_bg2 from '../../assets/login_bg-2.png';
 import button1 from '../../assets/button-1.png';
 
 export default function LoginSignUp( {navigation} ) {
-  const [fontsLoaded] = useFonts({
-    'Montserrat-Regular': require('../../assets/fonts/Montserrat-Regular.ttf'),
-    'Montserrat-Bold': require('../../assets/fonts/Montserrat-Bold.ttf'),
-    'Montserrat-Medium': require('../../assets/fonts/Montserrat-Medium.ttf')
-  });
-
-//   if (!fontsLoaded) {                                                                                                                                                                                                                                                                                           
-//     return null;
-// }
 
   return (
     <ImageBackground
@@ -60,13 +50,14 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
   },
   textContainer: {
-    marginTop: 200,
+    marginTop: 150,
     marginLeft: 20,
+    marginBottom: -50
   },
   text: {
     color: '#086608',
-    fontSize: 40,
-    fontFamily: 'Montserrat-Bold',
+    fontSize: 60,
+    fontWeight: 'bold'
   },
   buttonContainer: {
     alignItems: 'center',
@@ -90,12 +81,10 @@ const styles = StyleSheet.create({
   SignUpButtonText: {
     color: 'white',
     fontSize: 16,
-    fontFamily: 'Montserrat-Regular',
   },
   LoginButtonText: {
     color: '#086608',
     fontSize: 16,
-    fontFamily: 'Montserrat-Regular',
   },
   goBackButton: {
     position: 'absolute',
